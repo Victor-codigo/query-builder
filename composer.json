@@ -1,0 +1,14 @@
+{
+    "name": "victor/query-builder",
+    "description": "A query builder for MySQL",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Lib\\": "src/",
+            "Test\\": "tests"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.65"
+    }
+}

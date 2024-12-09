@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace GT\Libs\Sistema\BD\QueryConstructor;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\ICondicionFabrica;
 use GT\Libs\Sistema\BD\Conexion\Conexion;
 use GT\Libs\Sistema\BD\Conexion\DRIVERS;
+use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\ICondicionFabrica;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\IClausulaFabrica;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Delete\DeleteConstructor;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Insert\InsertConstructor;
@@ -13,63 +22,61 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Sql\SqlC
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Update\UpdateConstructor;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\MysqlClausula;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Condicion\MysqlCondicionFabrica;
-//******************************************************************************
 
+// ******************************************************************************
 
 /**
- * Contructor de comandos SQL
+ * Constructor de comandos SQL.
  */
 class QueryConstructor
 {
     /**
-     * Conexion con la base de datos
+     * Conexión con la base de datos.
+     *
      * @var Conexion
      */
-    private $conexion = null;
-
-        /**
-         * Establece la conexión con la base de dtos
-         *
-         * @vesion 1.0
-         * @param Conexion $conexion Conesión con la base de datos
-         */
-        public function setconexion(Conexion $conexion)
-        {
-            $this->conexion = $conexion;
-        }
-
-        /**
-         * Obtiene la conexión con la base de dtos
-         *
-         * @vesion 1.0
-         *
-         * @return Conexion
-         */
-        public function getconexion()
-        {
-            return $this->conexion;
-        }
-//******************************************************************************
-
+    private $conexion;
 
     /**
-     * Fabrica de claúsulas
+     * Establece la conexión con la base de datos.
+     *
+     * @version 1.0
+     *
+     * @param Conexion $conexion Conexión con la base de datos
+     */
+    public function setconexion(Conexion $conexion)
+    {
+        $this->conexion = $conexion;
+    }
+
+    /**
+     * Obtiene la conexión con la base de datos.
+     *
+     * @version 1.0
+     *
+     * @return Conexion
+     */
+    public function getconexion()
+    {
+        return $this->conexion;
+    }
+
+    /**
+     * Fabrica de clausulas.
+     *
      * @var IClausulaFabrica
      */
-    private $fabrica_clausulas = null;
+    private $fabrica_clausulas;
 
     /**
-     * Fabrica de condiciones
+     * Fabrica de condiciones.
+     *
      * @var ICondicionFabrica
      */
-    private $fabrica_condiciones = null;
-
-
-
-
+    private $fabrica_condiciones;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @version 1.0
      *
@@ -80,11 +87,10 @@ class QueryConstructor
         $this->setconexion($conexion);
         $this->crearFabrica($this->conexion->getdriver());
     }
-//******************************************************************************
-
+    // ******************************************************************************
 
     /**
-     * Destructor
+     * Destructor.
      *
      * @version 1.0
      */
@@ -94,26 +100,21 @@ class QueryConstructor
         $this->fabrica_clausulas = null;
         $this->fabrica_condiciones = null;
     }
-//******************************************************************************
-
 
     /**
-     * Conecta con la base de datos
+     * Conecta con la base de datos.
      *
      * @version 1.0
      */
     private function conectar()
     {
-        if(!$this->conexion->getConectado())
-        {
+        if (!$this->conexion->getConectado()) {
             $this->conexion->conectar();
         }
     }
-//******************************************************************************
-
 
     /**
-     * Crea la fábrica de claúsulas
+     * Crea la fábrica de claúsulas.
      *
      * @version 1.0
      *
@@ -121,21 +122,17 @@ class QueryConstructor
      */
     private function crearFabrica($driver)
     {
-        switch($driver)
-        {
+        switch ($driver) {
             case DRIVERS::MYSQL:
-
                 $this->fabrica_clausulas = new MysqlClausula();
                 $this->fabrica_condiciones = new MysqlCondicionFabrica();
 
-            break;
+                break;
         }
     }
-//******************************************************************************
-
 
     /**
-     * Constructor de comandos SQL SELECT
+     * Constructor de comandos SQL SELECT.
      *
      * @version 1.0
      *
@@ -146,14 +143,12 @@ class QueryConstructor
         $this->conectar();
 
         return new SelectConstructor($this->conexion,
-                                        $this->fabrica_clausulas,
-                                        $this->fabrica_condiciones);
+            $this->fabrica_clausulas,
+            $this->fabrica_condiciones);
     }
-//******************************************************************************
-
 
     /**
-     * Constructor de comandos SQL UPDATE
+     * Constructor de comandos SQL UPDATE.
      *
      * @version 1.0
      *
@@ -164,14 +159,12 @@ class QueryConstructor
         $this->conectar();
 
         return new UpdateConstructor($this->conexion,
-                                        $this->fabrica_clausulas,
-                                        $this->fabrica_condiciones);
+            $this->fabrica_clausulas,
+            $this->fabrica_condiciones);
     }
-//******************************************************************************
-
 
     /**
-     * Constructor de comandos SQL DELETE
+     * Constructor de comandos SQL DELETE.
      *
      * @version 1.0
      *
@@ -182,13 +175,12 @@ class QueryConstructor
         $this->conectar();
 
         return new DeleteConstructor($this->conexion,
-                                        $this->fabrica_clausulas,
-                                        $this->fabrica_condiciones);
+            $this->fabrica_clausulas,
+            $this->fabrica_condiciones);
     }
-//******************************************************************************
 
     /**
-     * Constructor de comandos SQL INSERT
+     * Constructor de comandos SQL INSERT.
      *
      * @version 1.0
      *
@@ -199,13 +191,12 @@ class QueryConstructor
         $this->conectar();
 
         return new InsertConstructor($this->conexion,
-                                        $this->fabrica_clausulas,
-                                        $this->fabrica_condiciones);
+            $this->fabrica_clausulas,
+            $this->fabrica_condiciones);
     }
-//******************************************************************************
 
     /**
-     * Constructor de comandos SQL
+     * Constructor de comandos SQL.
      *
      * @version 1.0
      *
@@ -216,9 +207,7 @@ class QueryConstructor
         $this->conectar();
 
         return new SqlConstructor($this->conexion,
-                                    $this->fabrica_clausulas,
-                                    $this->fabrica_condiciones);
+            $this->fabrica_clausulas,
+            $this->fabrica_condiciones);
     }
-//******************************************************************************
 }
-//******************************************************************************
