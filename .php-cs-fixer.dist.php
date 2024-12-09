@@ -13,14 +13,7 @@ if (!file_exists(__DIR__.'/src')) {
     exit(0);
 }
 
-$fileHeaderComment = <<<'EOF'
-This file is part of the Symfony package.
-
-(c) Fabien Potencier <fabien@symfony.com>
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-EOF;
+$fileHeaderComment = '';
 
 return (new PhpCsFixer\Config())
     // @see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/7777

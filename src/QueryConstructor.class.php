@@ -1,15 +1,8 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+declare(strict_types=true);
 
-namespace GT\Libs\Sistema\BD\QueryConstructor;
+namespace Lib;
 
 use GT\Libs\Sistema\BD\Conexion\Conexion;
 use GT\Libs\Sistema\BD\Conexion\DRIVERS;
@@ -22,8 +15,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Sql\SqlC
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Update\UpdateConstructor;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\MysqlClausula;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Condicion\MysqlCondicionFabrica;
-
-// ******************************************************************************
 
 /**
  * Constructor de comandos SQL.
@@ -160,7 +151,8 @@ class QueryConstructor
 
         return new UpdateConstructor($this->conexion,
             $this->fabrica_clausulas,
-            $this->fabrica_condiciones);
+            $this->fabrica_condiciones
+        );
     }
 
     /**
