@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\Set;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Parametros;
 
 /**
  * Parámetros de la clausula SET.
@@ -21,4 +19,3 @@ final class SetParams extends Parametros
      */
     public $valores = [];
 }
-// ******************************************************************************
