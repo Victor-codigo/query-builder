@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula;
 
-use GT\Libs\Sistema\Tipos\Enum;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Enum;
 
 /**
- * Modificadores de las claúsulas.
+ * Modificadores de las clausulas.
  */
 abstract class MODIFICADORES extends Enum
 {
 }
-// ******************************************************************************

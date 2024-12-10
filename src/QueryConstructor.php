@@ -105,7 +105,7 @@ class QueryConstructor
     }
 
     /**
-     * Crea la fábrica de claúsulas.
+     * Crea la fábrica de clausulas.
      *
      * @version 1.0
      *

@@ -11,7 +11,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
 // ******************************************************************************
 
 /**
- * Claúsula WHERE de un comando SQL.
+ * Clausula WHERE de un comando SQL.
  */
 abstract class WhereClausula extends Clausula
 {
@@ -22,7 +22,7 @@ abstract class WhereClausula extends Clausula
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)

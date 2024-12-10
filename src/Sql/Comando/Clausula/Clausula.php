@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\AndOperador;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\GrupoOperadores;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\OrOperador;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\XorOperador;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Operador\AndOperador;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use Lib\Sql\Comando\Operador\GrupoOperadores;
+use Lib\Sql\Comando\Operador\Operador;
+use Lib\Sql\Comando\Operador\OrOperador;
+use Lib\Sql\Comando\Operador\TIPOS;
+use Lib\Sql\Comando\Operador\XorOperador;
 
 /**
- * Claúsula de un comando SQL.
+ * Clausula de un comando SQL.
  */
 abstract class Clausula implements ClausulaInterface
 {
@@ -30,7 +29,6 @@ abstract class Clausula implements ClausulaInterface
      * @return string
      */
     abstract public function parse($valor);
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -50,31 +48,30 @@ abstract class Clausula implements ClausulaInterface
     {
         return $this->tipo;
     }
-    // ******************************************************************************
 
     /**
-     * Comando al que pertenece la claúsula.
+     * Comando al que pertenece la clausula.
      *
-     * @var Comando
+     * @var ?Comando
      */
     protected $comando;
 
     /**
      * Fábrica de condiciones.
      *
-     * @var CondicionFabricaInterface
+     * @var ?CondicionFabricaInterface
      */
     protected $fabrica_condiciones;
 
     /**
-     * Parametros de la claúsula.
+     * Parámetros de la clausula.
      *
-     * @var Parametros
+     * @var ?Parametros
      */
     protected $params;
 
     /**
-     * Obtiene los parametros de la claúsula.
+     * Obtiene los parámetros de la clausula.
      *
      * @version 1.0
      *
@@ -86,25 +83,24 @@ abstract class Clausula implements ClausulaInterface
     }
 
     /**
-     * Establece los parametros de la claúsula.
+     * Establece los parámetros de la clausula.
      *
      * @version 1.0
      */
-    public function setParams(Parametros $params)
+    public function setParams(Parametros $params): void
     {
         $this->params = $params;
     }
-    // ******************************************************************************
 
     /**
-     * Grupo de operadores de la clusula.
+     * Grupo de operadores de la clausula.
      *
-     * @var GrupoOperadores
+     * @var ?GrupoOperadores
      */
     private $operadores;
 
     /**
-     * Obtiene el gestor de operadores de la claúsula.
+     * Obtiene el gestor de operadores de la clausula.
      *
      * @version 1.0
      *
@@ -114,16 +110,15 @@ abstract class Clausula implements ClausulaInterface
     {
         return $this->operadores;
     }
-    // ******************************************************************************
 
     /**
      * Constructor.
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)
@@ -135,7 +130,6 @@ abstract class Clausula implements ClausulaInterface
             $this->operadores = new GrupoOperadores(null);
         }
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -149,7 +143,6 @@ abstract class Clausula implements ClausulaInterface
         $this->operadores = null;
         $this->params = null;
     }
-    // ******************************************************************************
 
     /**
      * Crea un operador y lo añade al grupo de operadores.
@@ -173,6 +166,4 @@ abstract class Clausula implements ClausulaInterface
                 return new XorOperador($this, $this->fabrica_condiciones);
         }
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

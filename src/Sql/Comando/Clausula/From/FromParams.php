@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros de la claúsula FROM.
+ * Parámetros de la clausula FROM.
  */
 final class FromParams extends Parametros
 {

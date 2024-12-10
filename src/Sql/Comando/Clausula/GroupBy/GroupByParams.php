@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros de la claúsula GROUP BY.
+ * Parámetros de la clausula GROUP BY.
  */
 final class GroupByParams extends Parametros
 {

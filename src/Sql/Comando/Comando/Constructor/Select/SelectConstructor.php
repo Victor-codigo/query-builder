@@ -63,7 +63,7 @@ class SelectConstructor extends ComandoDmlConstructor
     // ******************************************************************************
 
     /**
-     * Construye la claúsula SELECT de el comando SQL SELECT.
+     * Construye la clausula SELECT de el comando SQL SELECT.
      *
      * @version 1.0
      *

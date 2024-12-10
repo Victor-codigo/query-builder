@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros para la claúsula PARTITION.
+ * Parámetros para la clausula PARTITION.
  */
 final class PartitionParams extends Parametros
 {

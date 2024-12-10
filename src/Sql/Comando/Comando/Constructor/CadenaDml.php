@@ -50,7 +50,7 @@ abstract class CadenaDml extends Cadena
     // ******************************************************************************
 
     /**
-     * Construye una claúsula WHERE de el comando SQL.
+     * Construye una clausula WHERE de el comando SQL.
      *
      * @version 1.0
      *
@@ -70,7 +70,7 @@ abstract class CadenaDml extends Cadena
     // ******************************************************************************
 
     /**
-     * Construye una claúsula ORDER BY de el comando SQL.
+     * Construye una clausula ORDER BY de el comando SQL.
      *
      * @version 1.0
      *

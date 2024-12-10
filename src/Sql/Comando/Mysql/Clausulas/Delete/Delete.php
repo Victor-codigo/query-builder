@@ -34,7 +34,7 @@ final class Delete extends DeleteClausula
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)
@@ -55,11 +55,11 @@ final class Delete extends DeleteClausula
     // ******************************************************************************
 
     /**
-     * Genera la claúsula UPDATE.
+     * Genera la clausula UPDATE.
      *
      * @version 1.0
      *
-     * @return string código de la claúsula
+     * @return string código de la clausula
      */
     public function generar()
     {
@@ -72,7 +72,7 @@ final class Delete extends DeleteClausula
     // ******************************************************************************
 
     /**
-     * Genera la claúsula delete para una sola tabla.
+     * Genera la clausula delete para una sola tabla.
      *
      * @version 1.0
      *
@@ -92,7 +92,7 @@ final class Delete extends DeleteClausula
     // ******************************************************************************
 
     /**
-     * Genera la claúsula delete para varias tablas.
+     * Genera la clausula delete para varias tablas.
      *
      * @version 1.0
      *

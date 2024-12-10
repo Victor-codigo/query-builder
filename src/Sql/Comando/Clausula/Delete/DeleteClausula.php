@@ -30,7 +30,7 @@ abstract class DeleteClausula extends Clausula implements ClausulaMainInterface
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)

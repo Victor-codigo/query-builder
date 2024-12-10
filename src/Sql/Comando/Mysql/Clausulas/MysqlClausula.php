@@ -68,12 +68,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores          TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Select claúsula SQL
+     * @return Select clausula SQL
      */
     public function getSql(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores)
     {
@@ -99,12 +99,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores          TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Select claúsula SELECT
+     * @return Select clausula SELECT
      */
     public function getSelect(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores)
     {
@@ -117,12 +117,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores          TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Update claúsula UPDATE
+     * @return Update clausula UPDATE
      */
     public function getUpdate(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores)
     {
@@ -135,12 +135,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores          TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Delete claúsula UPDATE
+     * @return Delete clausula UPDATE
      */
     public function getDelete(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores)
     {
@@ -153,12 +153,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Insert claúsula INSERT
+     * @return Insert clausula INSERT
      */
     public function getInsert(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -171,12 +171,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return From claúsula FROM
+     * @return From clausula FROM
      */
     public function getFrom(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -189,12 +189,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Set claúsula SET
+     * @return Set clausula SET
      */
     public function getSet(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -287,12 +287,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Where claúsula WHERE
+     * @return Where clausula WHERE
      */
     public function getWhere(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -305,12 +305,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return GroupBy claúsula GROUP BY
+     * @return GroupBy clausula GROUP BY
      */
     public function getGroupBy(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -323,12 +323,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Having claúsula HAVING
+     * @return Having clausula HAVING
      */
     public function getHaving(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -341,12 +341,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return OrderBy claúsula ORDER BY
+     * @return OrderBy clausula ORDER BY
      */
     public function getOrder(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -359,12 +359,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Limit claúsula LIMIT
+     * @return Limit clausula LIMIT
      */
     public function getLimit(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -377,12 +377,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return InsertAttr claúsula PARTITION
+     * @return InsertAttr clausula PARTITION
      */
     public function getInsertAttr(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -395,12 +395,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Values claúsula VALUES
+     * @return Values clausula VALUES
      */
     public function getValues(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -409,16 +409,16 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     // ******************************************************************************
 
     /**
-     * Fabrica una claúsula ON DUPLICATE KEY UPDATE.
+     * Fabrica una clausula ON DUPLICATE KEY UPDATE.
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return OnDuplicate claúsula ON DUPLICATE KEY UPDATE
+     * @return OnDuplicate clausula ON DUPLICATE KEY UPDATE
      */
     public function getOnDuplicate(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {
@@ -431,12 +431,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores_gestor   TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Partition claúsula PARTITION
+     * @return Partition clausula PARTITION
      */
     public function getPartition(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor)
     {

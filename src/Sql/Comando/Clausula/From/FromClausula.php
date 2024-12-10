@@ -12,19 +12,19 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
 // ******************************************************************************
 
 /**
- * Claúsula FROM de un comando SQL.
+ * Clausula FROM de un comando SQL.
  */
 abstract class FromClausula extends Clausula implements FromClausulaInterface
 {
     /**
-     * JOINS de la claúsula.
+     * JOINS de la clausula.
      *
      * @var JoinInterface[]
      */
     protected $joins = [];
 
     /**
-     * Obtiene los JOINS  de la claúsula.
+     * Obtiene los JOINS  de la clausula.
      *
      * @version 1.0
      *
@@ -43,7 +43,7 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)
@@ -85,7 +85,7 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      *
      * @version 1.0
      *
-     * @param ClausulaFabricaInterface $fabrica Fabrica de claúsulas
+     * @param ClausulaFabricaInterface $fabrica Fabrica de clausulas
      * @param int                      $tipo    Tipo de join. Una de las constantes JOIN_TIPOS::*
      * @param JoinParams               $params  parámetros de la sentencia JOIN
      */

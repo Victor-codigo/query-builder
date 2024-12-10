@@ -75,7 +75,7 @@ abstract class ComandoDml extends Comando
     // ******************************************************************************
 
     /**
-     * Construye una claúsula WHERE de el comando SQL.
+     * Construye una clausula WHERE de el comando SQL.
      *
      * @version 1.0
      *
@@ -128,7 +128,7 @@ abstract class ComandoDml extends Comando
     // ******************************************************************************
 
     /**
-     * Construye una claúsula ORDER BY de el comando SQL.
+     * Construye una clausula ORDER BY de el comando SQL.
      *
      * @version 1.0
      *
@@ -150,7 +150,7 @@ abstract class ComandoDml extends Comando
     // ******************************************************************************
 
     /**
-     * Construye una claúsula LIMIT de el comando SQL SELECT.
+     * Construye una clausula LIMIT de el comando SQL SELECT.
      *
      * @version 1.0
      *
@@ -174,7 +174,7 @@ abstract class ComandoDml extends Comando
     // ******************************************************************************
 
     /**
-     * Construye una claúsula PARTITION.
+     * Construye una clausula PARTITION.
      *
      * @version 1.0
      *

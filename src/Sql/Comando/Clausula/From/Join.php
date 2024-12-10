@@ -10,7 +10,7 @@ namespace Lib\Sql\Comando\Clausula\From;
 abstract class Join implements JoinInterface
 {
     /**
-     * Claúsula from a la que pertenece el JOIN.
+     * Clausula from a la que pertenece el JOIN.
      *
      * @var FromClausula
      */

@@ -14,7 +14,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
 interface FromClausulaInterface
 {
     /**
-     * Obtiene los JOINS  de la claúsula.
+     * Obtiene los JOINS  de la clausula.
      *
      * @version 1.0
      *
@@ -38,7 +38,7 @@ interface FromClausulaInterface
      *
      * @version 1.0
      *
-     * @param ClausulaFabricaInterface $fabrica Fabrica de claúsulas
+     * @param ClausulaFabricaInterface $fabrica Fabrica de clausulas
      * @param int                      $tipo    Tipo de join. Una de las constantes JOIN_TIPOS::*
      * @param JoinParams               $params  parámetros de la sentencia JOIN
      */

@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\MODIFICADORES as UPDATE_MOD
 // ******************************************************************************
 
 /**
- * Modificadores para la claúsula UPDATE.
+ * Modificadores para la clausula UPDATE.
  */
 final class MODIFICADORES extends UPDATE_MODIFICADORES
 {

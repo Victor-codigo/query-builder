@@ -46,7 +46,7 @@ final class FullOuterJoin extends Join
      *
      * @version 1.0
      *
-     * @return string código de la claúsula
+     * @return string código de la clausula
      */
     public function generar()
     {

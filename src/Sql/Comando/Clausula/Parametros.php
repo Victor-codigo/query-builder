@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula;
 
-use GT\Libs\Sistema\Tipos\Struct;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Struct;
 
 /**
- * parámetros de una claúsula.
+ * parámetros de una clausula.
  */
 abstract class Parametros extends Struct
 {
@@ -20,4 +18,3 @@ abstract class Parametros extends Struct
      */
     public $codigo_sql = [];
 }
-// ******************************************************************************

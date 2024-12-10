@@ -7,7 +7,7 @@ namespace Lib\Sql\Comando;
 // ******************************************************************************
 
 /**
- * Fabrica de claúsulas para lso drivers.
+ * Fabrica de clausulas para lso drivers.
  */
 abstract class Fabrica
 {

@@ -64,7 +64,7 @@ class UpdateConstructor extends ComandoDmlConstructor
     // ******************************************************************************
 
     /**
-     * Construye la claúsula UPDATE de el comando SQL UPDATE.
+     * Construye la clausula UPDATE de el comando SQL UPDATE.
      *
      * @version 1.0
      *

@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros de la claúsula ORDER BY.
+ * Parámetros de la clausula ORDER BY.
  */
 final class OrderByParams extends Parametros
 {

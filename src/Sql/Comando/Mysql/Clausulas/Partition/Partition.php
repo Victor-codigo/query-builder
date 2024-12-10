@@ -34,7 +34,7 @@ final class Partition extends PartitionClausula
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)
@@ -55,11 +55,11 @@ final class Partition extends PartitionClausula
     // ******************************************************************************
 
     /**
-     * Genera la claúsula PARTITION.
+     * Genera la clausula PARTITION.
      *
      * @version 1.0
      *
-     * @return string código de la claúsula
+     * @return string código de la clausula
      */
     public function generar()
     {

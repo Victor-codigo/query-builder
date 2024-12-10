@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros para la claúsula VALUES.
+ * Parámetros para la clausula VALUES.
  */
 final class ValuesParams extends Parametros
 {

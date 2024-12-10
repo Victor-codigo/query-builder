@@ -80,7 +80,7 @@ class DeleteComando extends ComandoDml
     // ******************************************************************************
 
     /**
-     * Construye la claúsula DELETE de el comando SQL DELETE.
+     * Construye la clausula DELETE de el comando SQL DELETE.
      *
      * @version 1.0
      *

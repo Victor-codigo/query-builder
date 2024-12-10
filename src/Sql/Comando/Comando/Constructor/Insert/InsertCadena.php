@@ -49,7 +49,7 @@ class InsertCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula PARTITION.
+     * Construye una clausula PARTITION.
      *
      * @version 1.0
      *
@@ -66,7 +66,7 @@ class InsertCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula INSERT ATTRIBUTES.
+     * Construye una clausula INSERT ATTRIBUTES.
      *
      * @version 1.0
      *
@@ -83,7 +83,7 @@ class InsertCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula VALUES.
+     * Construye una clausula VALUES.
      *
      * @version 1.0
      *
@@ -100,7 +100,7 @@ class InsertCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula ON DUPLICATE KEY UPDATE.
+     * Construye una clausula ON DUPLICATE KEY UPDATE.
      *
      * @version 1.0
      *

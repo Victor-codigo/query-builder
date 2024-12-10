@@ -64,7 +64,7 @@ class SqlConstructor extends ComandoDmlConstructor
     // ******************************************************************************
 
     /**
-     * Construye la claúsula SQL.
+     * Construye la clausula SQL.
      *
      * @version 1.0
      *

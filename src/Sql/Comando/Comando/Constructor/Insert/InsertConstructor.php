@@ -60,7 +60,7 @@ class InsertConstructor extends ComandoDmlConstructor
     // ******************************************************************************
 
     /**
-     * Construye la claúsula INSERT de el comando SQL INSERT.
+     * Construye la clausula INSERT de el comando SQL INSERT.
      *
      * @version 1.0
      *

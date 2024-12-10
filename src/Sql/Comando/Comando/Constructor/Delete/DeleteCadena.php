@@ -39,7 +39,7 @@ class DeleteCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula PARTITION.
+     * Construye una clausula PARTITION.
      *
      * @version 1.0
      *
@@ -56,7 +56,7 @@ class DeleteCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula LIMIT de el comando SQL.
+     * Construye una clausula LIMIT de el comando SQL.
      *
      * @version 1.0
      *

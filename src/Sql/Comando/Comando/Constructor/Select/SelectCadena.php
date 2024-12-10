@@ -60,7 +60,7 @@ class SelectCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula HAVING de el comando SQL SELECT.
+     * Construye una clausula HAVING de el comando SQL SELECT.
      *
      * @version 1.0
      *
@@ -80,7 +80,7 @@ class SelectCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula GROUP BY de el comando SQL SELECT.
+     * Construye una clausula GROUP BY de el comando SQL SELECT.
      *
      * @version 1.0
      *
@@ -95,7 +95,7 @@ class SelectCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula LIMIT de el comando SQL.
+     * Construye una clausula LIMIT de el comando SQL.
      *
      * @version 1.0
      *

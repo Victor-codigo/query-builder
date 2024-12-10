@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\MODIFICADORES as MODIFICADO
 // ******************************************************************************
 
 /**
- * Modificadores para la claúsula INSERT.
+ * Modificadores para la clausula INSERT.
  */
 final class MODIFICADORES extends MODIFICADORES_BASE
 {

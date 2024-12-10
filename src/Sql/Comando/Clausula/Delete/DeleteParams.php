@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros para la claúsula DELETE.
+ * Parámetros para la clausula DELETE.
  */
 final class DeleteParams extends Parametros
 {
@@ -27,7 +27,7 @@ final class DeleteParams extends Parametros
     public $tablas_referencia = [];
 
     /**
-     * Modifiacdores de la claúsula UPDATE. Una de las constantes MODIFICADORES::*.
+     * Modifiacdores de la clausula UPDATE. Una de las constantes MODIFICADORES::*.
      *
      * @var string[]
      */

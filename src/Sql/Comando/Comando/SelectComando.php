@@ -89,7 +89,7 @@ class SelectComando extends FetchComando
     // ******************************************************************************
 
     /**
-     * Construye la claúsula SELECT de el comando SQL SELECT.
+     * Construye la clausula SELECT de el comando SQL SELECT.
      *
      * @version 1.0
      *
@@ -114,7 +114,7 @@ class SelectComando extends FetchComando
     // ******************************************************************************
 
     /**
-     * Construye una claúsula FROM de el comando SQL SELECT.
+     * Construye una clausula FROM de el comando SQL SELECT.
      *
      * @version 1.0
      *
@@ -135,7 +135,7 @@ class SelectComando extends FetchComando
     // ******************************************************************************
 
     /**
-     * Construye una claúsula HAVING de el comando SQL SELECT.
+     * Construye una clausula HAVING de el comando SQL SELECT.
      *
      * @version 1.0
      *
@@ -164,7 +164,7 @@ class SelectComando extends FetchComando
     // ******************************************************************************
 
     /**
-     * Construye una claúsula GROUP BY de el comando SQL SELECT.
+     * Construye una clausula GROUP BY de el comando SQL SELECT.
      *
      * @version 1.0
      *

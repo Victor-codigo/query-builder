@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros para la claúsula INSERT ATTRIBUTES.
+ * Parámetros para la clausula INSERT ATTRIBUTES.
  */
 final class InsertAttrParams extends Parametros
 {

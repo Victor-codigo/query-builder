@@ -79,7 +79,7 @@ class HavingTest extends TestCase
     }
     // ******************************************************************************
 
-    // <editor-fold defaultstate="collapsed" desc=" Tests para la función: tipo de claúsula ">
+    // <editor-fold defaultstate="collapsed" desc=" Tests para la función: tipo de clausula ">
 
     /**
      * @covers \GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Having\Having::generar

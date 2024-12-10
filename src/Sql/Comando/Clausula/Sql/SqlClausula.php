@@ -12,7 +12,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
 // ******************************************************************************
 
 /**
- * Claúsula de un comando SQL.
+ * Clausula de un comando SQL.
  */
 abstract class SqlClausula extends Clausula
 {
@@ -24,7 +24,7 @@ abstract class SqlClausula extends Clausula
     protected $tipo = TIPOS::SQL;
 
     /**
-     * Parametros de la claúsula.
+     * Parametros de la clausula.
      *
      * @var SqlParams
      */
@@ -37,7 +37,7 @@ abstract class SqlClausula extends Clausula
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)
@@ -60,11 +60,11 @@ abstract class SqlClausula extends Clausula
     // ******************************************************************************
 
     /**
-     * Genera la claúsula.
+     * Genera la clausula.
      *
      * @version 1.0
      *
-     * @return string código de la claúsula
+     * @return string código de la clausula
      */
     public function generar()
     {

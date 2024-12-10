@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parametros para la claúsula UPDATE.
+ * Parametros para la clausula UPDATE.
  */
 final class UpdateParams extends Parametros
 {
@@ -21,7 +21,7 @@ final class UpdateParams extends Parametros
     public $tablas = [];
 
     /**
-     * Modifiacdores de la claúsula UPDATE. Una de las constantes MODIFICADORES::*.
+     * Modifiacdores de la clausula UPDATE. Una de las constantes MODIFICADORES::*.
      *
      * @var string[]
      */

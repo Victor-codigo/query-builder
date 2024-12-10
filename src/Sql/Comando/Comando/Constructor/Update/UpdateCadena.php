@@ -41,7 +41,7 @@ class UpdateCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye la claúsula SET de el comando SQL UPDATE.
+     * Construye la clausula SET de el comando SQL UPDATE.
      *
      * @version 1.0
      *
@@ -57,7 +57,7 @@ class UpdateCadena extends CadenaDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula LIMIT de el comando SQL.
+     * Construye una clausula LIMIT de el comando SQL.
      *
      * @version 1.0
      *

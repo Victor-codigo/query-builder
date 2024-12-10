@@ -11,12 +11,12 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
 // ******************************************************************************
 
 /**
- * Claúsula INSERT de un comando SQL.
+ * Clausula INSERT de un comando SQL.
  */
 abstract class ValuesClausula extends Clausula
 {
     /**
-     * Parametros de la claúsula.
+     * Parametros de la clausula.
      *
      * @var ValuesParams
      */
@@ -29,7 +29,7 @@ abstract class ValuesClausula extends Clausula
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)

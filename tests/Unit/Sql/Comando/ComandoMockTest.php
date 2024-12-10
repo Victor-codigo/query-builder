@@ -47,7 +47,7 @@ class ComandoMockTest extends TestCase
     // ******************************************************************************
 
     /**
-     * Genera mock de la fábrica de claúsulas.
+     * Genera mock de la fábrica de clausulas.
      *
      * @version 1.0
      *
@@ -83,13 +83,13 @@ class ComandoMockTest extends TestCase
     // ******************************************************************************
 
     /**
-     * Genera una claúsula.
+     * Genera una clausula.
      *
      * @version 1.0
      *
-     * @param Comando                   $comando             Comando al que pertenece la claúsula
+     * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones fábrica de condiciones
-     * @param bool                      $grupo_operadores    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $grupo_operadores    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      * @param array                     $metodos             metodos para los que se crea un stub
      *
@@ -109,7 +109,7 @@ class ComandoMockTest extends TestCase
      *
      * @version 1.0
      *
-     * @param Clausula                  $clausula            claúsula a la que pertenece el grupo
+     * @param Clausula                  $clausula            clausula a la que pertenece el grupo
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      *
      * @return GrupoOperadores
@@ -181,9 +181,9 @@ class ComandoMockTest extends TestCase
      *
      * @version 1.0
      *
-     * @param Comando $comando        comando en el que se añade la claúsula
-     * @param string  $clausula_class nombre de la claúsula
-     * @param int     $tipo           tipo de claúsula
+     * @param Comando $comando        comando en el que se añade la clausula
+     * @param string  $clausula_class nombre de la clausula
+     * @param int     $tipo           tipo de clausula
      *
      * @return ClausulaInterface
      */

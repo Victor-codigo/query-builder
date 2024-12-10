@@ -14,7 +14,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 // ******************************************************************************
 
 /**
- * Claúsula ORDER BY.
+ * Clausula ORDER BY.
  */
 final class OrderBy extends OrderByClausula
 {
@@ -29,7 +29,7 @@ final class OrderBy extends OrderByClausula
     protected $tipo = TIPOS::ORDERBY;
 
     /**
-     * Parametros de la claúsula.
+     * Parametros de la clausula.
      *
      * @var OrderByParams
      */
@@ -42,7 +42,7 @@ final class OrderBy extends OrderByClausula
      *
      * @param Comando                   $comando             Comando al que pertenece la clausula
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la claúsula
+     * @param bool                      $operadores_grupo    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      */
     public function __construct(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_grupo)
@@ -65,11 +65,11 @@ final class OrderBy extends OrderByClausula
     // ******************************************************************************
 
     /**
-     * Genera la claúsula ORDER BY.
+     * Genera la clausula ORDER BY.
      *
      * @version 1.0
      *
-     * @return string código de la claúsula
+     * @return string código de la clausula
      */
     public function generar()
     {

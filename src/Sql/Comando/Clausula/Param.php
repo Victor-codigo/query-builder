@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula;
 
-use GT\Libs\Sistema\Tipos\Struct;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Struct;
 
 /**
  * Identificador de un parámetro para ser sustituido por un valor en el momento
@@ -31,6 +29,5 @@ class Param extends Struct
     /**
      * Valor por el que se sustituye el identificador.
      */
-    public $valor = '';
+    public mixed $valor = '';
 }
-// ******************************************************************************

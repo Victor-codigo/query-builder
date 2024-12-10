@@ -96,14 +96,14 @@ abstract class Comando implements ComandoInterface
     // ******************************************************************************
 
     /**
-     * Claúsulas SQL del comando.
+     * Clausulas SQL del comando.
      *
      * @var ClausulaInterface[]
      */
     private $clausulas = [];
 
     /**
-     * Obtiene las claúsulas SQL del comando.
+     * Obtiene las clausulas SQL del comando.
      *
      * @version 1.0
      *
@@ -136,14 +136,14 @@ abstract class Comando implements ComandoInterface
     // ******************************************************************************
 
     /**
-     * Claúsula que se está construyendo actualmente.
+     * Clausula que se está construyendo actualmente.
      *
      * @var ClausulaInterface
      */
     private $construccion_clausula;
 
     /**
-     * Obtiene la claúsula que se está construyendo actualmente.
+     * Obtiene la clausula que se está construyendo actualmente.
      *
      * @version 1.0
      *
@@ -155,7 +155,7 @@ abstract class Comando implements ComandoInterface
     }
 
     /**
-     * Establece la claúsula que se está construyendo actualmente.
+     * Establece la clausula que se está construyendo actualmente.
      *
      * @version 1.0
      *
@@ -248,7 +248,7 @@ abstract class Comando implements ComandoInterface
     // ******************************************************************************
 
     /**
-     * Añade una claúsula.
+     * Añade una clausula.
      *
      * @version 1.0
      *
@@ -261,11 +261,11 @@ abstract class Comando implements ComandoInterface
     // ******************************************************************************
 
     /**
-     * Obtiene una claúsula por su tipo.
+     * Obtiene una clausula por su tipo.
      *
      * @version 1.0
      *
-     * @param int $tipo tipo de claúsula. Una de las constates TIPO::*
+     * @param int $tipo tipo de clausula. Una de las constates TIPO::*
      *
      * @return ClausulaInterface|null
      */
@@ -280,7 +280,7 @@ abstract class Comando implements ComandoInterface
     // ******************************************************************************
 
     /**
-     * Obtiene la claúsula principal del comando.
+     * Obtiene la clausula principal del comando.
      *
      * @version 1.0
      *
@@ -370,7 +370,7 @@ abstract class Comando implements ComandoInterface
     // ******************************************************************************
 
     /**
-     * Busca en la claúsula principal del comando, entre los campos retornados,
+     * Busca en la clausula principal del comando, entre los campos retornados,
      * el índice del campo.
      *
      * @version 1.0

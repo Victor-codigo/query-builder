@@ -82,7 +82,7 @@ class UpdateComando extends ComandoDml
     // ******************************************************************************
 
     /**
-     * Construye la claúsula UPDATE de el comando SQL UPDATE.
+     * Construye la clausula UPDATE de el comando SQL UPDATE.
      *
      * @version 1.0
      *
@@ -107,7 +107,7 @@ class UpdateComando extends ComandoDml
     // ******************************************************************************
 
     /**
-     * Construye la claúsula SET de el comando SQL UPDATE.
+     * Construye la clausula SET de el comando SQL UPDATE.
      *
      * @version 1.0
      *

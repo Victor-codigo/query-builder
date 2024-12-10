@@ -17,7 +17,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
 abstract class ComandoConstructor
 {
     /**
-     * Fábrica de claúsulas.
+     * Fábrica de clausulas.
      *
      * @var ClausulaFabricaInterface
      */

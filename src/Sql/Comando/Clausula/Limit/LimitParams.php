@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros de la claúsula LIMIT.
+ * Parámetros de la clausula LIMIT.
  */
 final class LimitParams extends Parametros
 {

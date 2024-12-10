@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parámetros para la claúsula ON DUPLICATE KEY UPDATE.
+ * Parámetros para la clausula ON DUPLICATE KEY UPDATE.
  */
 final class OnDuplicateParams extends Parametros
 {

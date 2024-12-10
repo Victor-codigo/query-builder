@@ -4,24 +4,22 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\GrupoOperadores;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Operador\GrupoOperadores;
+use Lib\Sql\Comando\Operador\Operador;
 
 /**
- * Interfaz claúsula.
+ * Interfaz clausula.
  */
 interface ClausulaInterface
 {
     /**
-     * Genera la claúsula.
+     * Genera la clausula.
      *
      * @version 1.0
      *
-     * @return string código de la claúsula
+     * @return string código de la clausula
      */
     public function generar();
-    // ******************************************************************************
 
     /**
      * Obtiene el tipo de consulta.
@@ -31,35 +29,31 @@ interface ClausulaInterface
      * @return int Una de las constates TIPO::*
      */
     public function getTipo();
-    // ******************************************************************************
 
     /**
-     * Obtiene los parámetros de la claúsula.
+     * Obtiene los parámetros de la clausula.
      *
      * @version 1.0
      *
      * @return Parametros
      */
     public function getParams();
-    // ******************************************************************************
 
     /**
-     * Establece los parámetros de la claúsula.
+     * Establece los parámetros de la clausula.
      *
      * @version 1.0
      */
-    public function setParams(Parametros $params);
-    // ******************************************************************************
+    public function setParams(Parametros $params): void;
 
     /**
-     * Obtiene el gestor de operadores de la claúsula.
+     * Obtiene el gestor de operadores de la clausula.
      *
      * @version 1.0
      *
      * @return GrupoOperadores
      */
     public function getOperadores();
-    // ******************************************************************************
 
     /**
      * Crea un operador y lo añade al grupo de operadores.
@@ -72,4 +66,3 @@ interface ClausulaInterface
      */
     public function operadorCrear($tipo);
 }
-// ******************************************************************************

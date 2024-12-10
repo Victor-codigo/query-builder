@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\MODIFICADORES as SELECT_MOD
 // ******************************************************************************
 
 /**
- * Modificadores para la claúsula SELECT.
+ * Modificadores para la clausula SELECT.
  */
 final class MODIFICADORES extends SELECT_MODIFICADORES
 {

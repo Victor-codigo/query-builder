@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula;
 
-use GT\Libs\Sistema\Tipos\Enum;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Enum;
 
 /**
- * Tipos de claúsulas.
+ * Tipos de clausulas.
  */
 final class TIPOS extends Enum
 {
@@ -21,115 +19,114 @@ final class TIPOS extends Enum
     public const SQL = 0;
 
     /**
-     * Claúsula SELECT.
+     * Clausula SELECT.
      *
      * @var int
      */
     public const SELECT = 1;
 
     /**
-     * Claúsula FROM.
+     * Clausula FROM.
      *
      * @var int
      */
     public const FROM = 2;
 
     /**
-     * Claúsula WHERE.
+     * Clausula WHERE.
      *
      * @var int
      */
     public const WHERE = 3;
 
     /**
-     * Claúsula ORDER BY.
+     * Clausula ORDER BY.
      *
      * @var int
      */
     public const ORDERBY = 4;
 
     /**
-     * Claúsula GROUP BY.
+     * Clausula GROUP BY.
      *
      * @var int
      */
     public const GROUPBY = 5;
 
     /**
-     * Claúsula HAVING.
+     * Clausula HAVING.
      *
      * @var int
      */
     public const HAVING = 6;
 
     /**
-     * Claúsula LIMIT.
+     * Clausula LIMIT.
      *
      * @var int
      */
     public const LIMIT = 7;
 
     /**
-     * Claúsula SET.
+     * Clausula SET.
      *
      * @var int
      */
     public const SET = 8;
 
     /**
-     * Claúsula JOIN.
+     * Clausula JOIN.
      *
      * @var int
      */
     public const JOIN = 9;
 
     /**
-     * Claúsula UPDATE.
+     * Clausula UPDATE.
      *
      * @var int
      */
     public const UPDATE = 10;
 
     /**
-     * Claúsula DELETE.
+     * Clausula DELETE.
      *
      * @var int
      */
     public const DELETE = 11;
 
     /**
-     * Claúsula PARTITION.
+     * Clausula PARTITION.
      *
      * @var int
      */
     public const PARTITION = 12;
 
     /**
-     * Claúsula INSERT.
+     * Clausula INSERT.
      *
      * @var int
      */
     public const INSERT = 13;
 
     /**
-     * Claúsula INSERT ATTRIBUTES.
+     * Clausula INSERT ATTRIBUTES.
      *
      * @var int
      */
     public const INSERT_ATTR = 14;
 
     /**
-     * Claúsula VALUES.
+     * Clausula VALUES.
      *
      * @var int
      */
     public const VALUES = 15;
 
     /**
-     * Claúsula ON DUPLICATE KEY UPDATE.
+     * Clausula ON DUPLICATE KEY UPDATE.
      *
      * @var int
      */
     public const ON_DUPLICATE_KEY_UPDATE = 16;
 }
-// ******************************************************************************

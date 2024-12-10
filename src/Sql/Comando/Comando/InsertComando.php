@@ -83,7 +83,7 @@ class InsertComando extends ComandoDml
     // ******************************************************************************
 
     /**
-     * Construye la claúsula INSERT de el comando SQL INSERT.
+     * Construye la clausula INSERT de el comando SQL INSERT.
      *
      * @version 1.0
      *
@@ -109,7 +109,7 @@ class InsertComando extends ComandoDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula ATRIBUTOS de el comando SQL INSERT.
+     * Construye una clausula ATRIBUTOS de el comando SQL INSERT.
      *
      * @version 1.0
      *
@@ -130,7 +130,7 @@ class InsertComando extends ComandoDml
     // ******************************************************************************
 
     /**
-     * Construye una claúsula VALUES de el comando SQL INSERT.
+     * Construye una clausula VALUES de el comando SQL INSERT.
      *
      * @version 1.0
      *
@@ -156,7 +156,7 @@ class InsertComando extends ComandoDml
     // ******************************************************************************
 
     /**
-     * Construye la claúsula ON DUPLICATE KEY UPDATE de el comando SQL INSERT.
+     * Construye la clausula ON DUPLICATE KEY UPDATE de el comando SQL INSERT.
      *
      * @version 1.0
      *

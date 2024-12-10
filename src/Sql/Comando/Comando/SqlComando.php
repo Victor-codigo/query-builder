@@ -62,7 +62,7 @@ class SqlComando extends FetchComando
     // ******************************************************************************
 
     /**
-     * Construye la claúsula SQL.
+     * Construye la clausula SQL.
      *
      * @version 1.0
      */

@@ -9,7 +9,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
 // ******************************************************************************
 
 /**
- * Parametros para la claúsula SELECT.
+ * Parametros para la clausula SELECT.
  */
 final class SelectParams extends Parametros
 {
@@ -21,7 +21,7 @@ final class SelectParams extends Parametros
     public $atributos = [];
 
     /**
-     * Modifiadores que se pueden aplicar a la claúsula SELECT.
+     * Modifiadores que se pueden aplicar a la clausula SELECT.
      *
      * @var int[]
      */
