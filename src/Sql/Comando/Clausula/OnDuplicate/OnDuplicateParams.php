@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\OnDuplicate;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Parametros;
 
 /**
  * Parámetros para la clausula ON DUPLICATE KEY UPDATE.
@@ -21,4 +19,3 @@ final class OnDuplicateParams extends Parametros
      */
     public $valores = [];
 }
-// ******************************************************************************

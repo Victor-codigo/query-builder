@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\OnDuplicate;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula ON DUPLICATE KEY UPDATE de un comando SQL.
@@ -16,9 +14,9 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
 abstract class OnDuplicateClausula extends Clausula
 {
     /**
-     * Parametros de la clausula.
+     * Parámetros de la clausula.
      *
-     * @var OnDuplicateParams
+     * @var ?OnDuplicateParams
      */
     protected $params;
 
@@ -36,7 +34,6 @@ abstract class OnDuplicateClausula extends Clausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -49,6 +46,4 @@ abstract class OnDuplicateClausula extends Clausula
 
         parent::__destruct();
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
