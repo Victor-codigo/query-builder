@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\Sql;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula de un comando SQL.
@@ -24,9 +22,9 @@ abstract class SqlClausula extends Clausula
     protected $tipo = TIPOS::SQL;
 
     /**
-     * Parametros de la clausula.
+     * Parámetros de la clausula.
      *
-     * @var SqlParams
+     * @var ?SqlParams
      */
     protected $params;
 
@@ -44,7 +42,6 @@ abstract class SqlClausula extends Clausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -57,7 +54,6 @@ abstract class SqlClausula extends Clausula
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Genera la clausula.
@@ -70,6 +66,4 @@ abstract class SqlClausula extends Clausula
     {
         return $this->params->sql;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
