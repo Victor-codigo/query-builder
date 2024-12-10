@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\Partition;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Parametros;
 
 /**
  * Parámetros para la clausula PARTITION.
@@ -20,4 +18,3 @@ final class PartitionParams extends Parametros
      */
     public $particiones = [];
 }
-// ******************************************************************************
