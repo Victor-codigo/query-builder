@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\OrderBy;
 
-use GT\Libs\Sistema\Tipos\Enum;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Enum;
 
 /**
  * Método en el que se ordenan los atributos.
@@ -27,4 +25,3 @@ final class ORDER extends Enum
      */
     public const DESC = 'DESC';
 }
-// ******************************************************************************
