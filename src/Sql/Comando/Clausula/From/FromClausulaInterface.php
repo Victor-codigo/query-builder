@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\From;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
 
 /**
  * Interfaz para la clausula FROM.
@@ -21,7 +19,6 @@ interface FromClausulaInterface
      * @return Join[]
      */
     public function getJoins();
-    // ******************************************************************************
 
     /**
      * Añade un JOIN.
@@ -30,8 +27,7 @@ interface FromClausulaInterface
      *
      * @param Join $join JOIN que se añade
      */
-    public function joinAdd(Join $join);
-    // ******************************************************************************
+    public function joinAdd(Join $join): void;
 
     /**
      * Crea un JOIN.
@@ -42,7 +38,5 @@ interface FromClausulaInterface
      * @param int                      $tipo    Tipo de join. Una de las constantes JOIN_TIPOS::*
      * @param JoinParams               $params  parámetros de la sentencia JOIN
      */
-    public function joinCrear(ClausulaFabricaInterface $fabrica, $tipo, JoinParams $params);
-    // ******************************************************************************
+    public function joinCrear(ClausulaFabricaInterface $fabrica, $tipo, JoinParams $params): Join;
 }
-// ******************************************************************************

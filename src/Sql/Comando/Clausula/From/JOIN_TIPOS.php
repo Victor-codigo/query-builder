@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\From;
 
-use GT\Libs\Sistema\Tipos\Enum;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Enum;
 
 /**
  * Tipos de join.
@@ -48,4 +46,3 @@ final class JOIN_TIPOS extends Enum
      */
     public const CROSS_JOIN = 4;
 }
-// ******************************************************************************

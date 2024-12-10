@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\From;
 
-// ******************************************************************************
-
 /**
  * Interfaz para los join.
  */
@@ -19,6 +17,4 @@ interface JoinInterface
      * @return string código de la clausula
      */
     public function generar();
-    // ******************************************************************************
 }
-// ******************************************************************************

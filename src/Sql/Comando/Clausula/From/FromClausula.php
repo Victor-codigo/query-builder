@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\From;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula FROM de un comando SQL.
@@ -34,7 +32,6 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
     {
         return $this->joins;
     }
-    // ******************************************************************************
 
     /**
      * Constructor.
@@ -50,7 +47,6 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -65,7 +61,6 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Añade un JOIN.
@@ -74,11 +69,10 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      *
      * @param Join $join JOIN que se añade
      */
-    public function joinAdd(Join $join)
+    public function joinAdd(Join $join): void
     {
         $this->joins[] = $join;
     }
-    // ******************************************************************************
 
     /**
      * Crea un JOIN.
@@ -89,25 +83,15 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      * @param int                      $tipo    Tipo de join. Una de las constantes JOIN_TIPOS::*
      * @param JoinParams               $params  parámetros de la sentencia JOIN
      */
-    public function joinCrear(ClausulaFabricaInterface $fabrica, $tipo, JoinParams $params)
+    public function joinCrear(ClausulaFabricaInterface $fabrica, $tipo, JoinParams $params): Join
     {
-        switch ($tipo) {
-            case JOIN_TIPOS::INNER_JOIN:
-                return $fabrica->getInnerJoin($this, $params);
-
-            case JOIN_TIPOS::LEFT_JOIN:
-                return $fabrica->getLeftJoin($this, $params);
-
-            case JOIN_TIPOS::RIGHT_JOIN:
-                return $fabrica->getRightJoin($this, $params);
-
-            case JOIN_TIPOS::FULL_OUTER_JOIN:
-                return $fabrica->getFullOuterJoin($this, $params);
-
-            case JOIN_TIPOS::CROSS_JOIN:
-                return $fabrica->getCrossJoin($this, $params);
-        }
+        return match ($tipo) {
+            JOIN_TIPOS::INNER_JOIN => $fabrica->getInnerJoin($this, $params),
+            JOIN_TIPOS::LEFT_JOIN => $fabrica->getLeftJoin($this, $params),
+            JOIN_TIPOS::RIGHT_JOIN => $fabrica->getRightJoin($this, $params),
+            JOIN_TIPOS::FULL_OUTER_JOIN => $fabrica->getFullOuterJoin($this, $params),
+            JOIN_TIPOS::CROSS_JOIN => $fabrica->getCrossJoin($this, $params),
+            default => throw new \InvalidArgumentException('Tipo de join no válido: '.$tipo),
+        };
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

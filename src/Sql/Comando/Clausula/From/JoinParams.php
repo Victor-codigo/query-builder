@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\From;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\OP;
-use GT\Libs\Sistema\Tipos\Struct;
+use Lib\Comun\Tipos\Struct;
+use Lib\Sql\Comando\Operador\OP;
 
 /**
  * Parámetros de la sentencia JOIN.
@@ -40,4 +40,3 @@ final class JoinParams extends Struct
      */
     public $operador = OP::EQUAL;
 }
-// ******************************************************************************

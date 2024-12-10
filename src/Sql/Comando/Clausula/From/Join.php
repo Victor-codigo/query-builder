@@ -12,14 +12,14 @@ abstract class Join implements JoinInterface
     /**
      * Clausula from a la que pertenece el JOIN.
      *
-     * @var FromClausula
+     * @var ?FromClausula
      */
     protected $from;
 
     /**
      * Parámetros de la sentencia.
      *
-     * @var JoinParams
+     * @var ?JoinParams
      */
     protected $params;
 
@@ -28,7 +28,7 @@ abstract class Join implements JoinInterface
      *
      * @version 1.0
      *
-     * @param FromClausula $from   Clúsula FORM a la que pertenece el JOIN
+     * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      */
     public function __construct(FromClausula $from, JoinParams $params)
@@ -36,7 +36,6 @@ abstract class Join implements JoinInterface
         $this->from = $from;
         $this->params = $params;
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -48,6 +47,4 @@ abstract class Join implements JoinInterface
         $this->from = null;
         $this->params = null;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

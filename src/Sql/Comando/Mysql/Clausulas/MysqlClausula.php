@@ -207,7 +207,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param FromClausula $from   Clúsula FORM a la que pertenece el JOIN
+     * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      *
      * @return InnerJoin
@@ -223,7 +223,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param FromClausula $from   Clúsula FORM a la que pertenece el JOIN
+     * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      *
      * @return LeftJoin
@@ -239,7 +239,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param FromClausula $from   Clúsula FORM a la que pertenece el JOIN
+     * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      *
      * @return RightJoin
@@ -255,7 +255,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param FromClausula $from   Clúsula FORM a la que pertenece el JOIN
+     * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      *
      * @return CrosstJoin
@@ -271,7 +271,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      *
-     * @param FromClausula $from   Clúsula FORM a la que pertenece el JOIN
+     * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      *
      * @return FullOutertJoin
