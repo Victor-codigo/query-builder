@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Operador OR.
@@ -26,18 +24,6 @@ class OrOperador extends Logico
     {
         parent::__construct($clausula, $fabrica_condicion);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código del operador.
@@ -53,6 +39,4 @@ class OrOperador extends Logico
     {
         return ($operador ? ' OR ' : '').$this->condicion->generar();
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

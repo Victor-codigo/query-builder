@@ -149,21 +149,19 @@ abstract class Clausula implements ClausulaInterface
      *
      * @version 1.0
      *
-     * @param int $tipo tipo de operador lógico. Una de las constantes TIPO::*
+     * @param string $tipo tipo de operador lógico. Una de las constantes TIPO::*
      *
      * @return Operador operador creado
+     *
+     * @throws \InvalidArgumentException
      */
     public function operadorCrear($tipo)
     {
-        switch ($tipo) {
-            case TIPOS::AND_OP:
-                return new AndOperador($this, $this->fabrica_condiciones);
-
-            case TIPOS::OR_OP:
-                return new OrOperador($this, $this->fabrica_condiciones);
-
-            case TIPOS::XOR_OP:
-                return new XorOperador($this, $this->fabrica_condiciones);
-        }
+        return match ($tipo) {
+            TIPOS::AND_OP => new AndOperador($this, $this->fabrica_condiciones),
+            TIPOS::OR_OP => new OrOperador($this, $this->fabrica_condiciones),
+            TIPOS::XOR_OP => new XorOperador($this, $this->fabrica_condiciones),
+            default => throw new \InvalidArgumentException('Argumento $tipo no válido'),
+        };
     }
 }

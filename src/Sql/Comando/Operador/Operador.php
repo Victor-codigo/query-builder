@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
 
 /**
  * Operador.
@@ -24,12 +22,11 @@ abstract class Operador
      * @return string código del comando
      */
     abstract public function generar($operador = true);
-    // ******************************************************************************
 
     /**
      * Clausula a la que pertenece la condición.
      *
-     * @var Clausula
+     * @var ?Clausula
      */
     protected $clausula;
 
@@ -44,7 +41,6 @@ abstract class Operador
     {
         $this->clausula = $clausula;
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -55,6 +51,4 @@ abstract class Operador
     {
         $this->clausula = null;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

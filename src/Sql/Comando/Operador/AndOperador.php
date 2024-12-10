@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Operador AND.
@@ -19,25 +17,12 @@ class AndOperador extends Logico
      *
      * @version 1.0
      *
-     * @param Clausula                  $clausula          Clausula a la que pertenece la condición
-     * @param CondicionFabricaInterface $fabrica_condicion Fábrica de condiciones
+     * @param Clausula $clausula Clausula a la que pertenece la condición
      */
     public function __construct(Clausula $clausula, CondicionFabricaInterface $fabrica_condicion)
     {
         parent::__construct($clausula, $fabrica_condicion);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código del operador.
@@ -53,6 +38,4 @@ class AndOperador extends Logico
     {
         return ($operador ? ' AND ' : '').$this->condicion->generar();
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

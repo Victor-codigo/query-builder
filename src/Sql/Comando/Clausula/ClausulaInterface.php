@@ -60,7 +60,7 @@ interface ClausulaInterface
      *
      * @version 1.0
      *
-     * @param int $tipo tipo de operador lógico. Una de las constantes TIPO::*
+     * @param string $tipo tipo de operador lógico. Una de las constantes TIPO::*
      *
      * @return Operador operador creado
      */

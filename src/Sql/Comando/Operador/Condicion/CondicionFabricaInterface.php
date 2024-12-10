@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador\Condicion;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
 
 /**
  * Interfaz para la fábrica de condiciones.
@@ -27,7 +24,6 @@ interface CondicionFabricaInterface
      * @return Condicion
      */
     public function getComparacion(Clausula $clausula, $atributo, $operador, $valor);
-    // ******************************************************************************
 
     /**
      * Crea una comparación IS.
@@ -41,7 +37,6 @@ interface CondicionFabricaInterface
      * @return Condicion
      */
     public function getIs(Clausula $clausula, $atributo, $operador);
-    // ******************************************************************************
 
     /**
      * Crea una comapración IN.
@@ -56,7 +51,6 @@ interface CondicionFabricaInterface
      * @return Condicion
      */
     public function getIn(Clausula $clausula, $atributo, $operador, $valores);
-    // ******************************************************************************
 
     /**
      * Crea una comparación BETWEEN.
@@ -72,6 +66,4 @@ interface CondicionFabricaInterface
      * @return Condicion
      */
     public function getBetween(Clausula $clausula, $atributo, $operador, $min, $max);
-    // ******************************************************************************
 }
-// ******************************************************************************

@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\Condicion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Operador\Condicion\Condicion;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Operador Lógico.
@@ -16,9 +14,9 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
 abstract class Logico extends Operador
 {
     /**
-     * Condicion del operador Lógico.
+     * Condición del operador Lógico.
      *
-     * @var Condicion
+     * @var ?Condicion
      */
     protected $condicion;
 
@@ -39,16 +37,15 @@ abstract class Logico extends Operador
      *
      * @version 1.0
      */
-    public function setCondicion(Condicion $condicion)
+    public function setCondicion(Condicion $condicion): void
     {
         $this->condicion = $condicion;
     }
-    // ******************************************************************************
 
     /**
      * Fábrica de condiciones.
      *
-     * @var CondicionFabricaInterface
+     * @var ?CondicionFabricaInterface
      */
     private $fabrica_condiciones;
 
@@ -63,15 +60,13 @@ abstract class Logico extends Operador
     {
         return $this->fabrica_condiciones;
     }
-    // ******************************************************************************
 
     /**
      * Constructor.
      *
      * @version 1.0
      *
-     * @param Clausula                  $clausula          Clausula a la que pertenece la condición
-     * @param CondicionFabricaInterface $fabrica_condicion Fábrica de condiciones
+     * @param Clausula $clausula Clausula a la que pertenece la condición
      */
     public function __construct(Clausula $clausula, CondicionFabricaInterface $fabrica_condicion)
     {
@@ -79,7 +74,6 @@ abstract class Logico extends Operador
 
         $this->fabrica_condiciones = $fabrica_condicion;
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -93,7 +87,6 @@ abstract class Logico extends Operador
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Crea una condición.
@@ -101,10 +94,10 @@ abstract class Logico extends Operador
      * @version 1.0
      *
      * @param string $atributo nombre del atributo
-     * @param int    $tipo     tipo de comando. Una de las constantes TIPOS::*
+     * @param string $tipo     tipo de comando. Una de las constantes TIPOS::*
      * @param mixed  $params   parámetros para los distintos comandos
      */
-    public function condicionCrear($atributo, $tipo, ...$params)
+    public function condicionCrear($atributo, $tipo, ...$params): void
     {
         switch ($tipo) {
             case OP::IN:
@@ -151,6 +144,4 @@ abstract class Logico extends Operador
                 );
         }
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

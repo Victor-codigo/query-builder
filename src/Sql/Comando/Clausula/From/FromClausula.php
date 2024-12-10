@@ -82,6 +82,8 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      * @param ClausulaFabricaInterface $fabrica Fabrica de clausulas
      * @param int                      $tipo    Tipo de join. Una de las constantes JOIN_TIPOS::*
      * @param JoinParams               $params  parámetros de la sentencia JOIN
+     *
+     * @throws \InvalidArgumentException
      */
     public function joinCrear(ClausulaFabricaInterface $fabrica, $tipo, JoinParams $params): Join
     {
