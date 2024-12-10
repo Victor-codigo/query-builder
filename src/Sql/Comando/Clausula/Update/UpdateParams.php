@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Clausula\Update;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Parametros;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Parametros;
 
 /**
- * Parametros para la clausula UPDATE.
+ * Parámetros para la clausula UPDATE.
  */
 final class UpdateParams extends Parametros
 {
@@ -21,10 +19,9 @@ final class UpdateParams extends Parametros
     public $tablas = [];
 
     /**
-     * Modifiacdores de la clausula UPDATE. Una de las constantes MODIFICADORES::*.
+     * Modificadores de la clausula UPDATE. Una de las constantes MODIFICADORES::*.
      *
      * @var string[]
      */
     public $modificadores = [];
 }
-// ******************************************************************************
