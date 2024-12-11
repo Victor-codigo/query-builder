@@ -43,23 +43,6 @@ class Struct implements \Serializable
     }
 
     /**
-     * Carga la estructura desde otra estructura.
-     *
-     * @version 1.0
-     *
-     * @param Struct $struct estructura desde la que se carga la información
-     * @param bool   $crear  TRUE se crea una propiedad para cada propiedad de la estructura,
-     *                       FALSE se omiten las propiedades de la estructura
-     *                       que no pertenecen a la estructura
-     *
-     * @return Struct
-     */
-    public function fromStruct(self $struct, $crear = false)
-    {
-        return $this->fromArray($struct->toArray(0));
-    }
-
-    /**
      * Guarda las propiedades en un array.
      *
      * @vesion 1.0
@@ -252,14 +235,11 @@ class Struct implements \Serializable
     }
 
     /**
-     * Serializa la estructura
-     * Solo se serializa las propiedades escalares, loa arrays y los valores null.
-     * Serializa objetos, si estos implementan la interfaz \Serializable o
-     * los métodos __sleep y __wakeup.
-     *
      * @version 1.0
+     *
+     * @return array<string|int, array|bool|float|int|string|null>
      */
-    public function serialize()
+    public function __serialize(): array
     {
         $serializar = [];
 
@@ -275,6 +255,21 @@ class Struct implements \Serializable
             }
         }
 
+        return $serializar;
+    }
+
+    /**
+     * Serializa la estructura
+     * Solo se serializa las propiedades escalares, loa arrays y los valores null.
+     * Serializa objetos, si estos implementan la interfaz \Serializable o
+     * los métodos __sleep y __wakeup.
+     *
+     * @version 1.0
+     */
+    public function serialize(): string
+    {
+        $serializar = $this->__serialize();
+
         return serialize($serializar);
     }
 
@@ -286,14 +281,12 @@ class Struct implements \Serializable
      *
      * @version 1.0
      *
-     * @param string $serialized estructura serializada
+     * @param mixed $serialized estructura serializada
      */
-    public function unserialize($serialized): mixed
+    public function __unserialize($serialized): void
     {
-        $retorno = unserialize($serialized);
-
-        if (false !== $retorno) {
-            foreach ($retorno as $propiedad => $valor) {
+        if (false !== $serialized) {
+            foreach ($serialized as $propiedad => $valor) {
                 if (\is_string($valor)) {
                     $serializado = @unserialize($valor);
 
@@ -306,10 +299,12 @@ class Struct implements \Serializable
                     $this->$propiedad = $valor;
                 }
             }
-
-            $retorno = true;
         }
+    }
 
-        return $retorno;
+    public function unserialize(string $serialized): void
+    {
+        $retorno = unserialize($serialized);
+        $this->__unserialize($retorno);
     }
 }
