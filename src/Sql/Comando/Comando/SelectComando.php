@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\AndOperador;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\GrupoOperadores;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\TIPOS as OPERADOR_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\FromParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\GroupBy\GroupByParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Select\SelectParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS as CLAUSULA_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoGenerarClausulaPrincipalNoExisteException;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\From\FromParams;
+use Lib\Sql\Comando\Clausula\GroupBy\GroupByParams;
+use Lib\Sql\Comando\Clausula\Select\SelectParams;
+use Lib\Sql\Comando\Clausula\TIPOS as CLAUSULA_TIPOS;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoGenerarClausulaPrincipalNoExisteException;
+use Lib\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
+use Lib\Sql\Comando\Operador\AndOperador;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use Lib\Sql\Comando\Operador\GrupoOperadores;
+use Lib\Sql\Comando\Operador\TIPOS as OPERADOR_TIPOS;
 
 /**
  * Comando SQL SELECT.
@@ -37,18 +35,6 @@ class SelectComando extends FetchComando
     {
         parent::__construct($conexion, $fabrica, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código del comando SELECT.
@@ -86,21 +72,20 @@ class SelectComando extends FetchComando
 
         return $sql;
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula SELECT de el comando SQL SELECT.
      *
      * @version 1.0
      *
-     * @param array    $atributos     atributos del comando SELECT
+     * @param string[] $atributos     atributos del comando SELECT
      * @param string[] $modificadores modificadores de la clausula select.
      *                                Una de las constantes MODIFICADORES::*
      */
-    public function select(array $atributos, array $modificadores = [])
+    public function select(array $atributos, array $modificadores = []): void
     {
         $this->tipo = COMANDO_TIPOS::SELECT;
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $select = $fabrica->getSelect($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($select);
 
@@ -111,7 +96,6 @@ class SelectComando extends FetchComando
 
         $this->clausulaAdd($select);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula FROM de el comando SQL SELECT.
@@ -120,9 +104,9 @@ class SelectComando extends FetchComando
      *
      * @param string[] $tablas tablas de el comando SQL
      */
-    public function from(array $tablas)
+    public function from(array $tablas): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $from = $fabrica->getFrom($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($from);
 
@@ -132,36 +116,34 @@ class SelectComando extends FetchComando
 
         $this->clausulaAdd($from);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula HAVING de el comando SQL SELECT.
      *
      * @version 1.0
      *
-     * @param string $atributo atributo
-     * @param string $operador Operador de comparación
-     * @param ...int|string $params parámetros de la comparaión. Depende del
-     *                              tipo de comparación
+     * @param string     $atributo atributo
+     * @param string     $operador Operador de comparación
+     * @param int|string $params   parámetros de la comparación. Depende del
+     *                             tipo de comparación
      */
-    public function having($atributo, $operador, ...$params)
+    public function having($atributo, $operador, ...$params): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $having = $fabrica->getHaving($this, $this->getFabricaCondiciones(), true);
         $this->setConstruccionClausula($having);
 
         $operadores = $having->getOperadores();
-        /* @var $grupo GrupoOperadores */
+        /** @var GrupoOperadores $grupo */
         $grupo = $operadores->getGrupoActual();
 
-        /* @var $operador_and AndOperador */
+        /** @var AndOperador $operador_and */
         $operador_and = $having->operadorCrear(OPERADOR_TIPOS::AND_OP);
         $operador_and->condicionCrear($atributo, $operador, ...$params);
         $grupo->operadorAdd($operador_and);
 
         $this->clausulaAdd($having);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula GROUP BY de el comando SQL SELECT.
@@ -170,9 +152,9 @@ class SelectComando extends FetchComando
      *
      * @param string $atributos atributos por los que se agrupa
      */
-    public function groupBy(...$atributos)
+    public function groupBy(...$atributos): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $groupby = $fabrica->getGroupBy($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($groupby);
 
@@ -182,6 +164,4 @@ class SelectComando extends FetchComando
 
         $this->clausulaAdd($groupby);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

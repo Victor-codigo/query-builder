@@ -323,8 +323,8 @@ abstract class Conexion
      *
      * @version 1.0
      *
-     * @param string             $sql             comando SQL
-     * @param array<string, int> $driver_opciones opciones del cursor
+     * @param string                 $sql             comando SQL
+     * @param array<string|int, int> $driver_opciones opciones del cursor
      *
      * @return \PDOStatement|false FALSE si falla
      */

@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Delete\DeleteParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS as CLAUSULA_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoGenerarClausulaPrincipalNoExisteException;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\Delete\DeleteParams;
+use Lib\Sql\Comando\Clausula\TIPOS as CLAUSULA_TIPOS;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoGenerarClausulaPrincipalNoExisteException;
+use Lib\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Comando SQL DELETE.
@@ -32,18 +30,6 @@ class DeleteComando extends ComandoDml
     {
         parent::__construct($conexion, $fabrica, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código del comando DELETE.
@@ -77,23 +63,22 @@ class DeleteComando extends ComandoDml
 
         return $sql;
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula DELETE de el comando SQL DELETE.
      *
      * @version 1.0
      *
-     * @param array|string $tablas_eliminar   - Si es array tablas de las que se eliminan registros
-     *                                        - Si es string comando SQL DELETE
-     * @param array        $tablas_referencia tablas que se utilizan para filtrar los registros a borrar
-     * @param string[]     $modificadores     modificadores de la clausula select.
-     *                                        Una de las constantes MODIFICADORES::*
+     * @param string[] $tablas_eliminar   - Si es array tablas de las que se eliminan registros
+     *                                    - Si es string comando SQL DELETE
+     * @param string[] $tablas_referencia tablas que se utilizan para filtrar los registros a borrar
+     * @param string[] $modificadores     modificadores de la clausula select.
+     *                                    Una de las constantes MODIFICADORES::*
      */
-    public function delete(array $tablas_eliminar, array $tablas_referencia = [], array $modificadores = [])
+    public function delete(array $tablas_eliminar, array $tablas_referencia = [], array $modificadores = []): void
     {
         $this->tipo = COMANDO_TIPOS::DELETE;
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $delete = $fabrica->getDelete($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($delete);
 
@@ -106,6 +91,4 @@ class DeleteComando extends ComandoDml
 
         $this->clausulaAdd($delete);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

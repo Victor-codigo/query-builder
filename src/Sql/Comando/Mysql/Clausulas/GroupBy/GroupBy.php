@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\GroupBy;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\FromParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\GroupBy\GroupByClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\GroupBy\GroupByClausula;
+use Lib\Sql\Comando\Clausula\GroupBy\GroupByParams;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula FROM.
@@ -19,7 +17,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class GroupBy extends GroupByClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
+
     /**
      * Tipo de clausula.
      *
@@ -28,9 +26,9 @@ final class GroupBy extends GroupByClausula
     protected $tipo = TIPOS::GROUPBY;
 
     /**
-     * Parametros de la clausula.
+     * Parámetros de la clausula.
      *
-     * @var FromParams
+     * @var ?GroupByParams
      */
     protected $params;
 
@@ -48,7 +46,6 @@ final class GroupBy extends GroupByClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -61,7 +58,6 @@ final class GroupBy extends GroupByClausula
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Genera la clausula GROUP BY.
@@ -74,6 +70,4 @@ final class GroupBy extends GroupByClausula
     {
         return 'GROUP BY '.implode(', ', $this->params->atributos);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

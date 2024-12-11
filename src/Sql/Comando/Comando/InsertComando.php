@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Insert\InsertAttrParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Insert\InsertParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\OnDuplicate\OnDuplicateParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS as CLAUSULA_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Values\ValuesParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoGenerarClausulaPrincipalNoExisteException;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\InsertAttr\InsertAttrParams;
+use Lib\Sql\Comando\Clausula\Insert\InsertParams;
+use Lib\Sql\Comando\Clausula\OnDuplicate\OnDuplicateParams;
+use Lib\Sql\Comando\Clausula\TIPOS as CLAUSULA_TIPOS;
+use Lib\Sql\Comando\Clausula\Values\ValuesParams;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoGenerarClausulaPrincipalNoExisteException;
+use Lib\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Comando SQL INSERT.
@@ -35,18 +33,6 @@ class InsertComando extends ComandoDml
     {
         parent::__construct($conexion, $fabrica, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código del comando INSERT.
@@ -80,21 +66,20 @@ class InsertComando extends ComandoDml
 
         return $sql;
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula INSERT de el comando SQL INSERT.
      *
      * @version 1.0
      *
-     * @param array    $tabla         tabla en la que se realiza la inserción
+     * @param string   $tabla         tabla en la que se realiza la inserción
      * @param string[] $modificadores modificadores de la clausula select.
      *                                Una de las constantes MODIFICADORES::*
      */
-    public function insert($tabla, array $modificadores = [])
+    public function insert($tabla, array $modificadores = []): void
     {
         $this->tipo = COMANDO_TIPOS::INSERT;
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $insert = $fabrica->getInsert($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($insert);
 
@@ -106,7 +91,6 @@ class InsertComando extends ComandoDml
 
         $this->clausulaAdd($insert);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula ATRIBUTOS de el comando SQL INSERT.
@@ -115,9 +99,9 @@ class InsertComando extends ComandoDml
      *
      * @param string[] $atributos atributos
      */
-    public function attributes(array $atributos)
+    public function attributes(array $atributos): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $insert_attr = $fabrica->getInsertAttr($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($insert_attr);
 
@@ -127,7 +111,6 @@ class InsertComando extends ComandoDml
 
         $this->clausulaAdd($insert_attr);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula VALUES de el comando SQL INSERT.
@@ -136,9 +119,9 @@ class InsertComando extends ComandoDml
      *
      * @param string[][] $valores valores
      */
-    public function values(array $valores)
+    public function values(array $valores): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $values = $fabrica->getValues($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($values);
 
@@ -153,19 +136,18 @@ class InsertComando extends ComandoDml
 
         $this->clausulaAdd($values);
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula ON DUPLICATE KEY UPDATE de el comando SQL INSERT.
      *
      * @version 1.0
      *
-     * @param array $atributos atributos que se actualizan. Con el siguiente formato:
-     *                         - arr[nombre del atributo] = mixed, valor del atributo
+     * @param string[] $atributos atributos que se actualizan. Con el siguiente formato:
+     *                            - arr[nombre del atributo] = mixed, valor del atributo
      */
-    public function onDuplicate(array $atributos)
+    public function onDuplicate(array $atributos): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $set = $fabrica->getOnDuplicate($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($set);
 
@@ -175,6 +157,4 @@ class InsertComando extends ComandoDml
 
         $this->clausulaAdd($set);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

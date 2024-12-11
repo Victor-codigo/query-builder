@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\AndOperador;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\GrupoOperadores;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\TIPOS as OPERADOR_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\JoinParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Limit\LimitParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\OrderBy\OrderByParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Partition\PartitionParams;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\From\FromClausula;
+use Lib\Sql\Comando\Clausula\From\JoinParams;
+use Lib\Sql\Comando\Clausula\Limit\LimitParams;
+use Lib\Sql\Comando\Clausula\OrderBy\OrderByParams;
+use Lib\Sql\Comando\Clausula\Partition\PartitionParams;
+use Lib\Sql\Comando\Operador\AndOperador;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use Lib\Sql\Comando\Operador\GrupoOperadores;
+use Lib\Sql\Comando\Operador\Logico;
+use Lib\Sql\Comando\Operador\TIPOS as OPERADOR_TIPOS;
 
 /**
  * Comandos SQL de manipulación de datos.
@@ -35,18 +35,6 @@ abstract class ComandoDml extends Comando
     {
         parent::__construct($conexion, $fabrica, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Construye un JOIN.
@@ -59,8 +47,9 @@ abstract class ComandoDml extends Comando
      * @param string $operador        Operador de comparación. Una De las constantes TIPOS::*
      * @param string $atributo_tabla2 Nombre del atributo de la tabla 2 con el que se realiza la comparación
      */
-    public function join($tipo, $tabla2, $atributo_tabla1, $operador, $atributo_tabla2)
+    public function join($tipo, $tabla2, $atributo_tabla1, $operador, $atributo_tabla2): void
     {
+        /** @var FromClausula $clausula */
         $clausula = $this->getConstruccionClausula();
         $params = new JoinParams();
         $params->tabla2 = $tabla2;
@@ -68,76 +57,73 @@ abstract class ComandoDml extends Comando
         $params->operador = $operador;
         $params->atributo_tabla2 = $atributo_tabla2;
 
-        $join = $clausula->joinCrear($this->getfabrica(), $tipo, $params);
+        $join = $clausula->joinCrear($this->getFabrica(), $tipo, $params);
 
         $clausula->JoinAdd($join);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula WHERE de el comando SQL.
      *
      * @version 1.0
      *
-     * @param string $atributo atributo
-     * @param string $operador Operador de comparación
-     * @param ...int|string $params parámetros de la comparaión. Depende del
-     *                              tipo de comparación
+     * @param string     $atributo atributo
+     * @param string     $operador Operador de comparación
+     * @param int|string $params   parámetros de la comparación. Depende del
+     *                             tipo de comparación
      */
-    public function where($atributo, $operador, ...$params)
+    public function where($atributo, $operador, ...$params): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $where = $fabrica->getWhere($this, $this->getFabricaCondiciones(), true);
         $this->setConstruccionClausula($where);
 
         $operadores = $where->getOperadores();
-        /* @var $grupo GrupoOperadores */
+        /** @var GrupoOperadores $grupo */
         $grupo = $operadores->getGrupoActual();
 
-        /* @var $operador_and AndOperador */
+        /** @var AndOperador $operador_and */
         $operador_and = $where->operadorCrear(OPERADOR_TIPOS::AND_OP);
         $operador_and->condicionCrear($atributo, $operador, ...$params);
         $grupo->operadorAdd($operador_and);
 
         $this->clausulaAdd($where);
     }
-    // ******************************************************************************
 
     /**
      * Crea un operador.
      *
      * @version 1.0
      *
-     * @param int        $operador_logico operador lógico que se crea.
+     * @param string     $operador_logico operador lógico que se crea.
      *                                    Una de las constes TIPOS::*
      * @param string     $atributo        nombre del atributo
      * @param string     $operador        operador de comparación
      * @param string|int $params          parámetros adicionales
      */
-    public function operador($operador_logico, $atributo, $operador = null, ...$params)
+    public function operador($operador_logico, $atributo, $operador = null, ...$params): void
     {
         $clausula = $this->getConstruccionClausula();
         $operadores = $clausula->getOperadores();
 
-        /* @var $grupo GrupoOperadores */
         $grupo = $operadores->getGrupoActual();
+        /** @var Logico $operador_creado */
         $operador_creado = $clausula->operadorCrear($operador_logico);
         $operador_creado->condicionCrear($atributo, $operador, ...$params);
         $grupo->operadorAdd($operador_creado);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula ORDER BY de el comando SQL.
      *
      * @version 1.0
      *
-     * @param array $atributos atributos que se actualizan. Con el siguiente formato:
-     *                         - arr[nombre del atributo] = int, Una de las constantes ORNDEN::*
+     * @param string[] $atributos atributos que se actualizan. Con el siguiente formato:
+     *                            - arr[nombre del atributo] = int, Una de las constantes ORNDEN::*
      */
-    public function orderBy($atributos)
+    public function orderBy($atributos): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $orderby = $fabrica->getOrder($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($orderby);
 
@@ -147,7 +133,6 @@ abstract class ComandoDml extends Comando
 
         $this->clausulaAdd($orderby);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula LIMIT de el comando SQL SELECT.
@@ -158,9 +143,9 @@ abstract class ComandoDml extends Comando
      *                    Si solo se pasa $offset, número de registros que se devuelven
      * @param int $numero Número de registros que se devuelven
      */
-    public function limit($offset, $numero = null)
+    public function limit($offset, $numero = null): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $limit = $fabrica->getLimit($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($limit);
 
@@ -171,18 +156,17 @@ abstract class ComandoDml extends Comando
 
         $this->clausulaAdd($limit);
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula PARTITION.
      *
      * @version 1.0
      *
-     * @param string[] $particiones nombsre de las particiones
+     * @param string[] $particiones nombre de las particiones
      */
-    public function partition(array $particiones)
+    public function partition(array $particiones): void
     {
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $partition = $fabrica->getPartition($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($partition);
 
@@ -192,6 +176,4 @@ abstract class ComandoDml extends Comando
 
         $this->clausulaAdd($partition);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

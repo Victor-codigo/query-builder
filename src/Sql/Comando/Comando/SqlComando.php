@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Param;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Sql\SqlParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS as CLAUSULA_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\Param;
+use Lib\Sql\Comando\Clausula\Sql\SqlParams;
+use Lib\Sql\Comando\Clausula\TIPOS as CLAUSULA_TIPOS;
+use Lib\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Comando SQL SELECT.
@@ -32,18 +30,6 @@ class SqlComando extends FetchComando
     {
         parent::__construct($conexion, $fabrica, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código del comando SQL.
@@ -59,17 +45,16 @@ class SqlComando extends FetchComando
 
         return $select->generar();
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula SQL.
      *
      * @version 1.0
      */
-    public function sql($sql)
+    public function sql(string $sql): void
     {
         $this->tipo = COMANDO_TIPOS::SQL;
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $sql_calusula = $fabrica->getSql($this, $this->getFabricaCondiciones(), false);
 
         $params = new SqlParams();
@@ -78,17 +63,16 @@ class SqlComando extends FetchComando
 
         $this->clausulaAdd($sql_calusula);
     }
-    // ******************************************************************************
 
     /**
      * Añade parametros a el comando SQL.
      *
      * @version 1.0
      *
-     * @param array $params parámetros del comando SQl. Con el siguiente formato
-     *                      - arr[nombre del identifiacdor] = mixed, valor del parámetro
+     * @param array<string, mixed> $params parámetros del comando SQl. Con el siguiente formato
+     *                                     - arr[nombre del identificador] = mixed, valor del parámetro
      */
-    public function params(array $params)
+    public function params(array $params): void
     {
         foreach ($params as $identificador => $valor) {
             $param = new Param();
@@ -98,6 +82,4 @@ class SqlComando extends FetchComando
             $this->paramAdd($param);
         }
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

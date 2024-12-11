@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\OnDuplicate;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\OnDuplicate\OnDuplicateClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\OnDuplicate\OnDuplicateClausula;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula ON DUPLICATE KEY UPDATE de un comando SQL.
@@ -18,7 +16,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class OnDuplicate extends OnDuplicateClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -41,18 +38,6 @@ final class OnDuplicate extends OnDuplicateClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera la clausula ON DUPLICATE KEY UPDATE.
@@ -71,6 +56,4 @@ final class OnDuplicate extends OnDuplicateClausula
 
         return 'ON DUPLICATE KEY UPDATE '.implode(', ', $valores);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

@@ -21,7 +21,7 @@ final class SelectParams extends Parametros
     /**
      * Modificadores que se pueden aplicar a la clausula SELECT.
      *
-     * @var int[]
+     * @var int[]|string[]
      */
     public $modificadores = [];
 }

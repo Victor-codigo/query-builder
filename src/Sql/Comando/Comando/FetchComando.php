@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoFetchColumnNoEsisteException;
-use PDO;
-use stdClass;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoEsisteException;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Comando SQL que devuelve información.
@@ -31,35 +27,27 @@ abstract class FetchComando extends ComandoDml
     {
         parent::__construct($conexion, $fabrica, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Obtiene todos los registro de un comando.
      *
      * @version 1.0
      *
-     * @param int   $modo            modo en el que se obtiene los datos. Una de las
-     *                               constantes PDO::FETCH_*
-     * @param int   $fetch_arg       depende de el parámetro $modo
-     * @param array $constructor_arg solo para PDO::FETCH_CLASS.
-     *                               Parámetros del construtor de la clase
+     * @param int        $modo            modo en el que se obtiene los datos. Una de las
+     *                                    constantes PDO::FETCH_*
+     * @param int|string $fetch_arg       depende de el parámetro $modo
+     * @param mixed      $constructor_arg solo para PDO::FETCH_CLASS.
+     *                                    Parámetros del constructor de la clase
      *
-     * @return array con los datos devueltos por el comando
+     * @return mixed[]|false con los datos devueltos por el comando
      */
-    protected function fetchAll($modo = null, $fetch_arg = null, array $constructor_arg = [])
+    protected function fetchAll($modo = null, $fetch_arg = null, mixed $constructor_arg = [])
     {
         $this->ejecutar();
+
+        if (false === $this->statement) {
+            return false;
+        }
 
         if (empty($fetch_arg)) {
             $fetch = $this->statement->fetchAll($modo);
@@ -73,7 +61,6 @@ abstract class FetchComando extends ComandoDml
 
         return $fetch;
     }
-    // ******************************************************************************
 
     /**
      * Obtiene todos los datos devueltos por el comando.
@@ -81,13 +68,12 @@ abstract class FetchComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @return array array multidimensional con las filas y las columnas
+     * @return mixed[]|false array multidimensional con las filas y las columnas
      */
     public function fetchAllBoth()
     {
         return $this->fetchAll(\PDO::FETCH_BOTH);
     }
-    // ******************************************************************************
 
     /**
      * Obtiene todos los datos devueltos por el comando.
@@ -95,13 +81,12 @@ abstract class FetchComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @return array array multidimensional con las filas y las columnas
+     * @return mixed[]|false array multidimensional con las filas y las columnas
      */
     public function fetchAllAssoc()
     {
         return $this->fetchAll(\PDO::FETCH_ASSOC);
     }
-    // ******************************************************************************
 
     /**
      * Obtiene todos los datos devueltos por el comando.
@@ -110,16 +95,15 @@ abstract class FetchComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @param string $clase_nombre    nombre de la clase
-     * @param array  $constructor_arg argumentos del constructor
+     * @param string  $clase_nombre    nombre de la clase
+     * @param mixed[] $constructor_arg argumentos del constructor
      *
-     * @return array array multidimensional con las filas y las columnas
+     * @return mixed[]|false array multidimensional con las filas y las columnas
      */
     public function fetchAllClass($clase_nombre, array $constructor_arg = [])
     {
         return $this->fetchAll(\PDO::FETCH_CLASS, $clase_nombre, $constructor_arg);
     }
-    // ******************************************************************************
 
     /**
      * Obtiene todos los datos devueltos por el comando.
@@ -128,13 +112,12 @@ abstract class FetchComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @return array array multidimensional con las filas y las columnas
+     * @return mixed[]|false array multidimensional con las filas y las columnas
      */
     public function fetchAllObject()
     {
         return $this->fetchAll(\PDO::FETCH_CLASS, \stdClass::class);
     }
-    // ******************************************************************************
 
     /**
      * Obtiene todos los datos devueltos por el comando para una columna pasada.
@@ -143,7 +126,7 @@ abstract class FetchComando extends ComandoDml
      *
      * @param string $column Nombre de la columna
      *
-     * @return array datos de la columna
+     * @return mixed[]|false datos de la columna
      *
      * @throws ComandoFetchColumnNoEsisteException
      */
@@ -153,10 +136,9 @@ abstract class FetchComando extends ComandoDml
 
         return $this->fetchAll(\PDO::FETCH_COLUMN, $column_index);
     }
-    // ******************************************************************************
 
     /**
-     * Busca el primer registro que contenga un atribuito con un valor.
+     * Busca el primer registro que contenga un atributo con un valor.
      *
      * @version 1.0
      *
@@ -164,13 +146,21 @@ abstract class FetchComando extends ComandoDml
      * @param mixed  $value valor del atributo que se busca
      * @param int    $modo  una de las constantes PDO::FETCH_OBJ o PDO::FETCH_ASSOC
      *
-     * @return \stdClass|arary|null con el registro
-     *                              NULL si no se encuentra
+     * @return \stdClass|mixed[]|null con el registro
+     *                                NULL si no se encuentra
      */
     public function fetchFirst($field, $value, $modo = \PDO::FETCH_OBJ)
     {
+        if (false === $this->statement) {
+            return null;
+        }
+
         $retorno = null;
         $fetch = $this->fetchAllObject();
+
+        if (false === $fetch) {
+            return null;
+        }
 
         for ($i = 0, $length = $this->statement->rowCount(); $i < $length; ++$i) {
             if ($fetch[$i]->$field == $value) {
@@ -182,10 +172,9 @@ abstract class FetchComando extends ComandoDml
 
         return \PDO::FETCH_OBJ == $modo ? $retorno : (array) $retorno;
     }
-    // ******************************************************************************
 
     /**
-     * Busca el último registro que contenga un atribuito con un valor.
+     * Busca el último registro que contenga un atributo con un valor.
      *
      * @version 1.0
      *
@@ -193,13 +182,21 @@ abstract class FetchComando extends ComandoDml
      * @param mixed  $value valor del atributo que se busca
      * @param int    $modo  una de las constantes PDO::FETCH_OBJ o PDO::FETCH_ASSOC
      *
-     * @return \stdClass|arary|null con el registro
-     *                              NULL si no se encuentra
+     * @return \stdClass|mixed[]|null con el registro
+     *                                NULL si no se encuentra
      */
     public function fetchLast($field, $value, $modo = \PDO::FETCH_OBJ)
     {
+        if (false === $this->statement) {
+            return null;
+        }
+
         $retorno = null;
         $fetch = $this->fetchAllObject();
+
+        if (false === $fetch) {
+            return null;
+        }
 
         for ($i = $this->statement->rowCount() - 1; $i >= 0; --$i) {
             if ($fetch[$i]->$field == $value) {
@@ -211,7 +208,6 @@ abstract class FetchComando extends ComandoDml
 
         return \PDO::FETCH_OBJ == $modo ? $retorno : (array) $retorno;
     }
-    // ******************************************************************************
 
     /**
      * Busca todos los registros que contengan un valor.
@@ -222,13 +218,21 @@ abstract class FetchComando extends ComandoDml
      * @param mixed  $value valor del atributo que se busca
      * @param int    $modo  una de las constantes PDO::FETCH_OBJ o PDO::FETCH_ASSOC
      *
-     * @return \stdClass|arary con el registro
-     *                         si no se encuentra devuelve un array vacío
+     * @return \stdClass|mixed[] con el registro
+     *                           si no se encuentra devuelve un array vacío
      */
     public function fetchFind($field, $value, $modo = \PDO::FETCH_OBJ)
     {
+        if (false === $this->statement) {
+            return [];
+        }
+
         $retorno = [];
         $fetch = $this->fetchAllObject();
+
+        if (false === $fetch) {
+            return [];
+        }
 
         for ($i = 0, $length = $this->statement->rowCount(); $i < $length; ++$i) {
             if ($fetch[$i]->$field == $value) {
@@ -238,6 +242,4 @@ abstract class FetchComando extends ComandoDml
 
         return $retorno;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

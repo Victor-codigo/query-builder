@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\Tipos\Enum;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Enum;
 
 /**
  *  Comandos SQL.
@@ -48,4 +46,3 @@ final class TIPOS extends Enum
      */
     public const DELETE = 4;
 }
-// ******************************************************************************

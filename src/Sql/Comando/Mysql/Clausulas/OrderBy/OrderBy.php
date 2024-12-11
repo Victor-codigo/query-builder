@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\OrderBy;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\OrderBy\OrderByClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\OrderBy\OrderByParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\OrderBy\OrderByClausula;
+use Lib\Sql\Comando\Clausula\OrderBy\OrderByParams;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula ORDER BY.
@@ -19,7 +17,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class OrderBy extends OrderByClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -29,9 +26,9 @@ final class OrderBy extends OrderByClausula
     protected $tipo = TIPOS::ORDERBY;
 
     /**
-     * Parametros de la clausula.
+     * Parámetros de la clausula.
      *
-     * @var OrderByParams
+     * @var ?OrderByParams
      */
     protected $params;
 
@@ -49,7 +46,6 @@ final class OrderBy extends OrderByClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -62,7 +58,6 @@ final class OrderBy extends OrderByClausula
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Genera la clausula ORDER BY.
@@ -81,6 +76,4 @@ final class OrderBy extends OrderByClausula
 
         return 'ORDER BY '.implode(', ', $valores);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

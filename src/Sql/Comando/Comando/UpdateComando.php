@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Set\SetClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Set\SetParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS as CLAUSULA_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Update\UpdateParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoGenerarClausulaPrincipalNoExisteException;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\Set\SetClausula;
+use Lib\Sql\Comando\Clausula\Set\SetParams;
+use Lib\Sql\Comando\Clausula\TIPOS as CLAUSULA_TIPOS;
+use Lib\Sql\Comando\Clausula\Update\UpdateParams;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoGenerarClausulaPrincipalNoExisteException;
+use Lib\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Comando SQL UPDATE.
@@ -34,18 +32,6 @@ class UpdateComando extends ComandoDml
     {
         parent::__construct($conexion, $fabrica, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código del comando UPDATE.
@@ -79,21 +65,20 @@ class UpdateComando extends ComandoDml
 
         return $sql;
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula UPDATE de el comando SQL UPDATE.
      *
      * @version 1.0
      *
-     * @param array    $tablas        tablas del comando UPDATE
+     * @param string[] $tablas        tablas del comando UPDATE
      * @param string[] $modificadores modificadores de la clausula update.
      *                                Una de las constantes MODIFICADORES::*
      */
-    public function update(array $tablas, array $modificadores = [])
+    public function update(array $tablas, array $modificadores = []): void
     {
         $this->tipo = COMANDO_TIPOS::UPDATE;
-        $fabrica = $this->getfabrica();
+        $fabrica = $this->getFabrica();
         $update = $fabrica->getUpdate($this, $this->getFabricaCondiciones(), false);
         $this->setConstruccionClausula($update);
 
@@ -104,19 +89,19 @@ class UpdateComando extends ComandoDml
 
         $this->clausulaAdd($update);
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula SET de el comando SQL UPDATE.
      *
      * @version 1.0
      *
-     * @param array $atributos atributos que se actualizan. Con el siguiente formato:
-     *                         - arr[nombre del atributo] = mixed, valor del atributo
+     * @param array<string, mixed> $atributos atributos que se actualizan. Con el siguiente formato:
+     *                                        - arr[nombre del atributo] = mixed, valor del atributo
      */
-    public function set(array $atributos)
+    public function set(array $atributos): void
     {
         $set = $this->getClausulaSet();
+        /** @var SetParams $params */
         $params = $set->getParams();
         $params->valores = array_merge($params->valores, $atributos);
 
@@ -124,7 +109,6 @@ class UpdateComando extends ComandoDml
         $set->setParams($params);
         $this->clausulaAdd($set);
     }
-    // ******************************************************************************
 
     /**
      * Incrementa el valor del atributo pasado.
@@ -134,7 +118,7 @@ class UpdateComando extends ComandoDml
      * @param string $atributo   nombre del atributo
      * @param float  $incremento valor que se incrementa
      */
-    public function increment($atributo, $incremento)
+    public function increment($atributo, $incremento): void
     {
         $set = $this->getClausulaSet();
         $params = $set->getParams();
@@ -149,28 +133,25 @@ class UpdateComando extends ComandoDml
         $set->setParams($params);
         $this->clausulaAdd($set);
     }
-    // ******************************************************************************
 
     /**
      * Obtiene la clausula set del comando SQL si existe, o la crea si
      * no existe.
      *
      * @version 1.0
-     *
-     * @return SetClausula
      */
-    private function getClausulaSet()
+    private function getClausulaSet(): SetClausula
     {
+        /** @var SetClausula|null $set */
         $set = $this->getClausula(CLAUSULA_TIPOS::SET);
 
         if (null === $set) {
-            $fabrica = $this->getfabrica();
+            $fabrica = $this->getFabrica();
+            /** @var SetClausula $set */
             $set = $fabrica->getSet($this, $this->getFabricaCondiciones(), false);
             $set->setParams(new SetParams());
         }
 
         return $set;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

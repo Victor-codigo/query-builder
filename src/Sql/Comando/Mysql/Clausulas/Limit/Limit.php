@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Limit;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Limit\LimitClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Limit\LimitParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Limit\LimitClausula;
+use Lib\Sql\Comando\Clausula\Limit\LimitParams;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula LIMIT.
@@ -19,7 +17,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class Limit extends LimitClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -29,9 +26,9 @@ final class Limit extends LimitClausula
     protected $tipo = TIPOS::LIMIT;
 
     /**
-     * Parametros de la clausula.
+     * Parámetros de la clausula.
      *
-     * @var LimitParams
+     * @var ?LimitParams
      */
     protected $params;
 
@@ -49,7 +46,6 @@ final class Limit extends LimitClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -62,7 +58,6 @@ final class Limit extends LimitClausula
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Genera la clausula LIMIT.
@@ -80,6 +75,4 @@ final class Limit extends LimitClausula
                                 $this->parse($this->params->number);
         }
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

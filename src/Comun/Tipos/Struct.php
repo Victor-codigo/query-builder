@@ -237,7 +237,7 @@ class Struct implements \Serializable
     /**
      * @version 1.0
      *
-     * @return array<string|int, array|bool|float|int|string|null>
+     * @return array<string|int, mixed>
      */
     public function __serialize(): array
     {

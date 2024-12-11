@@ -4,6 +4,17 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
+use Lib\Conexion\Conexion;
+use Lib\Excepciones\BDException;
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\ClausulaInterface;
+use Lib\Sql\Comando\Clausula\ClausulaMainInterface;
+use Lib\Sql\Comando\Clausula\Param;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoEjecutarException;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoEsisteException;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+
 /**
  * Comando SQL.
  */
@@ -40,12 +51,12 @@ abstract class Comando implements ComandoInterface
     /**
      * Conexión con la base de datos.
      *
-     * @var conexion
+     * @var ?Conexion
      */
     protected $conexion;
 
     /**
-     * Obtiene la comexión.
+     * Obtiene la conexión.
      *
      * @version 1.0
      *
@@ -59,7 +70,7 @@ abstract class Comando implements ComandoInterface
     /**
      * Fábrica de clausulas SQL.
      *
-     * @var ClausulaFabricaInterface
+     * @var ?ClausulaFabricaInterface
      */
     private $fabrica_clausulas;
 
@@ -70,7 +81,7 @@ abstract class Comando implements ComandoInterface
      *
      * @return ClausulaFabricaInterface
      */
-    protected function getfabrica()
+    protected function getFabrica()
     {
         return $this->fabrica_clausulas;
     }
@@ -97,7 +108,7 @@ abstract class Comando implements ComandoInterface
     /**
      * Fábrica de condiciones.
      *
-     * @var CondicionFabricaInterface
+     * @var ?CondicionFabricaInterface
      */
     private $fabrica_condiciones;
 
@@ -116,7 +127,7 @@ abstract class Comando implements ComandoInterface
     /**
      * Clausula que se está construyendo actualmente.
      *
-     * @var ClausulaInterface
+     * @var ?ClausulaInterface
      */
     private $construccion_clausula;
 
@@ -137,15 +148,15 @@ abstract class Comando implements ComandoInterface
      *
      * @version 1.0
      *
-     * @param ClausulaInterface $construccion_clausula clausula que se cinuentra en construccion
+     * @param ClausulaInterface $construccion_clausula clausula que se encuentra en construcción
      */
-    protected function setConstruccionClausula($construccion_clausula)
+    protected function setConstruccionClausula($construccion_clausula): void
     {
         $this->construccion_clausula = $construccion_clausula;
     }
 
     /**
-     * Parámetros que se sustituyen en la constulta.
+     * Parámetros que se sustituyen en la consulta.
      *
      * @var Param[]
      */
@@ -166,7 +177,7 @@ abstract class Comando implements ComandoInterface
     /**
      * Comando PDO.
      *
-     * @var \PDOStatement
+     * @var \PDOStatement|false|null
      */
     protected $statement;
 
@@ -175,7 +186,7 @@ abstract class Comando implements ComandoInterface
      *
      * @version 1.0
      *
-     * @return \PDOStatement
+     * @return \PDOStatement|false|null
      */
     protected function getStatement()
     {
@@ -227,7 +238,7 @@ abstract class Comando implements ComandoInterface
      *
      * @param ClausulaInterface $clausula clausula que se añade
      */
-    protected function clausulaAdd(ClausulaInterface $clausula)
+    protected function clausulaAdd(ClausulaInterface $clausula): void
     {
         $this->clausulas[$clausula->getTipo()] = $clausula;
     }
@@ -255,7 +266,7 @@ abstract class Comando implements ComandoInterface
      *
      * @version 1.0
      *
-     * @return Clausula
+     * @return ?ClausulaMainInterface
      */
     protected function getClausulaMain()
     {
@@ -264,6 +275,8 @@ abstract class Comando implements ComandoInterface
                 return $clausula;
             }
         }
+
+        return null;
     }
 
     /**
@@ -272,9 +285,9 @@ abstract class Comando implements ComandoInterface
      *
      * @version 1.0
      *
-     * @param Params $param parámetro que se añade
+     * @param Param $param parámetro que se añade
      */
-    public function paramAdd(Param $param)
+    public function paramAdd(Param $param): void
     {
         $this->params[] = $param;
     }
@@ -284,14 +297,18 @@ abstract class Comando implements ComandoInterface
      *
      * @version 1.0
      *
-     * @param string $sql      comando SQL
-     * @param array  $opciones opciones del cursor
+     * @param string                 $sql      comando SQL
+     * @param array<string|int, int> $opciones opciones del cursor
      *
-     * @return \PDOStatement
+     * @return \PDOStatement|false — FALSE si falla
      */
     protected function getPDOStatement($sql, array $opciones = [])
     {
         $statement = $this->conexion->prepare($sql, $opciones);
+
+        if (false === $statement) {
+            return false;
+        }
 
         foreach ($this->params as $param) {
             $statement->bindValue($param::MARCA.$param->id, $param->valor);
@@ -305,16 +322,20 @@ abstract class Comando implements ComandoInterface
      *
      * @verion 1.0
      *
-     * @return \PDOStatement
+     * @return bool TRUE si se ejecuta correctamente
      *
-     * @throws bool TRUE si se ejecuta correctamente
+     * @throws ComandoEjecutarException
      */
-    public function ejecutar()
+    public function ejecutar(): bool
     {
         try {
             $sql = $this->generar();
             $opciones = [\PDO::ATTR_CURSOR => \PDO::CURSOR_SCROLL];
             $this->statement = $this->getPDOStatement($sql, $opciones);
+
+            if (false === $this->statement) {
+                return false;
+            }
 
             return $this->statement->execute();
         } catch (BDException $ex) {
