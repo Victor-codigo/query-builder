@@ -4,22 +4,6 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando;
 
-use GT\Libs\Sistema\BD\BDException;
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaMainInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Param;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoEjecutarException;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoFetchColumnNoEsisteException;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoInterface;
-use PDO;
-use PDOStatement;
-
-// ******************************************************************************
-
 /**
  * Comando SQL.
  */
@@ -33,7 +17,6 @@ abstract class Comando implements ComandoInterface
      * @return string código SQL del comando
      */
     abstract public function generar();
-    // ******************************************************************************
 
     /**
      * Tipo de comando. Una de las constantes TIPO::*.
@@ -53,12 +36,11 @@ abstract class Comando implements ComandoInterface
     {
         return $this->tipo;
     }
-    // ******************************************************************************
 
     /**
      * Conexión con la base de datos.
      *
-     * @var Conexion
+     * @var conexion
      */
     protected $conexion;
 
@@ -73,7 +55,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->conexion;
     }
-    // ******************************************************************************
 
     /**
      * Fábrica de clausulas SQL.
@@ -93,7 +74,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->fabrica_clausulas;
     }
-    // ******************************************************************************
 
     /**
      * Clausulas SQL del comando.
@@ -113,7 +93,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->clausulas;
     }
-    // ******************************************************************************
 
     /**
      * Fábrica de condiciones.
@@ -133,7 +112,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->fabrica_condiciones;
     }
-    // ******************************************************************************
 
     /**
      * Clausula que se está construyendo actualmente.
@@ -165,7 +143,6 @@ abstract class Comando implements ComandoInterface
     {
         $this->construccion_clausula = $construccion_clausula;
     }
-    // ******************************************************************************
 
     /**
      * Parámetros que se sustituyen en la constulta.
@@ -185,7 +162,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->params;
     }
-    // ******************************************************************************
 
     /**
      * Comando PDO.
@@ -205,7 +181,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->statement;
     }
-    // ******************************************************************************
 
     /**
      * Constructor.
@@ -222,7 +197,6 @@ abstract class Comando implements ComandoInterface
         $this->fabrica_clausulas = $fabrica;
         $this->fabrica_condiciones = $fabrica_condiciones;
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -245,7 +219,6 @@ abstract class Comando implements ComandoInterface
             $param = null;
         }
     }
-    // ******************************************************************************
 
     /**
      * Añade una clausula.
@@ -258,7 +231,6 @@ abstract class Comando implements ComandoInterface
     {
         $this->clausulas[$clausula->getTipo()] = $clausula;
     }
-    // ******************************************************************************
 
     /**
      * Obtiene una clausula por su tipo.
@@ -277,7 +249,6 @@ abstract class Comando implements ComandoInterface
 
         return $this->clausulas[$tipo];
     }
-    // ******************************************************************************
 
     /**
      * Obtiene la clausula principal del comando.
@@ -294,7 +265,6 @@ abstract class Comando implements ComandoInterface
             }
         }
     }
-    // ******************************************************************************
 
     /**
      * Añade un parámetro que se sustituye en el comando SQL
@@ -308,7 +278,6 @@ abstract class Comando implements ComandoInterface
     {
         $this->params[] = $param;
     }
-    // ******************************************************************************
 
     /**
      * Obtiene el objeto PDOStatement.
@@ -330,7 +299,6 @@ abstract class Comando implements ComandoInterface
 
         return $statement;
     }
-    // ******************************************************************************
 
     /**
      * Ejecuta el comando.
@@ -353,7 +321,6 @@ abstract class Comando implements ComandoInterface
             throw new ComandoEjecutarException($ex->getMessage());
         }
     }
-    // ******************************************************************************
 
     /**
      * Obtiene el comando SQL.
@@ -367,7 +334,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->generar();
     }
-    // ******************************************************************************
 
     /**
      * Busca en la clausula principal del comando, entre los campos retornados,
@@ -393,6 +359,4 @@ abstract class Comando implements ComandoInterface
 
         return $column_index;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
