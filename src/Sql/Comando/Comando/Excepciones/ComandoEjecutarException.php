@@ -7,6 +7,6 @@ namespace Lib\Sql\Comando\Comando\Excepciones;
 /**
  * Excepción al ejecutar el comando.
  */
-class ComandoEjecutarException
+class ComandoEjecutarException extends ComandoException
 {
 }

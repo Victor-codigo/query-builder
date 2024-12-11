@@ -7,6 +7,6 @@ namespace Lib\Sql\Comando\Comando\Excepciones;
 /**
  * Excepciones para la recuperación de los datos del comando.
  */
-class ComandoFetchException
+class ComandoFetchException extends ComandoException
 {
 }

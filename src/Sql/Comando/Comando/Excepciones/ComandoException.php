@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Excepciones;
 
+use Lib\Excepciones\BDException;
+
 /**
- * Excepcion del comando.
+ * Excepción del comando.
  */
-class ComandoException
+class ComandoException extends BDException
 {
 }

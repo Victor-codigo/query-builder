@@ -7,6 +7,6 @@ namespace Lib\Sql\Comando\Comando\Excepciones;
 /**
  * Para fetch columns no existe la columna.
  */
-class ComandoFetchColumnNoEsisteException
+class ComandoFetchColumnNoEsisteException extends ComandoFetchException
 {
 }
