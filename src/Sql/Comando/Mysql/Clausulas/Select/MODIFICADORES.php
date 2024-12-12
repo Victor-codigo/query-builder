@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Select;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\MODIFICADORES as SELECT_MODIFICADORES;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\MODIFICADORES as SELECT_MODIFICADORES;
 
 /**
  * Modificadores para la clausula SELECT.
@@ -36,4 +34,3 @@ final class MODIFICADORES extends SELECT_MODIFICADORES
     public const SQL_NO_CACHE = 'SQL_NO_CACHE';
     public const SQL_CALC_FOUND_ROWS = 'SQL_CALC_FOUND_ROWS';
 }
-// ******************************************************************************
