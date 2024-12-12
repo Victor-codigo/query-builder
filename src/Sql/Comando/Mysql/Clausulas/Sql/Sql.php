@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Sql;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Sql\SqlClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Sql\SqlClausula;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula SQL.
@@ -18,7 +16,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class Sql extends SqlClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -41,18 +38,6 @@ final class Sql extends SqlClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera la clausula SQL.
@@ -65,7 +50,6 @@ final class Sql extends SqlClausula
     {
         return parent::generar();
     }
-    // ******************************************************************************
 
     /**
      * Obtiene los atributos de la consulta SQL.
@@ -78,6 +62,4 @@ final class Sql extends SqlClausula
     {
         return [];
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
