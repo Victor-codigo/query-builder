@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Insert;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\InsertComando;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\CadenaDml;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Comando\ComandoDml;
+use Lib\Sql\Comando\Comando\Constructor\CadenaDml;
+use Lib\Sql\Comando\Comando\InsertComando;
 
 /**
  * Encadena los elementos SQL de un comando INSERT.
@@ -18,7 +17,7 @@ class InsertCadena extends CadenaDml
     /**
      * Comando que carga la clase.
      *
-     * @var InsertComando
+     * @var ?InsertComando
      */
     protected $comando;
 
@@ -27,13 +26,12 @@ class InsertCadena extends CadenaDml
      *
      * @version 1.0
      *
-     * @param Comando $comando comando INSERT que se construye
+     * @param ComandoDml $comando comando INSERT que se construye
      */
-    public function __construct(Comando $comando)
+    public function __construct(ComandoDml $comando)
     {
         parent::__construct($comando);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -46,14 +44,13 @@ class InsertCadena extends CadenaDml
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula PARTITION.
      *
      * @version 1.0
      *
-     * @param string[] $particiones nombsre de las particiones
+     * @param string[] $particiones nombre de las particiones
      *
      * @return CadenaDml
      */
@@ -63,14 +60,13 @@ class InsertCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula INSERT ATTRIBUTES.
      *
      * @version 1.0
      *
-     * @param string[] $atributos nombsre de los atributos
+     * @param string[] $atributos nombre de los atributos
      *
      * @return CadenaDml
      */
@@ -80,14 +76,13 @@ class InsertCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula VALUES.
      *
      * @version 1.0
      *
-     * @param string[] $valores valores
+     * @param string[][] $valores valores
      *
      * @return CadenaDml
      */
@@ -97,7 +92,6 @@ class InsertCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula ON DUPLICATE KEY UPDATE.
@@ -114,6 +108,4 @@ class InsertCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

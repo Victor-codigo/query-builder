@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Insert;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\InsertComando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
+use Lib\Sql\Comando\Comando\InsertComando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Constructor de comando DELETE.
@@ -46,18 +44,6 @@ class InsertConstructor extends ComandoDmlConstructor
 
         $this->comando = new InsertComando($conexion, $fabrica_clausula, $fabrica_condiciones);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Construye la clausula INSERT de el comando SQL INSERT.
@@ -68,13 +54,11 @@ class InsertConstructor extends ComandoDmlConstructor
      * @param string[] $modificadores modificadores de la clausula select.
      *                                Una de las constantes MODIFICADORES::*
      */
-    public function insert($tabla, array $modificadores = [])
+    public function insert($tabla, array $modificadores = []): InsertCadena
     {
         $this->cadena = new InsertCadena($this->comando);
         $this->comando->insert($tabla, $modificadores);
 
         return $this->cadena;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
