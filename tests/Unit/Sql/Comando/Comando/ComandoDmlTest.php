@@ -13,8 +13,8 @@ use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\OP;
 use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\TIPOS as OPERADOR_TIPOS;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\FromClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\Join;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\JOIN_TIPOS;
+use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\Join;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\JoinParams;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Limit\LimitClausula;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Limit\LimitParams;
@@ -25,7 +25,7 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Partition\PartitionParams;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Where\WhereClausula;
 use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\ComandoDmlMock;
 use PHPUnit\Framework\TestCase;
-use Phpunit\Util;
+use Tests\Comun\PhpunitUtilTrait;
 
 // ******************************************************************************
 
@@ -34,7 +34,7 @@ use Phpunit\Util;
  */
 class ComandoDmlTest extends TestCase
 {
-    use Util;
+    use PhpunitUtilTrait;
     // ******************************************************************************
 
     /**
