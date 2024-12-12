@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Lib;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\Conexion\DRIVERS;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Delete\DeleteConstructor;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Insert\InsertConstructor;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Select\SelectConstructor;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Sql\SqlConstructor;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Update\UpdateConstructor;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\MysqlClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Condicion\MysqlCondicionFabrica;
+use Lib\Conexion\Conexion;
+use Lib\Conexion\DRIVERS;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Constructor\Delete\DeleteConstructor;
+use Lib\Sql\Comando\Comando\Constructor\Insert\InsertConstructor;
+use Lib\Sql\Comando\Comando\Constructor\Select\SelectConstructor;
+use Lib\Sql\Comando\Comando\Constructor\Sql\SqlConstructor;
+use Lib\Sql\Comando\Comando\Constructor\Update\UpdateConstructor;
+use Lib\Sql\Comando\Mysql\Clausulas\MysqlClausula;
+use Lib\Sql\Comando\Mysql\Condicion\MysqlCondicionFabrica;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Constructor de comandos SQL.
@@ -24,7 +24,7 @@ class QueryConstructor
     /**
      * Conexión con la base de datos.
      *
-     * @var Conexion
+     * @var ?Conexion
      */
     private $conexion;
 
@@ -35,7 +35,7 @@ class QueryConstructor
      *
      * @param Conexion $conexion Conexión con la base de datos
      */
-    public function setconexion(Conexion $conexion)
+    public function setconexion(Conexion $conexion): void
     {
         $this->conexion = $conexion;
     }
@@ -55,14 +55,14 @@ class QueryConstructor
     /**
      * Fabrica de clausulas.
      *
-     * @var ClausulaFabricaInterface
+     * @var ?ClausulaFabricaInterface
      */
     private $fabrica_clausulas;
 
     /**
      * Fabrica de condiciones.
      *
-     * @var CondicionFabricaInterface
+     * @var ?CondicionFabricaInterface
      */
     private $fabrica_condiciones;
 
@@ -78,7 +78,6 @@ class QueryConstructor
         $this->setconexion($conexion);
         $this->crearFabrica($this->conexion->getdriver());
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -97,7 +96,7 @@ class QueryConstructor
      *
      * @version 1.0
      */
-    private function conectar()
+    private function conectar(): void
     {
         if (!$this->conexion->getConectado()) {
             $this->conexion->conectar();
@@ -111,7 +110,7 @@ class QueryConstructor
      *
      * @param string $driver Una de las constantes DRIVERS::*
      */
-    private function crearFabrica($driver)
+    private function crearFabrica($driver): void
     {
         switch ($driver) {
             case DRIVERS::MYSQL:
@@ -142,10 +141,8 @@ class QueryConstructor
      * Constructor de comandos SQL UPDATE.
      *
      * @version 1.0
-     *
-     * @return SelectConstructor
      */
-    public function updateConstructor()
+    public function updateConstructor(): UpdateConstructor
     {
         $this->conectar();
 
