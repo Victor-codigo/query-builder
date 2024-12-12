@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador;
 
-use GT\Libs\Sistema\Tipos\Enum;
-
-// ******************************************************************************
+use Lib\Comun\Tipos\Enum;
 
 /**
  * Operadores de comparación.
@@ -139,4 +137,3 @@ class OP extends Enum
      */
     public const NOT_EXISTS = 'NOT EXISTS';
 }
-// ******************************************************************************
