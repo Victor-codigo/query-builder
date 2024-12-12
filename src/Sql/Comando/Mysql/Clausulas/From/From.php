@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\From;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\FromClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\FromParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\From\FromClausula;
+use Lib\Sql\Comando\Clausula\From\FromParams;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula FROM.
@@ -19,7 +17,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class From extends FromClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -29,9 +26,9 @@ final class From extends FromClausula
     protected $tipo = TIPOS::FROM;
 
     /**
-     * Parametros de la clausula.
+     * Parámetros de la clausula.
      *
-     * @var FromParams
+     * @var ?FromParams
      */
     protected $params;
 
@@ -49,7 +46,6 @@ final class From extends FromClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -62,7 +58,6 @@ final class From extends FromClausula
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Genera la clausula FROM.
@@ -81,6 +76,4 @@ final class From extends FromClausula
 
         return 'FROM '.implode(', ', $this->params->tablas).$retorno;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
