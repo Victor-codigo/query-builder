@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Select;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\SelectComando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
+use Lib\Sql\Comando\Comando\SelectComando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Constructor de comando SELECT.
@@ -20,14 +18,14 @@ class SelectConstructor extends ComandoDmlConstructor
     /**
      * Comando SELECT.
      *
-     * @var SelectComando
+     * @var ?SelectComando
      */
     protected $comando;
 
     /**
      * Clase auxiliar para encadenar las funciones del constructor.
      *
-     * @var SelectCadena
+     * @var ?SelectCadena
      */
     protected $cadena;
 
@@ -46,7 +44,6 @@ class SelectConstructor extends ComandoDmlConstructor
 
         $this->comando = new SelectComando($conexion, $fabrica_clausula, $fabrica_condiciones);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -60,27 +57,24 @@ class SelectConstructor extends ComandoDmlConstructor
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula SELECT de el comando SQL SELECT.
      *
      * @version 1.0
      *
-     * @param array|string $atributos     - Si es array atributos del comando SELECT
-     *                                    - Si es string comandoSQL SELECT
-     * @param string[]     $modificadores modificadores de la clausula select.
-     *                                    Una de las constantes MODIFICADORES::*
+     * @param string[] $atributos     - Si es array atributos del comando SELECT
+     *                                - Si es string comandoSQL SELECT
+     * @param string[] $modificadores modificadores de la clausula select.
+     *                                Una de las constantes MODIFICADORES::*
      *
-     * @return Cadena Comando SELECT
+     * @return SelectCadena Comando SELECT
      */
-    public function select($atributos, array $modificadores = [])
+    public function select($atributos, array $modificadores = []): SelectCadena
     {
         $this->cadena = new SelectCadena($this->comando);
         $this->comando->select($atributos, $modificadores);
 
         return $this->cadena;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

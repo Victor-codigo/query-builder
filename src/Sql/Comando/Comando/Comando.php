@@ -320,7 +320,7 @@ abstract class Comando implements ComandoInterface
     /**
      * Ejecuta el comando.
      *
-     * @verion 1.0
+     * @version 1.0
      *
      * @return bool TRUE si se ejecuta correctamente
      *
