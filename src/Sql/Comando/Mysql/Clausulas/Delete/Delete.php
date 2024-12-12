@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Delete;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Delete\DeleteClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Delete\DeleteClausula;
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula DELETE de un comando SQL.
@@ -18,7 +16,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class Delete extends DeleteClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -41,18 +38,6 @@ final class Delete extends DeleteClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera la clausula UPDATE.
@@ -69,7 +54,6 @@ final class Delete extends DeleteClausula
             return $this->multidelete();
         }
     }
-    // ******************************************************************************
 
     /**
      * Genera la clausula delete para una sola tabla.
@@ -89,7 +73,6 @@ final class Delete extends DeleteClausula
         return 'DELETE '.$modificadores.
                 'FROM '.implode(', ', $this->params->tablas_eliminar);
     }
-    // ******************************************************************************
 
     /**
      * Genera la clausula delete para varias tablas.
@@ -104,7 +87,6 @@ final class Delete extends DeleteClausula
                             implode(', ', $this->params->tablas_eliminar).
                 ' FROM '.implode(', ', $this->params->tablas_referencia);
     }
-    // ******************************************************************************
 
     /**
      * Obtiene los atributos de la consulta UPDATE.
@@ -117,6 +99,4 @@ final class Delete extends DeleteClausula
     {
         return [];
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

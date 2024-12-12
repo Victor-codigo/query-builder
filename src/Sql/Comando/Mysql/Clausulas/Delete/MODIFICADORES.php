@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Delete;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\MODIFICADORES as MODIFICADORES_BASE;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\MODIFICADORES as MODIFICADORES_BASE;
 
 /**
  * Modificadores para la clausula DELETE.
@@ -32,4 +30,3 @@ final class MODIFICADORES extends MODIFICADORES_BASE
      */
     public const QUICK = 'QUICK';
 }
-// ******************************************************************************
