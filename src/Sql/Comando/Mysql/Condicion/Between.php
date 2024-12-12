@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Condicion;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
 
 /**
  * Condición BETWEEN.
@@ -23,7 +21,7 @@ class Between extends CondicionMysql
     /**
      * Operador de comparación. Uno de los valores de TIPOS::*.
      *
-     * @var int
+     * @var string
      */
     private $operador;
 
@@ -61,17 +59,6 @@ class Between extends CondicionMysql
         $this->min = $min;
         $this->max = $max;
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código para la comparación BETWEEN.
@@ -85,6 +72,4 @@ class Between extends CondicionMysql
         return $this->atributo.' '.$this->operador.' '.
                     $this->clausula->parse($this->min).' AND '.$this->clausula->parse($this->max);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

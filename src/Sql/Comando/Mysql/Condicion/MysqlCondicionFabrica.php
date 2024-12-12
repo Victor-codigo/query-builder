@@ -4,39 +4,15 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Condicion;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\MysqlFabrica;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Mysql\MysqlFabrica;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Fábrica de condiciones.
  */
 class MysqlCondicionFabrica extends MysqlFabrica implements CondicionFabricaInterface
 {
-    /**
-     * Constructor.
-     *
-     * @version 1.0
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
-
     /**
      * Crea una comparación BETWEEN.
      *
@@ -54,14 +30,13 @@ class MysqlCondicionFabrica extends MysqlFabrica implements CondicionFabricaInte
     {
         return new Between($clausula, $atributo, $operador, $min, $max);
     }
-    // ******************************************************************************
 
     /**
      * Crea una comparación.
      *
      * @version 1.0
      *
-     * @param Conexion   $clausula Conexión con la base de datos
+     * @param Clausula   $clausula Conexión con la base de datos
      * @param string     $atributo Atributo
      * @param string     $operador Operador de comparación. Uno de los valores de TIPOS::*
      * @param int|string $valor    Valor contra el que se compara
@@ -72,14 +47,13 @@ class MysqlCondicionFabrica extends MysqlFabrica implements CondicionFabricaInte
     {
         return new Comparacion($clausula, $atributo, $operador, $valor);
     }
-    // ******************************************************************************
 
     /**
-     * Crea una comapración IN.
+     * Crea una comparación IN.
      *
      * @version 1.0
      *
-     * @param Conexion       $clausula Conexión con la base de datos
+     * @param Clausula       $clausula Conexión con la base de datos
      * @param string         $atributo Atributo
      * @param string         $operador Operador de comparación. Uno de los valores de TIPOS::*
      * @param int[]|string[] $valores  Valor en los que se busca
@@ -90,14 +64,13 @@ class MysqlCondicionFabrica extends MysqlFabrica implements CondicionFabricaInte
     {
         return new In($clausula, $atributo, $operador, $valores);
     }
-    // ******************************************************************************
 
     /**
      * Crea una comparación IS.
      *
      * @version 1.0
      *
-     * @param Conexion $clausula Conexión con la base de datos
+     * @param Clausula $clausula Conexión con la base de datos
      * @param string   $atributo Atributo
      * @param string   $operador Operador de comparación. Uno de los valores de TIPOS::*
      *
@@ -107,6 +80,4 @@ class MysqlCondicionFabrica extends MysqlFabrica implements CondicionFabricaInte
     {
         return new Is($clausula, $atributo, $operador);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

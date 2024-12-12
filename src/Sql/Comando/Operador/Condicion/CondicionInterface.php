@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador\Condicion;
 
-// ******************************************************************************
-
 /**
  * Interfaz para generar una condición.
  */
@@ -19,6 +17,4 @@ interface CondicionInterface
      * @return string código
      */
     public function generar();
-    // ******************************************************************************
 }
-// ******************************************************************************

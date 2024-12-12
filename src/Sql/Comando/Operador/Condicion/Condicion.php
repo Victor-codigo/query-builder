@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador\Condicion;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
 
 /**
  * Clase base para las condiciones.
@@ -16,7 +14,7 @@ abstract class Condicion implements CondicionInterface
     /**
      * Conexión con la base de datos.
      *
-     * @var Clausula
+     * @var ?Clausula
      */
     protected $clausula;
 
@@ -31,7 +29,6 @@ abstract class Condicion implements CondicionInterface
     {
         $this->clausula = $clausula;
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -42,6 +39,4 @@ abstract class Condicion implements CondicionInterface
     {
         $this->clausula = null;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

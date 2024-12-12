@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Condicion;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Clausula;
 
 /**
  * Condición IN.
@@ -23,7 +21,7 @@ class In extends CondicionMysql
     /**
      * Operador de comparación. Uno de los valores de TIPOS::*.
      *
-     * @var int
+     * @var string
      */
     private $operador;
 
@@ -52,17 +50,6 @@ class In extends CondicionMysql
         $this->operador = $operador;
         $this->valores = $valores;
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-    }
-    // ******************************************************************************
 
     /**
      * Genera el código para la comparación IN.
@@ -80,6 +67,4 @@ class In extends CondicionMysql
 
         return $this->atributo.' '.$this->operador.' ('.implode(', ', $valores).')';
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
