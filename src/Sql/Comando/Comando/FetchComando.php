@@ -95,8 +95,8 @@ abstract class FetchComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @param string  $clase_nombre    nombre de la clase
-     * @param mixed[] $constructor_arg argumentos del constructor
+     * @param string|int $clase_nombre    nombre de la clase
+     * @param mixed[]    $constructor_arg argumentos del constructor
      *
      * @return mixed[]|false array multidimensional con las filas y las columnas
      */

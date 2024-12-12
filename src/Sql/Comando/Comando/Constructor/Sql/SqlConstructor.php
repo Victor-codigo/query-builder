@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Sql;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\SqlComando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Cadena;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
+use Lib\Sql\Comando\Comando\SqlComando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Constructor de comando SQL.
@@ -21,14 +18,14 @@ class SqlConstructor extends ComandoDmlConstructor
     /**
      * Comando SQL.
      *
-     * @var SqlComando
+     * @var ?SqlComando
      */
     protected $comando;
 
     /**
      * Clase auxiliar para encadenar las funciones del constructor.
      *
-     * @var SqlCadena
+     * @var ?SqlCadena
      */
     protected $cadena;
 
@@ -47,7 +44,6 @@ class SqlConstructor extends ComandoDmlConstructor
 
         $this->comando = new SqlComando($conexion, $fabrica_clausula, $fabrica_condiciones);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -61,7 +57,6 @@ class SqlConstructor extends ComandoDmlConstructor
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula SQL.
@@ -70,15 +65,17 @@ class SqlConstructor extends ComandoDmlConstructor
      *
      * @param string $sql string comando SQL
      *
-     * @return Cadena Comando SQL
+     * @return SqlCadena Comando SQL
      */
     public function sql($sql)
     {
+        if (null === $this->comando) {
+            throw new \Exception('No se ha podido construir la clausula SQL. Comando no inicializado.');
+        }
+
         $this->cadena = new SqlCadena($this->comando);
         $this->comando->sql($sql);
 
         return $this->cadena;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
