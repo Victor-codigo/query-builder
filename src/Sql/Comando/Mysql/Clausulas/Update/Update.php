@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Update;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Update\UpdateClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\TIPOS;
+use Lib\Sql\Comando\Clausula\Update\UpdateClausula;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\PlaceHoldersTrait;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Clausula UPDATE de un comando SQL.
@@ -18,7 +16,6 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\PlaceHolders
 final class Update extends UpdateClausula
 {
     use PlaceHoldersTrait;
-    // ******************************************************************************
 
     /**
      * Tipo de clausula.
@@ -41,18 +38,6 @@ final class Update extends UpdateClausula
     {
         parent::__construct($comando, $fabrica_condiciones, $operadores_grupo);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Genera la clausula UPDATE.
@@ -73,7 +58,6 @@ final class Update extends UpdateClausula
                 $modificadores.
                 implode(', ', $this->params->tablas);
     }
-    // ******************************************************************************
 
     /**
      * Obtiene los atributos de la consulta UPDATE.
@@ -86,6 +70,4 @@ final class Update extends UpdateClausula
     {
         return [];
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

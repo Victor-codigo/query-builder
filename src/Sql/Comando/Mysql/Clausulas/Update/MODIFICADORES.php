@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Update;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\MODIFICADORES as UPDATE_MODIFICADORES;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\MODIFICADORES as UPDATE_MODIFICADORES;
 
 /**
  * Modificadores para la clausula UPDATE.
@@ -27,4 +25,3 @@ final class MODIFICADORES extends UPDATE_MODIFICADORES
      */
     public const IGNORE = 'IGNORE';
 }
-// ******************************************************************************
