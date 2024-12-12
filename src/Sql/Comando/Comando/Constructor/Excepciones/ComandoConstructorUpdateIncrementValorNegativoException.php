@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Excepciones;
 
+use Lib\Excepciones\BDException;
+
 /**
- * Excepcion del de la cadena de construcción del comando Update, metodo increment.
+ * Excepción del de la cadena de construcción del comando Update, método increment.
  */
-class ComandoConstructorUpdateIncrementValorNegativoException
+class ComandoConstructorUpdateIncrementValorNegativoException extends BDException
 {
 }

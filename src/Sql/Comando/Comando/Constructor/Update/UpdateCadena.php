@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Update;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\CadenaDml;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoConstructorUpdateDecrementValorNegativoException;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoConstructorUpdateIncrementValorNegativoException;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Comando\ComandoDml;
+use Lib\Sql\Comando\Comando\Constructor\CadenaDml;
+use Lib\Sql\Comando\Comando\Constructor\Excepciones\ComandoConstructorUpdateDecrementValorNegativoException;
+use Lib\Sql\Comando\Comando\Constructor\Excepciones\ComandoConstructorUpdateIncrementValorNegativoException;
+use Lib\Sql\Comando\Comando\UpdateComando;
 
 /**
  * Encadena los elementos SQL de un comando UPDATE.
@@ -17,44 +17,38 @@ use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoC
 class UpdateCadena extends CadenaDml
 {
     /**
+     * Comando que carga la clase.
+     *
+     * @var ?UpdateComando
+     */
+    protected $comando;
+
+    /**
      * Constructor.
      *
      * @version 1.0
      *
-     * @param Comando $comando comando UPDATE que se construye
+     * @param ComandoDml $comando comando UPDATE que se construye
      */
-    public function __construct(Comando $comando)
+    public function __construct(ComandoDml $comando)
     {
         parent::__construct($comando);
     }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
 
     /**
      * Construye la clausula SET de el comando SQL UPDATE.
      *
      * @version 1.0
      *
-     * @param array $atributos atributos que se actualizan. Con el siguiente formato:
-     *                         - arr[nombre del atributo] = mixed, valor del atributo
+     * @param array<string, mixed> $atributos atributos que se actualizan. Con el siguiente formato:
+     *                                        - arr[nombre del atributo] = mixed, valor del atributo
      */
-    public function set($atributos)
+    public function set($atributos): self
     {
         $this->comando->set($atributos);
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula LIMIT de el comando SQL.
@@ -71,21 +65,18 @@ class UpdateCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
-     * Incrementa el atributo pasado en un vaor deternimado.
+     * Incrementa el atributo pasado en un valor determinado.
      *
      * @version 1.0
      *
      * @param string $atributo   nombre del atributo
      * @param float  $incremento valor que se incrementa
      *
-     * @return UpdateCadena
-     *
      * @throws ComandoConstructorUpdateIncrementValorNegativoException
      */
-    public function increment($atributo, $incremento = 1)
+    public function increment($atributo, $incremento = 1): self
     {
         if ($incremento <= 0) {
             throw new ComandoConstructorUpdateIncrementValorNegativoException();
@@ -95,10 +86,9 @@ class UpdateCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
-     * Decrementa el atributo pasado en un vaor deternimado.
+     * Decrementa el atributo pasado en un valor determinado.
      *
      * @version 1.0
      *
@@ -119,6 +109,4 @@ class UpdateCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Update;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\UpdateComando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\Cadena;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
+use Lib\Sql\Comando\Comando\UpdateComando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Constructor de comando SELECT.
@@ -21,14 +18,14 @@ class UpdateConstructor extends ComandoDmlConstructor
     /**
      * Comando UPDATE.
      *
-     * @var UpdateComando
+     * @var ?UpdateComando
      */
     protected $comando;
 
     /**
      * Clase auxiliar para encadenar las funciones del constructor.
      *
-     * @var UpdateCadena
+     * @var ?UpdateCadena
      */
     protected $cadena;
 
@@ -47,7 +44,6 @@ class UpdateConstructor extends ComandoDmlConstructor
 
         $this->comando = new UpdateComando($conexion, $fabrica_clausula, $fabrica_condiciones);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -61,27 +57,24 @@ class UpdateConstructor extends ComandoDmlConstructor
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Construye la clausula UPDATE de el comando SQL UPDATE.
      *
      * @version 1.0
      *
-     * @param array|string $tablas        - Si es array tablas del comando UPDATE
-     *                                    - Si es string comandoSQL UPDATE
-     * @param string[]     $modificadores modificadores de la clausula select.
-     *                                    Una de las constantes MODIFICADORES::*
+     * @param string[] $tablas        - Si es array tablas del comando UPDATE
+     *                                - Si es string comandoSQL UPDATE
+     * @param string[] $modificadores modificadores de la clausula select.
+     *                                Una de las constantes MODIFICADORES::*
      *
-     * @return Cadena Comando UPDATE
+     * @return UpdateCadena Comando UPDATE
      */
-    public function update($tablas, array $modificadores = [])
+    public function update(array $tablas, array $modificadores = []): UpdateCadena
     {
         $this->cadena = new UpdateCadena($this->comando);
         $this->comando->update($tablas, $modificadores);
 
         return $this->cadena;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
