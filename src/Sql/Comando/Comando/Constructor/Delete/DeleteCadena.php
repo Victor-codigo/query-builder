@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor\Delete;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\CadenaDml;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Comando\ComandoDml;
+use Lib\Sql\Comando\Comando\Constructor\CadenaDml;
 
 /**
  * Encadena los elementos SQL de un comando DELETE.
@@ -19,13 +18,12 @@ class DeleteCadena extends CadenaDml
      *
      * @version 1.0
      *
-     * @param Comando $comando comando UPDATE que se construye
+     * @param ComandoDml $comando comando UPDATE que se construye
      */
-    public function __construct(Comando $comando)
+    public function __construct(ComandoDml $comando)
     {
         parent::__construct($comando);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -36,14 +34,13 @@ class DeleteCadena extends CadenaDml
     {
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula PARTITION.
      *
      * @version 1.0
      *
-     * @param string[] $particiones nombsre de las particiones
+     * @param string[] $particiones nombre de las particiones
      *
      * @return DeleteCadena
      */
@@ -53,7 +50,6 @@ class DeleteCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula LIMIT de el comando SQL.
@@ -70,6 +66,4 @@ class DeleteCadena extends CadenaDml
 
         return $this;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\ComandoDml;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\TIPOS as OPERADOR_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\Param;
+use Lib\Sql\Comando\Comando\ComandoDml;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use Lib\Sql\Comando\Operador\TIPOS as OPERADOR_TIPOS;
 
 /**
  * Constructor de comandos.
@@ -20,14 +19,14 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
     /**
      * Comando que se construye.
      *
-     * @var ComandoDml
+     * @var ?ComandoDml
      */
     protected $comando;
 
     /**
      * Clase auxiliar para encadenar las funciones del constructor.
      *
-     * @var CadenaDml
+     * @var ?CadenaDml
      */
     protected $cadena;
 
@@ -44,7 +43,6 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
     {
         parent::__construct($conexion, $fabrica_clausula, $fabrica_condiciones);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -58,7 +56,6 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Crea un grupo de operadores dentro del actual.
@@ -67,7 +64,7 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
      *
      * @param string $tipo tipo de operador lógico. Una de las constantes TIPO::*
      */
-    protected function operadoresGrupoCrear($tipo)
+    protected function operadoresGrupoCrear($tipo): void
     {
         $clausula = $this->comando->getConstruccionClausula();
 
@@ -76,7 +73,6 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
         $grupo = $grupo_actual->grupoCrear($tipo);
         $grupo->setParentesis(true);
     }
-    // ******************************************************************************
 
     /**
      * Construye un operador condicional.
@@ -96,17 +92,18 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
 
         return $this->cadena;
     }
-    // ******************************************************************************
 
     /**
      * Establece un identificador de un parámetro.
      *
      * @version 1.0
      *
-     * @param string $placeholder nombre del identifiacdor
+     * @param string $placeholder nombre del identificador
      * @param mixed  $valor       valor del parámetro
+     *
+     * @return Param[]|Param
      */
-    public function param($placeholder, $valor)
+    public function param($placeholder, $valor): array|Param
     {
         $valores = \is_array($valor) ? $valor : [$valor];
 
@@ -127,6 +124,4 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
 
         return 1 == \count($params) ? $params[0] : $params;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

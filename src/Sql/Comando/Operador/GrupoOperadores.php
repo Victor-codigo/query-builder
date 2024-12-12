@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Operador;
 
-// ******************************************************************************
-
 /**
  * Grupo de operadores.
  */
@@ -14,7 +12,7 @@ class GrupoOperadores
     /**
      * Grupo padre al que pertenece el grupo.
      *
-     * @var GrupoOperadores
+     * @var ?GrupoOperadores
      */
     private $grupo_padre;
 
@@ -35,7 +33,7 @@ class GrupoOperadores
      */
     public function getGrupoActual()
     {
-        return static::$grupo_actual;
+        return self::$grupo_actual;
     }
 
     /**
@@ -44,14 +42,13 @@ class GrupoOperadores
      *
      * @version 1.0
      *
-     * @param GrupoOperadores $grupo_actual Grupo de operatores qeu se
+     * @param GrupoOperadores $grupo_actual Grupo de operadores qeu se
      *                                      establece como el actual
      */
-    protected function setGrupoActual(self $grupo_actual)
+    protected function setGrupoActual(self $grupo_actual): void
     {
-        static::$grupo_actual = $grupo_actual;
+        self::$grupo_actual = $grupo_actual;
     }
-    // ******************************************************************************
 
     /**
      * Operadores y grupos.
@@ -71,12 +68,11 @@ class GrupoOperadores
     {
         return $this->operadores;
     }
-    // ******************************************************************************
 
     /**
      * Operador del grupo.
      *
-     * @var TIPOS
+     * @var string Una de las constantes TIPOS::*
      */
     private $operador;
 
@@ -85,16 +81,15 @@ class GrupoOperadores
      *
      * @version 1.0
      *
-     * @param int $operador operador
+     * @param string $operador operador
      */
-    public function setOperador($operador)
+    public function setOperador($operador): void
     {
         $this->operador = $operador;
     }
-    // ******************************************************************************
 
     /**
-     * TRUE si se colocan parentesis al principio y al final del grupo
+     * TRUE si se colocan paréntesis al principio y al final del grupo
      * FALSE no.
      *
      * @var bool
@@ -107,11 +102,10 @@ class GrupoOperadores
      *
      * @version 1.0
      */
-    public function setParentesis($parentesis)
+    public function setParentesis(bool $parentesis): void
     {
         $this->parentesis = $parentesis;
     }
-    // ******************************************************************************
 
     /**
      * Constructor.
@@ -120,7 +114,7 @@ class GrupoOperadores
      *
      * @param GrupoOperadores $grupo_padre grupo operadores padre.
      *                                     NULL si no tiene padre
-     * @param int             $operador    Tipo de operacor que tiene el grupo.
+     * @param string          $operador    Tipo de operador que tiene el grupo.
      *                                     Una de las constes TIPO::* de operadores lógicos
      */
     public function __construct($grupo_padre = null, $operador = null)
@@ -130,7 +124,6 @@ class GrupoOperadores
 
         $this->setGrupoActual($this);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -145,7 +138,6 @@ class GrupoOperadores
             $operador = null;
         }
     }
-    // ******************************************************************************
 
     /**
      * Genera el código de los operadores.
@@ -173,15 +165,14 @@ class GrupoOperadores
 
         return $retorno.($this->parentesis ? ')' : '');
     }
-    // ******************************************************************************
 
     /**
-     * Estabelce el grupo anterior como el actual
+     * Establece el grupo anterior como el actual
      * Si no existe no se modifica.
      *
      * @version 1.0
      */
-    public function setGrupoAnteriorActual()
+    public function setGrupoAnteriorActual(): void
     {
         if (null === $this->grupo_padre) {
             $this->setGrupoActual($this);
@@ -189,16 +180,15 @@ class GrupoOperadores
             $this->setGrupoActual($this->grupo_padre);
         }
     }
-    // ******************************************************************************
 
     /**
-     * Crea un grupo nuevo y lo guarda en el actul. A continuacion establece
+     * Crea un grupo nuevo y lo guarda en el actual. A continuación establece
      * el grupo creado como el actual.
      *
      * @version 1.0
      *
-     * @param int $tipo tipo de operador lógico que se coloca en el grupo creado.
-     *                  Una de las constantes TIPOS::*
+     * @param string $tipo tipo de operador lógico que se coloca en el grupo creado.
+     *                     Una de las constantes TIPOS::*
      *
      * @return GrupoOperadores
      */
@@ -211,19 +201,14 @@ class GrupoOperadores
 
         return $grupo;
     }
-    // ******************************************************************************
 
     /**
      * Añade un operador al grupo.
      *
      * @version 1.0
-     *
-     * @param Condicion $condicion
      */
-    public function operadorAdd(Logico $condicion)
+    public function operadorAdd(Operador $operador): void
     {
-        $this->operadores[] = $condicion;
+        $this->operadores[] = $operador;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

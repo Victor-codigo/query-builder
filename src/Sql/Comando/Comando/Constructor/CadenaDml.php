@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\ComandoDml;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\TIPOS as OPERADOR_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\JOIN_TIPOS;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\From\JOIN_TIPOS;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Comando\ComandoDml;
+use Lib\Sql\Comando\Operador\TIPOS as OPERADOR_TIPOS;
 
 /**
  * Encadena los elementos SQL DML.
@@ -19,7 +17,7 @@ abstract class CadenaDml extends Cadena
     /**
      * Comando que carga la clase.
      *
-     * @var ComandoDml
+     * @var ?ComandoDml
      */
     protected $comando;
 
@@ -28,13 +26,12 @@ abstract class CadenaDml extends Cadena
      *
      * @version 1.0
      *
-     * @param Comando $comando comando que cargan la clase
+     * @param ComandoDml $comando comando que cargan la clase
      */
     public function __construct(ComandoDml $comando)
     {
         parent::__construct($comando);
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -47,17 +44,16 @@ abstract class CadenaDml extends Cadena
 
         parent::__destruct();
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula WHERE de el comando SQL.
      *
      * @version 1.0
      *
-     * @param string $atributo atributo
-     * @param string $operador operador de comparación
-     * @param ...int|string $params parámetros de la comparación.
-     *                               Depende del tipo de comparación
+     * @param string     $atributo atributo
+     * @param string     $operador operador de comparación
+     * @param int|string $params   parámetros de la comparación.
+     *                             Depende del tipo de comparación
      *
      * @return CadenaDml
      */
@@ -67,15 +63,14 @@ abstract class CadenaDml extends Cadena
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye una clausula ORDER BY de el comando SQL.
      *
      * @version 1.0
      *
-     * @param array $atributos Atributos por los que se ordena. Con el siguiente formato:
-     *                         - arr[nombre del atributo] = int, Una de las constantes ORNDEN::*
+     * @param string[] $atributos Atributos por los que se ordena. Con el siguiente formato:
+     *                            - arr[nombre del atributo] = int, Una de las constantes ORDEN::*
      *
      * @return CadenaDml
      */
@@ -85,7 +80,6 @@ abstract class CadenaDml extends Cadena
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Cierra un grupo de operadores actual. Establece el operador del grupo
@@ -93,9 +87,9 @@ abstract class CadenaDml extends Cadena
      *
      * @version 1.0
      *
-     * @param int $operador Establece el operador del grupo
+     * @param string $operador Establece el operador del grupo
      */
-    protected function cerrarGrupoOperadores($operador)
+    protected function cerrarGrupoOperadores($operador): void
     {
         $operadores = $this->comando->getConstruccionClausula()->getOperadores();
         $grupo = $operadores->getGrupoActual();
@@ -103,17 +97,16 @@ abstract class CadenaDml extends Cadena
 
         $grupo->setGrupoAnteriorActual();
     }
-    // ******************************************************************************
 
     /**
      * Construye un operador AND.
      *
      * @version 1.0
      *
-     * @param string     $atributo nombre del atributo
-     * @param string     $operador operador de comparación
-     * @param string|int $params   parámetros adicionales.
-     *                             Depende del tipo de comparación
+     * @param string|Cadena $atributo nombre del atributo
+     * @param string        $operador operador de comparación
+     * @param string|int    $params   parámetros adicionales.
+     *                                Depende del tipo de comparación
      *
      * @return CadenaDml
      */
@@ -127,17 +120,16 @@ abstract class CadenaDml extends Cadena
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye un operador OR.
      *
      * @version 1.0
      *
-     * @param string     $atributo nombre del atributo
-     * @param string     $operador operador de comparación
-     * @param string|int $params   parámetros adicionales.
-     *                             Depende del tipo de comparación
+     * @param string|Cadena $atributo nombre del atributo
+     * @param string        $operador operador de comparación
+     * @param string|int    $params   parámetros adicionales.
+     *                                Depende del tipo de comparación
      *
      * @return CadenaDml
      */
@@ -151,17 +143,16 @@ abstract class CadenaDml extends Cadena
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye un operador XOR.
      *
      * @version 1.0
      *
-     * @param string     $atributo nombre del atributo
-     * @param string     $operador operador de comparación
-     * @param string|int $params   parámetros adicionales.
-     *                             Depende del tipo de comparación
+     * @param string|Cadena $atributo nombre del atributo
+     * @param string        $operador operador de comparación
+     * @param string|int    $params   parámetros adicionales.
+     *                                Depende del tipo de comparación
      *
      * @return CadenaDml
      */
@@ -175,7 +166,6 @@ abstract class CadenaDml extends Cadena
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye un INNER JOIN.
@@ -187,13 +177,12 @@ abstract class CadenaDml extends Cadena
      *
      * @return CadenaDml
      */
-    public function innerJoin($tabla2, $atributo1, $operador, $atributo2)
+    public function innerJoin($tabla2, string $atributo1, $operador, string $atributo2)
     {
         $this->comando->join(JOIN_TIPOS::INNER_JOIN, $tabla2, $atributo1, $operador, $atributo2);
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye un LEFT JOIN.
@@ -205,13 +194,12 @@ abstract class CadenaDml extends Cadena
      *
      * @return CadenaDml
      */
-    public function leftJoin($tabla2, $atributo1, $operador, $atributo2)
+    public function leftJoin($tabla2, string $atributo1, $operador, string $atributo2)
     {
         $this->comando->join(JOIN_TIPOS::LEFT_JOIN, $tabla2, $atributo1, $operador, $atributo2);
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye un RIGHT JOIN.
@@ -223,13 +211,12 @@ abstract class CadenaDml extends Cadena
      *
      * @return CadenaDml
      */
-    public function rightJoin($tabla2, $atributo1, $operador, $atributo2)
+    public function rightJoin($tabla2, string $atributo1, $operador, string $atributo2)
     {
         $this->comando->join(JOIN_TIPOS::RIGHT_JOIN, $tabla2, $atributo1, $operador, $atributo2);
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye un FULL OUTER JOIN.
@@ -241,13 +228,12 @@ abstract class CadenaDml extends Cadena
      *
      * @return CadenaDml
      */
-    public function fullOuterJoin($tabla2, $atributo1, $operador, $atributo2)
+    public function fullOuterJoin($tabla2, string $atributo1, $operador, string $atributo2)
     {
         $this->comando->join(JOIN_TIPOS::FULL_OUTER_JOIN, $tabla2, $atributo1, $operador, $atributo2);
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Construye un CROSS JOIN.
@@ -259,13 +245,12 @@ abstract class CadenaDml extends Cadena
      *
      * @return CadenaDml
      */
-    public function crossJoin($tabla2, $atributo1, $operador, $atributo2)
+    public function crossJoin($tabla2, string $atributo1, $operador, string $atributo2)
     {
         $this->comando->join(JOIN_TIPOS::CROSS_JOIN, $tabla2, $atributo1, $operador, $atributo2);
 
         return $this;
     }
-    // ******************************************************************************
 
     /**
      * Obtiene el comando SQL.
@@ -278,18 +263,17 @@ abstract class CadenaDml extends Cadena
     {
         return $this->comando->generar();
     }
-    // ******************************************************************************
 
     /**
      * Construye una sub consulta.
      *
      * @version 1.0
      *
-     * @param ComandoConstructor $constructor comando SQL padre
+     * @param ComandoDmlConstructor $constructor comando SQL padre
      *
      * @return string sub consulta
      */
-    public function getSubQuery(ComandoConstructor $constructor)
+    public function getSubQuery(ComandoDmlConstructor $constructor)
     {
         foreach ($this->comando->getParams() as $param) {
             $constructor->param($param->id, $param->valor);
@@ -297,7 +281,6 @@ abstract class CadenaDml extends Cadena
 
         return '('.$this->getSql().')';
     }
-    // ******************************************************************************
 
     /**
      * Ejecuta un comando SQL que no sea una petición de información.
@@ -310,6 +293,4 @@ abstract class CadenaDml extends Cadena
     {
         return $this->comando->ejecutar();
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Comando\Comando;
 
 /**
  * Encadena los elementos SQL.
@@ -16,7 +14,7 @@ abstract class Cadena
     /**
      * Comando que carga la clase.
      *
-     * @var ComandoDml
+     * @var ?Comando
      */
     protected $comando;
 
@@ -31,7 +29,6 @@ abstract class Cadena
     {
         $this->comando = $comando;
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -42,6 +39,4 @@ abstract class Cadena
     {
         $this->comando = null;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************

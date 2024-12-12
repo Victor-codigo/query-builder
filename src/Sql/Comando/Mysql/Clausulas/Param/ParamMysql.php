@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas\Param;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Param;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Param;
 
 /**
  * Identificador de un parámetro para ser sustituido por un valor en el momento
@@ -31,6 +29,5 @@ final class ParamMysql extends Param
     /**
      * Valor por el que se sustituye el identificador.
      */
-    public $valor = '';
+    public mixed $valor = '';
 }
-// ******************************************************************************

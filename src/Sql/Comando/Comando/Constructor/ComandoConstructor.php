@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Comando\Constructor;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-
-// ******************************************************************************
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
  * Constructor de comandos.
@@ -19,21 +17,21 @@ abstract class ComandoConstructor
     /**
      * Fábrica de clausulas.
      *
-     * @var ClausulaFabricaInterface
+     * @var ?ClausulaFabricaInterface
      */
     protected $fabrica_clausulas;
 
     /**
      * Fábrica de condiciones.
      *
-     * @var CondicionFabricaInterface
+     * @var ?CondicionFabricaInterface
      */
     protected $fabrica_condiciones;
 
     /**
      * Comando que se construye.
      *
-     * @var Comando
+     * @var ?Comando
      */
     protected $comando;
 
@@ -48,19 +46,18 @@ abstract class ComandoConstructor
     {
         return $this->comando;
     }
-    // ******************************************************************************
 
     /**
      * Clase auxiliar para encadenar las funciones del constructor.
      *
-     * @var Cadena
+     * @var ?Cadena
      */
     protected $cadena;
 
     /**
      * Conexión con la base de datos.
      *
-     * @var Conexion
+     * @var ?Conexion
      */
     protected $conexion;
 
@@ -79,7 +76,6 @@ abstract class ComandoConstructor
         $this->fabrica_clausulas = $fabrica_clausula;
         $this->fabrica_condiciones = $fabrica_condiciones;
     }
-    // ******************************************************************************
 
     /**
      * Destructor.
@@ -94,6 +90,4 @@ abstract class ComandoConstructor
         $this->fabrica_clausulas = null;
         $this->fabrica_condiciones = null;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
