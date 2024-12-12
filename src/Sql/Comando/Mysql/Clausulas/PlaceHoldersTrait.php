@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Param;
-use PDO;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\Param;
 
 /**
  * Funciones para las clausulas, para la sustitución de parámetros.
@@ -32,7 +29,6 @@ trait PlaceHoldersTrait
             return $this->parseValor($valor);
         }
     }
-    // ******************************************************************************
 
     /**
      * Devuelve el tipo de dato para el valor pasado.
@@ -57,7 +53,6 @@ trait PlaceHoldersTrait
             return \PDO::PARAM_LOB;
         }
     }
-    // ******************************************************************************
 
     /**
      * Transforma un valor pasado para que pueda ser colocado en el código SQL
@@ -76,14 +71,13 @@ trait PlaceHoldersTrait
         if (\PDO::PARAM_STR === $tipo) {
             return $this->comando->getConexion()->quote($valor, $tipo);
         } elseif (\PDO::PARAM_BOOL === $tipo) {
-            return true === $valor ? 1 : 0;
+            return true === $valor ? '1' : '0';
         } elseif (\PDO::PARAM_NULL === $tipo) {
             return 'NULL';
         } else {
             return $valor;
         }
     }
-    // ******************************************************************************
 
     /**
      * Transforma un parámetro para ser colocado en un comando SQL.
@@ -98,5 +92,4 @@ trait PlaceHoldersTrait
     {
         return ':'.$valor->id;
     }
-    // ******************************************************************************
 }

@@ -21,6 +21,7 @@ use Lib\Sql\Comando\Mysql\Clausulas\OnDuplicate\OnDuplicate;
 use Lib\Sql\Comando\Mysql\Clausulas\OrderBy\OrderBy;
 use Lib\Sql\Comando\Mysql\Clausulas\Partition\Partition;
 use Lib\Sql\Comando\Mysql\Clausulas\Select\Select;
+use Lib\Sql\Comando\Mysql\Clausulas\Sql\Sql;
 use Lib\Sql\Comando\Mysql\Clausulas\Values\Values;
 use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
@@ -39,7 +40,7 @@ interface ClausulaFabricaInterface
      * @param bool                      $operadores          TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      *
-     * @return Select clausula SQL
+     * @return Sql clausula SQL
      */
     public function getSql(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores);
 

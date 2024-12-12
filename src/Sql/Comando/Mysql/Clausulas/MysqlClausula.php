@@ -4,65 +4,40 @@ declare(strict_types=1);
 
 namespace Lib\Sql\Comando\Mysql\Clausulas;
 
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\FromClausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\From\JoinParams;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Param;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Delete\Delete;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\From\From;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\From\Join\CrosstJoin;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\From\Join\FullOutertJoin;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\From\Join\InnerJoin;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\From\Join\LeftJoin;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\From\Join\RightJoin;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\GroupBy\GroupBy;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Having\Having;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Insert\Insert;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\InsertAttr\InsertAttr;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Limit\Limit;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\OnDuplicate\OnDuplicate;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\OrderBy\OrderBy;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Param\ParamMysql;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Partition\Partition;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Select\Select;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Set\Set;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Sql\Sql;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Update\Update;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Values\Values;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\Clausulas\Where\Where;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Mysql\MysqlFabrica;
-
-// ******************************************************************************
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\From\FromClausula;
+use Lib\Sql\Comando\Clausula\From\JoinParams;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Mysql\Clausulas\Delete\Delete;
+use Lib\Sql\Comando\Mysql\Clausulas\From\From;
+use Lib\Sql\Comando\Mysql\Clausulas\From\Join\CrossJoin;
+use Lib\Sql\Comando\Mysql\Clausulas\From\Join\FullOuterJoin;
+use Lib\Sql\Comando\Mysql\Clausulas\From\Join\InnerJoin;
+use Lib\Sql\Comando\Mysql\Clausulas\From\Join\LeftJoin;
+use Lib\Sql\Comando\Mysql\Clausulas\From\Join\RightJoin;
+use Lib\Sql\Comando\Mysql\Clausulas\GroupBy\GroupBy;
+use Lib\Sql\Comando\Mysql\Clausulas\Having\Having;
+use Lib\Sql\Comando\Mysql\Clausulas\InsertAttr\InsertAttr;
+use Lib\Sql\Comando\Mysql\Clausulas\Insert\Insert;
+use Lib\Sql\Comando\Mysql\Clausulas\Limit\Limit;
+use Lib\Sql\Comando\Mysql\Clausulas\OnDuplicate\OnDuplicate;
+use Lib\Sql\Comando\Mysql\Clausulas\OrderBy\OrderBy;
+use Lib\Sql\Comando\Mysql\Clausulas\Param\ParamMysql;
+use Lib\Sql\Comando\Mysql\Clausulas\Partition\Partition;
+use Lib\Sql\Comando\Mysql\Clausulas\Select\Select;
+use Lib\Sql\Comando\Mysql\Clausulas\Set\Set;
+use Lib\Sql\Comando\Mysql\Clausulas\Sql\Sql;
+use Lib\Sql\Comando\Mysql\Clausulas\Update\Update;
+use Lib\Sql\Comando\Mysql\Clausulas\Values\Values;
+use Lib\Sql\Comando\Mysql\Clausulas\Where\Where;
+use Lib\Sql\Comando\Mysql\MysqlFabrica;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
- * Fáblrica para el driver MySQL.
+ * Fábrica para el driver MySQL.
  */
 class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
 {
-    /**
-     * Constructor.
-     *
-     * @version 1.0
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    // ******************************************************************************
-
-    /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
-    // ******************************************************************************
-
     /**
      * Fabrica una clausula SQL.
      *
@@ -72,27 +47,23 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      * @param bool                      $operadores          TRUE si se crea el gestor de operadores
      *                                                       FALSE no
-     *
-     * @return Select clausula SQL
      */
-    public function getSql(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores)
+    public function getSql(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores): Sql
     {
         return new Sql($comando, $fabrica_condiciones, $operadores);
     }
-    // ******************************************************************************
 
     /**
      * Crea un parámetro para ser sustituido por un valor (placeholder de PDO).
      *
      * @version 1.0
      *
-     * @return Param
+     * @return ParamMysql
      */
     public function getParam()
     {
         return new ParamMysql();
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula SELECT.
@@ -110,7 +81,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Select($comando, $fabrica_condiciones, $operadores);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula UPDATE.
@@ -128,7 +98,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Update($comando, $fabrica_condiciones, $operadores);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula DELETE.
@@ -146,7 +115,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Delete($comando, $fabrica_condiciones, $operadores);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula INSERT.
@@ -164,7 +132,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Insert($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula FROM.
@@ -182,7 +149,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new From($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula SET.
@@ -200,7 +166,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Set($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Crea un Inner Join.
@@ -216,7 +181,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new InnerJoin($from, $params);
     }
-    // ******************************************************************************
 
     /**
      * Crea un Left Join.
@@ -232,7 +196,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new LeftJoin($from, $params);
     }
-    // ******************************************************************************
 
     /**
      * Crea un Right Join.
@@ -248,7 +211,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new RightJoin($from, $params);
     }
-    // ******************************************************************************
 
     /**
      * Crea un Cross Join.
@@ -258,13 +220,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      *
-     * @return CrosstJoin
+     * @return CrossJoin
      */
     public function getCrossJoin(FromClausula $from, JoinParams $params)
     {
-        return new CrosstJoin($from, $params);
+        return new CrossJoin($from, $params);
     }
-    // ******************************************************************************
 
     /**
      * Crea un Cross Join.
@@ -274,13 +235,12 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      *
-     * @return FullOutertJoin
+     * @return FullOuterJoin
      */
     public function getFullOuterJoin(FromClausula $from, JoinParams $params)
     {
-        return new FullOutertJoin($from, $params);
+        return new FullOuterJoin($from, $params);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula WHERE.
@@ -298,7 +258,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Where($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula GROUP BY.
@@ -316,7 +275,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new GroupBy($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula HAVING.
@@ -334,7 +292,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Having($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula ORDER BY.
@@ -352,7 +309,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new OrderBy($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula LIMIT.
@@ -370,10 +326,9 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Limit($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
-     * Fabrica una clausula NSERT ATTRIBUTES.
+     * Fabrica una clausula INSERT ATTRIBUTES.
      *
      * @version 1.0
      *
@@ -388,7 +343,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new InsertAttr($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula VALUES.
@@ -406,7 +360,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Values($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula ON DUPLICATE KEY UPDATE.
@@ -424,7 +377,6 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new OnDuplicate($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 
     /**
      * Fabrica una clausula PARTITION.
@@ -442,6 +394,4 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
     {
         return new Partition($comando, $fabrica_condiciones, $operadores_gestor);
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
