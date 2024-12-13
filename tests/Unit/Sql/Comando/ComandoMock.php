@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 use Tests\Comun\PhpunitUtilTrait;
 use Tests\Unit\conexion\ConexionConfig;
 
-class ComandoMockTest extends TestCase
+class ComandoMock extends TestCase
 {
     use PhpunitUtilTrait;
 
