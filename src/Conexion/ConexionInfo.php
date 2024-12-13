@@ -14,49 +14,49 @@ final class ConexionInfo extends Struct
     /**
      * Servidor de la base de datos.
      *
-     * @var string
+     * @var ?string
      */
     public $servidor;
 
     /**
      * Nombre de la base de datos.
      *
-     * @var string
+     * @var ?string
      */
     public $nombre;
 
     /**
      * Nombre del usuario que conecta con la base de datos.
      *
-     * @var string
+     * @var ?string
      */
     public $usuario;
 
     /**
      * Contraseña del usuario.
      *
-     * @var string
+     * @var ?string
      */
     public $password;
 
     /**
      * Número de puerto de conexión con la base de datos.
      *
-     * @var string
+     * @var ?string
      */
     public $puerto;
 
     /**
      * Codificación de la base de datos.
      *
-     * @var string
+     * @var ?string
      */
     public $charset = 'utf8';
 
     /**
      * Zona horaria de la base de datos.
      *
-     * @var string
+     * @var ?string
      */
     public $zona_horaria = '+00:00';
 

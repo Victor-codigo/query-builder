@@ -58,7 +58,7 @@ abstract class Conexion
      *
      * @version 1.0
      *
-     * @return \PDO
+     * @return ?\PDO
      */
     public function getConexion()
     {
