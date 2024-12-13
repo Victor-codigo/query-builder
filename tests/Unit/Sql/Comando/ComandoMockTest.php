@@ -4,64 +4,58 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Sql\Comando;
 
-use GT\Libs\Sistema\BD\Conexion\Conexion;
-use GT\Libs\Sistema\BD\Conexion\ConexionConfig;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Comando\Comando;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\AndOperador;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\Condicion\CondicionFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\GrupoOperadores;
-use GT\Libs\Sistema\BD\QueryConstructor\Comando\Operador\TIPOS as OPERADORES_TIPOS;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\Clausula;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaFabricaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Clausula\ClausulaInterface;
-use GT\Libs\Sistema\BD\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoConstructor;
+use Lib\Conexion\Conexion;
+use Lib\Sql\Comando\Clausula\Clausula;
+use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Sql\Comando\Clausula\ClausulaInterface;
+use Lib\Sql\Comando\Comando\Comando;
+use Lib\Sql\Comando\Comando\Constructor\ComandoConstructor;
+use Lib\Sql\Comando\Operador\AndOperador;
+use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use Lib\Sql\Comando\Operador\GrupoOperadores;
+use Lib\Sql\Comando\Operador\TIPOS as OPERADORES_TIPOS;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Phpunit\Util;
-
-// ******************************************************************************
+use Tests\Comun\PhpunitUtilTrait;
+use Tests\Unit\conexion\ConexionConfig;
 
 class ComandoMockTest extends TestCase
 {
-    use Util;
-    // ******************************************************************************
+    use PhpunitUtilTrait;
+
+    private ConexionConfig $conexion_config;
 
     /**
      * Genera un mock para la conexión.
      *
      * @version 1.0
      *
-     * @param array $metodos metodos para los que se crea un stub
-     *
-     * @return Conexion
+     * @param list<non-empty-string> $metodos métodos para los que se crea un stub
      */
-    public function getConexionMock(array $metodos = [])
+    public function getConexionMock(array $metodos = []): Conexion&MockObject
     {
-        $this->conexion_config = new ConexionConfig();
+        $this->conexion_config = new ConexionConfig('name');
         $conexion_info = $this->conexion_config->getConexionInfo();
 
         return $this->getMockBuilder(Conexion::class)
-                        ->setConstructorArgs([$conexion_info])
-                        ->setMethods($metodos)
-                        ->getMockForAbstractClass();
+                    ->setConstructorArgs([$conexion_info])
+                    ->onlyMethods($metodos)
+                    ->getMock();
     }
-    // ******************************************************************************
 
     /**
      * Genera mock de la fábrica de clausulas.
      *
      * @version 1.0
      *
-     * @param array $metodos metodos para los que se crea un stub
-     *
-     * @return ClausulaFabricaInterface
+     * @param list<non-empty-string> $metodos métodos para los que se crea un stub
      */
-    public function getClausulasFabrica(array $metodos = [])
+    public function getClausulasFabrica(array $metodos = []): ClausulaFabricaInterface&MockObject
     {
         return $this->getMockBuilder(ClausulaFabricaInterface::class)
-                        ->setMethods($metodos)
-                        ->getMock();
+                    ->onlyMethods($metodos)
+                    ->getMock();
     }
-    // ******************************************************************************
 
     /**
      * Genera un mock de un comando.
@@ -71,16 +65,15 @@ class ComandoMockTest extends TestCase
      * @param Conexion                  $conexion            conexión con la base de datos
      * @param ClausulaFabricaInterface  $fabrica             Fabrica de clausulas SQL
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param array                     $metodos             metodos para los que se crea un stub
+     * @param list<non-empty-string>    $metodos             métodos para los que se crea un stub
      */
-    public function getComandoMock(Conexion $conexion, ClausulaFabricaInterface $fabrica, CondicionFabricaInterface $fabrica_condiciones, array $metodos = [])
+    public function getComandoMock(Conexion $conexion, ClausulaFabricaInterface $fabrica, CondicionFabricaInterface $fabrica_condiciones, array $metodos = []): Comando&MockObject
     {
         return $this->getMockBuilder(Comando::class)
-                        ->setConstructorArgs([$conexion, $fabrica, $fabrica_condiciones])
-                        ->setMethods($metodos)
-                        ->getMockForAbstractClass();
+                    ->setConstructorArgs([$conexion, $fabrica, $fabrica_condiciones])
+                    ->onlyMethods($metodos)
+                    ->getMock();
     }
-    // ******************************************************************************
 
     /**
      * Genera una clausula.
@@ -91,18 +84,17 @@ class ComandoMockTest extends TestCase
      * @param CondicionFabricaInterface $fabrica_condiciones fábrica de condiciones
      * @param bool                      $grupo_operadores    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
-     * @param array                     $metodos             metodos para los que se crea un stub
+     * @param list<non-empty-string>    $metodos             métodos para los que se crea un stub
      *
      * @return Clausula
      */
     public function getClausulaMock(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $grupo_operadores, array $metodos = [])
     {
         return $this->getMockBuilder(Clausula::class)
-                        ->setConstructorArgs([$comando, $fabrica_condiciones, $grupo_operadores])
-                        ->setMethods($metodos)
-                        ->getMockForAbstractClass();
+                    ->setConstructorArgs([$comando, $fabrica_condiciones, $grupo_operadores])
+                    ->onlyMethods($metodos)
+                    ->getMock();
     }
-    // ******************************************************************************
 
     /**
      * Genera un grupo de operadores.
@@ -111,10 +103,8 @@ class ComandoMockTest extends TestCase
      *
      * @param Clausula                  $clausula            clausula a la que pertenece el grupo
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     *
-     * @return GrupoOperadores
      */
-    public function getOperadoresGrupo(Clausula $clausula, CondicionFabricaInterface $fabrica_condiciones)
+    public function getOperadoresGrupo(Clausula $clausula, CondicionFabricaInterface $fabrica_condiciones): GrupoOperadores
     {
         $and = new AndOperador($clausula, $fabrica_condiciones);
 
@@ -138,7 +128,6 @@ class ComandoMockTest extends TestCase
 
         return $grupo1;
     }
-    // ******************************************************************************
 
     /**
      * Genera un mock de ComandoConstructor.
@@ -148,52 +137,47 @@ class ComandoMockTest extends TestCase
      * @param Conexion                  $conexion            conexión con la base de datos
      * @param ClausulaFabricaInterface  $fabrica_clausula    fábrica de clausulas
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
-     * @param array                     $metodos             metodos para los que se crea un stub
-     *
-     * @return ComandoConstructor
+     * @param list<non-empty-string>    $metodos             métodos para los que se crea un stub
      */
-    public function getComandoConstructorMock(Conexion $conexion, ClausulaFabricaInterface $fabrica_clausula, CondicionFabricaInterface $fabrica_condiciones, array $metodos = [])
+    public function getComandoConstructorMock(Conexion $conexion, ClausulaFabricaInterface $fabrica_clausula, CondicionFabricaInterface $fabrica_condiciones, array $metodos = []): ComandoConstructor&MockObject
     {
         return $this->getMockBuilder(ComandoConstructor::class)
-                        ->setConstructorArgs([$conexion, $fabrica_clausula, $fabrica_condiciones])
-                        ->setMethods($metodos)
-                        ->getMockForAbstractClass();
+                    ->setConstructorArgs([$conexion, $fabrica_clausula, $fabrica_condiciones])
+                    ->onlyMethods($metodos)
+                    ->getMock();
     }
-    // ******************************************************************************
 
     /**
      * Genera un mock de la interfaz CondicionFabricaInterface.
      *
      * @version 1.0
-     *
-     * @return CondicionFabricaInterface
      */
-    public function getCondicionesFabricaMock()
+    public function getCondicionesFabricaMock(): CondicionFabricaInterface&MockObject
     {
         return $this->getMockBuilder(CondicionFabricaInterface::class)
-                        ->disableOriginalConstructor()
-                        ->getMock();
+                    ->disableOriginalConstructor()
+                    ->getMock();
     }
-    // ******************************************************************************
 
     /**
      * Crea el mock de ClausulaInterface y loa añade al comando.
      *
      * @version 1.0
      *
-     * @param Comando $comando        comando en el que se añade la clausula
-     * @param string  $clausula_class nombre de la clausula
-     * @param int     $tipo           tipo de clausula
+     * @param Comando                         $comando        comando en el que se añade la clausula
+     * @param class-string<ClausulaInterface> $clausula_class nombre de la clausula
+     * @param int                             $tipo           tipo de clausula
      *
-     * @return ClausulaInterface
+     * @return ClausulaInterface&MockObject
      */
     public function clausulaAddMock(Comando $comando, $clausula_class, $tipo)
     {
-        $clausula = $this->getMockBuilder($clausula_class)
-                            ->disableOriginalConstructor()
-                            ->setMethods(['getTipo'])
-                            ->setMockClassName('IClausula_'.rand(1000, 100000))
-                            ->getMockForAbstractClass();
+        $clausula = $this
+            ->getMockBuilder($clausula_class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getTipo'])
+            ->setMockClassName(ClausulaInterface::class)
+            ->getMock();
 
         $clausula->expects($this->once())
                     ->method('getTipo')
@@ -203,6 +187,4 @@ class ComandoMockTest extends TestCase
 
         return $clausula;
     }
-    // ******************************************************************************
 }
-// ******************************************************************************
