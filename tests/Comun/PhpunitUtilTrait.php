@@ -212,11 +212,11 @@ trait PhpunitUtilTrait
      *
      * @version 1.0
      *
-     * @param string                $expected nombre completo de la clase
-     * @param array<string, string> $array    array a comprobar
-     * @param string                $mensaje  mensaje de error
+     * @param class-string<object> $expected nombre completo de la clase
+     * @param array<int, mixed>    $array    array a comprobar
+     * @param string               $mensaje  mensaje de error
      */
-    public function assertArrayInstancesOf($expected, array $array, $mensaje = ''): void
+    public function assertArrayInstancesOf(string $expected, array $array, string $mensaje = ''): void
     {
         foreach ($array as $indice => $objeto) {
             $this->assertInstanceOf($expected, $objeto,
