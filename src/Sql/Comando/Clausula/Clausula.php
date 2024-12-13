@@ -104,7 +104,7 @@ abstract class Clausula implements ClausulaInterface
      *
      * @version 1.0
      *
-     * @return GrupoOperadores
+     * @return ?GrupoOperadores
      */
     public function getOperadores()
     {
