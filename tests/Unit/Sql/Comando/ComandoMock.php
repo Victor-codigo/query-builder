@@ -16,6 +16,7 @@ use Lib\Sql\Comando\Operador\GrupoOperadores;
 use Lib\Sql\Comando\Operador\TIPOS as OPERADORES_TIPOS;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Random\Randomizer;
 use Tests\Comun\PhpunitUtilTrait;
 use Tests\Unit\conexion\ConexionConfig;
 
@@ -164,19 +165,22 @@ class ComandoMock extends TestCase
      *
      * @version 1.0
      *
-     * @param Comando                         $comando        comando en el que se añade la clausula
-     * @param class-string<ClausulaInterface> $clausula_class nombre de la clausula
-     * @param int                             $tipo           tipo de clausula
+     * @template T of ClausulaInterface
      *
-     * @return ClausulaInterface&MockObject
+     * @param Comando                $comando        comando en el que se añade la clausula
+     * @param class-string<T>        $clausula_class nombre de la clausula
+     * @param int                    $tipo           tipo de clausula
+     * @param list<non-empty-string> $metodos        nombre de los métodos para los que se crea un stub
+     *
+     * @return T&MockObject
      */
-    public function clausulaAddMock(Comando $comando, $clausula_class, $tipo)
+    public function clausulaAddMock(Comando $comando, $clausula_class, $tipo, array $metodos)
     {
         $clausula = $this
             ->getMockBuilder($clausula_class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['getTipo'])
-            ->setMockClassName(ClausulaInterface::class)
+            ->onlyMethods($metodos)
+            // ->setMockClassName(ClausulaInterface::class.'_'.(new Randomizer())->getInt(1000, 100000))
             ->getMock();
 
         $clausula->expects($this->once())

@@ -12,7 +12,7 @@ use Lib\Sql\Comando\Clausula\ClausulaInterface;
 use Lib\Sql\Comando\Clausula\ClausulaMainInterface;
 use Lib\Sql\Comando\Clausula\Param;
 use Lib\Sql\Comando\Comando\Excepciones\ComandoEjecutarException;
-use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoEsisteException;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoExisteException;
 use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
@@ -136,7 +136,7 @@ abstract class Comando implements ComandoInterface
      *
      * @version 1.0
      *
-     * @return ClausulaInterface
+     * @return ?ClausulaInterface
      */
     public function getConstruccionClausula()
     {
@@ -366,7 +366,7 @@ abstract class Comando implements ComandoInterface
      *
      * @return int indice
      *
-     * @throws ComandoFetchColumnNoEsisteException
+     * @throws ComandoFetchColumnNoExisteException
      */
     protected function getClausulaMainCampoIndice($campo)
     {
@@ -375,7 +375,7 @@ abstract class Comando implements ComandoInterface
         $column_index = array_search($campo, $campos);
 
         if (false === $column_index) {
-            throw new ComandoFetchColumnNoEsisteException('No existe: '.$campo);
+            throw new ComandoFetchColumnNoExisteException('No existe: '.$campo);
         }
 
         return $column_index;

@@ -6,7 +6,7 @@ namespace Lib\Sql\Comando\Comando;
 
 use Lib\Conexion\Conexion;
 use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
-use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoEsisteException;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoExisteException;
 use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 
 /**
@@ -128,7 +128,7 @@ abstract class FetchComando extends ComandoDml
      *
      * @return mixed[]|false datos de la columna
      *
-     * @throws ComandoFetchColumnNoEsisteException
+     * @throws ComandoFetchColumnNoExisteException
      */
     public function fetchAllColumn($column)
     {
@@ -218,8 +218,8 @@ abstract class FetchComando extends ComandoDml
      * @param mixed  $value valor del atributo que se busca
      * @param int    $modo  una de las constantes PDO::FETCH_OBJ o PDO::FETCH_ASSOC
      *
-     * @return \stdClass|mixed[] con el registro
-     *                           si no se encuentra devuelve un array vacío
+     * @return mixed[] con el registro
+     *                 si no se encuentra devuelve un array vacío
      */
     public function fetchFind($field, $value, $modo = \PDO::FETCH_OBJ)
     {

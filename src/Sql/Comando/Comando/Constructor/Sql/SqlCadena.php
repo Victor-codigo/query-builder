@@ -7,7 +7,7 @@ namespace Lib\Sql\Comando\Comando\Constructor\Sql;
 use Lib\Sql\Comando\Comando\Comando;
 use Lib\Sql\Comando\Comando\ComandoDml;
 use Lib\Sql\Comando\Comando\Constructor\CadenaDml;
-use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoEsisteException;
+use Lib\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoExisteException;
 use Lib\Sql\Comando\Comando\SqlComando;
 
 /**
@@ -115,7 +115,7 @@ class SqlCadena extends CadenaDml
      *
      * @return mixed[]|false datos de la columna
      *
-     * @throws ComandoFetchColumnNoEsisteException
+     * @throws ComandoFetchColumnNoExisteException
      */
     public function fetchAllColumn($column)
     {

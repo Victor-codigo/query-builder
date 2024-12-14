@@ -16,5 +16,5 @@ final class ValuesParams extends Parametros
      *
      * @var string[][]
      */
-    public $valores = [];
+    public array $valores = [];
 }

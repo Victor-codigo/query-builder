@@ -7,20 +7,6 @@ namespace Lib\Comun\Tipos;
 class Struct implements \Serializable
 {
     /**
-     * Destructor.
-     *
-     * @version 1.0
-     */
-    public function __destruct()
-    {
-        foreach (get_object_vars($this) as $propiedad => $valor) {
-            if (!\is_scalar($this->$propiedad)) {
-                $this->$propiedad = null;
-            }
-        }
-    }
-
-    /**
      * Carga la estructura desde un array.
      *
      * @version 1.1
