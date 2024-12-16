@@ -82,12 +82,11 @@ class SqlCadena extends CadenaDml
      *
      * @version 1.0
      *
-     * @param string  $clase_nombre    nombre de la clase
      * @param mixed[] $constructor_arg argumentos del constructor
      *
      * @return mixed[]|false array multidimensional con las filas y las columnas
      */
-    public function fetchAllClass($clase_nombre, array $constructor_arg = [])
+    public function fetchAllClass(array $constructor_arg = [])
     {
         return $this->comando->fetchAllClass(\PDO::FETCH_CLASS, $constructor_arg);
     }
