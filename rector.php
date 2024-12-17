@@ -10,6 +10,6 @@ return RectorConfig::configure()
     ->withPreparedSets(
         deadCode: true,
     )
-    ->withPhpSets(php56: true)
+    ->withPhpSets(php70: true)
     ->withTypeCoverageLevel(100)
 ;

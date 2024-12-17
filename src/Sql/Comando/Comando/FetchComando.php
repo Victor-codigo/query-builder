@@ -130,7 +130,7 @@ abstract class FetchComando extends ComandoDml
      *
      * @throws ComandoFetchColumnNoExisteException
      */
-    public function fetchAllColumn($column)
+    public function fetchAllColumn(string $column)
     {
         $column_index = $this->getClausulaMainCampoIndice($column);
 
