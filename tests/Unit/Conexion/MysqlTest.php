@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\conexion;
+namespace Tests\Unit\Conexion;
 
 use Lib\Conexion\Conexion;
 use Lib\Conexion\Mysql;

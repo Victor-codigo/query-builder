@@ -49,10 +49,18 @@ class InsertAttrTest extends TestCase
     {
         $this->helper = new ComandoMock('name');
 
-        $this->conexion = $this->helper->getConexionMock(['quote']);
+        $this->conexion = $this->helper->getConexionMock([
+            'getConexionString',
+            'setAtributos',
+            'lastInsertId',
+            'quote',
+        ]);
         $this->clausula_fabrica = $this->helper->getClausulasFabrica();
         $fabrica_condiciones = $this->helper->getCondicionesFabricaMock();
-        $this->comando = $this->helper->getComandoMock($this->conexion, $this->clausula_fabrica, $fabrica_condiciones, ['getConexion']);
+        $this->comando = $this->helper->getComandoMock($this->conexion, $this->clausula_fabrica, $fabrica_condiciones, [
+            'generar',
+            'getConexion',
+        ]);
 
         $this->object = new InsertAttr($this->comando, $fabrica_condiciones, false);
     }

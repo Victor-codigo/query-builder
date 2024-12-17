@@ -174,13 +174,14 @@ class FetchComandoTest extends TestCase
     #[Test]
     public function fetchAllBoth(): void
     {
-        $expected = 'fetchAllBoth';
+        $expected = ['fetchAllBoth'];
 
         $pdo_statement = $this->fetchAllMock();
-        $pdo_statement->expects($this->once())
-                        ->method('fetchAll')
-                        ->with(\PDO::FETCH_BOTH)
-                        ->willReturn($expected);
+        $pdo_statement
+            ->expects($this->once())
+            ->method('fetchAll')
+            ->with(\PDO::FETCH_BOTH)
+            ->willReturn($expected);
 
         $resultado = $this->object->fetchAllBoth();
 
@@ -232,14 +233,15 @@ class FetchComandoTest extends TestCase
     #[Test]
     public function fetchAllClassSinConstructor(): void
     {
-        $expected = 'fetchAllClass';
+        $expected = ['fetchAllClass'];
         $clase_nombre = 'clase';
 
         $pdo_statement = $this->fetchAllMock();
-        $pdo_statement->expects($this->once())
-                        ->method('fetchAll')
-                        ->with(\PDO::FETCH_CLASS, $clase_nombre)
-                        ->willReturn($expected);
+        $pdo_statement
+            ->expects($this->once())
+            ->method('fetchAll')
+            ->with(\PDO::FETCH_CLASS, $clase_nombre)
+            ->willReturn($expected);
 
         $resultado = $this->object->fetchAllClass($clase_nombre);
 
@@ -271,7 +273,7 @@ class FetchComandoTest extends TestCase
     public function fetchAllColumn(): void
     {
         $column = 'id';
-        $expected = 'fetchAllColumn';
+        $expected = ['fetchAllColumn'];
 
         $clausula = $this
             ->getMockBuilder(SelectClausula::class)
@@ -293,7 +295,7 @@ class FetchComandoTest extends TestCase
         $pdo_statement
             ->expects($this->once())
             ->method('fetchAll')
-            ->with(\PDO::FETCH_COLUMN, 0)
+            ->with(\PDO::FETCH_COLUMN)
             ->willReturn($expected);
 
         $resultado = $this->object->fetchAllColumn($column);

@@ -220,7 +220,8 @@ trait PhpunitUtilTrait
     {
         foreach ($array as $indice => $objeto) {
             $this->assertInstanceOf($expected, $objeto,
-                'INDICE =>'.$indice.' |=| '.$mensaje);
+                'INDICE =>'.$indice.' |=| '.$mensaje
+            );
         }
     }
 }

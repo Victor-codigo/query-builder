@@ -19,7 +19,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Random\Randomizer;
 use Tests\Comun\PhpunitUtilTrait;
-use Tests\Unit\conexion\ConexionConfig;
+use Tests\Unit\Conexion\ConexionConfig;
 
 class ComandoMock extends TestCase
 {
