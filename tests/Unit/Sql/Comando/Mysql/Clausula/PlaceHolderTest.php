@@ -122,7 +122,8 @@ class PlaceHolderTest extends TestCase
         );
     }
 
-    public function testParseValorNumero(): void
+    #[Test]
+    public function parseValorNumero(): void
     {
         $resultado = $this->parse(3);
 
@@ -131,7 +132,8 @@ class PlaceHolderTest extends TestCase
         );
     }
 
-    public function testParseValorNumeroString(): void
+    #[Test]
+    public function parseValorNumeroString(): void
     {
         $resultado = $this->parse('3');
 
@@ -140,7 +142,8 @@ class PlaceHolderTest extends TestCase
         );
     }
 
-    public function testParseValorLob(): void
+    #[Test]
+    public function parseValorLob(): void
     {
         $this->markTestSkipped('no se pude testear');
     }

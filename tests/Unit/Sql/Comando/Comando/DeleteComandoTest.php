@@ -16,6 +16,7 @@ use Lib\Sql\Comando\Clausula\Where\WhereClausula;
 use Lib\Sql\Comando\Comando\DeleteComando;
 use Lib\Sql\Comando\Comando\Excepciones\ComandoGenerarClausulaPrincipalNoExisteException;
 use Lib\Sql\Comando\Comando\TIPOS as COMANDO_TIPOS;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tests\Comun\PhpunitUtilTrait;
@@ -59,7 +60,8 @@ class DeleteComandoTest extends TestCase
         $this->object = new DeleteComando($this->conexion, $this->clausula_fabrica, $fabrica_condiciones);
     }
 
-    public function testDelete(): void
+    #[Test]
+    public function delete(): void
     {
         $params = new DeleteParams();
         $params->tablas_eliminar = ['tabla_eliminar'];
@@ -133,7 +135,8 @@ class DeleteComandoTest extends TestCase
         $this->invocar($this->object, 'clausulaAdd', [$clausula]);
     }
 
-    public function testGenerarTodasLasClausulas(): void
+    #[Test]
+    public function generarTodasLasClausulas(): void
     {
         $this->generarClausulasMock(DeleteClausula::class, CLAUSULA_TIPOS::DELETE, 'DELETE', [
             'parse',
@@ -164,13 +167,15 @@ class DeleteComandoTest extends TestCase
         );
     }
 
-    public function testGenerarFaltaClausulaPrincipal(): void
+    #[Test]
+    public function generarFaltaClausulaPrincipal(): void
     {
         $this->expectException(ComandoGenerarClausulaPrincipalNoExisteException::class);
         $this->object->generar();
     }
 
-    public function testGenerarNoEstanDefinidasTodasLasClausulas(): void
+    #[Test]
+    public function generarNoEstanDefinidasTodasLasClausulas(): void
     {
         $this->generarClausulasMock(DeleteClausula::class, CLAUSULA_TIPOS::DELETE, 'DELETE', [
             'parse',

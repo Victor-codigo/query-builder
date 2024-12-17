@@ -76,7 +76,7 @@ class MysqlCondicionFabricaTest extends TestCase
     }
 
     #[Test]
-    public function testGetComparacion(): void
+    public function getComparacion(): void
     {
         $resultado = $this->object->getComparacion($this->clausula, 'atributo', OP::EQUAL, 10);
 

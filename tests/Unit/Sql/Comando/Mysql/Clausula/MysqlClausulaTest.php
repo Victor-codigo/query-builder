@@ -308,7 +308,7 @@ class MysqlClausulaTest extends TestCase
     }
 
     #[Test]
-    public function testGetOnDuplicate(): void
+    public function getOnDuplicate(): void
     {
         $resultado = $this->object->getOnDuplicate($this->comando, $this->fabrica_condiciones, false);
 

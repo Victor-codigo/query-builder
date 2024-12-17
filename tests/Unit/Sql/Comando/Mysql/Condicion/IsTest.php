@@ -74,7 +74,7 @@ class IsTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarIsTrue(): void
+    public function generarIsTrue(): void
     {
         $expects = 'atributo IS TRUE';
 
@@ -102,7 +102,7 @@ class IsTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarIsNotNull(): void
+    public function generarIsNotNull(): void
     {
         $expects = 'atributo IS NOT NULL';
 

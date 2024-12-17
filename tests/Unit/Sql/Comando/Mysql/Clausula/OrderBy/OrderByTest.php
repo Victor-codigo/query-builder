@@ -75,7 +75,7 @@ class OrderByTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarUnAtributo(): void
+    public function generarUnAtributo(): void
     {
         $expects = 'ORDER BY atributo1 ASC';
 

@@ -60,7 +60,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarEqual(): void
+    public function generarEqual(): void
     {
         $expects = 'atributo = #MODIFICADO#';
 
@@ -79,7 +79,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarEqualNull(): void
+    public function generarEqualNull(): void
     {
         $expects = 'atributo <=> #MODIFICADO#';
 
@@ -98,7 +98,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarNotEqual(): void
+    public function generarNotEqual(): void
     {
         $expects = 'atributo != #MODIFICADO#';
 
@@ -136,7 +136,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarGenerateEqualThan(): void
+    public function generarGenerateEqualThan(): void
     {
         $expects = 'atributo >= #MODIFICADO#';
 
@@ -155,7 +155,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarLessThan(): void
+    public function generarLessThan(): void
     {
         $expects = 'atributo < #MODIFICADO#';
 
@@ -174,7 +174,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarLessEqualThan(): void
+    public function generarLessEqualThan(): void
     {
         $expects = 'atributo <= #MODIFICADO#';
 
@@ -193,7 +193,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarLike(): void
+    public function generarLike(): void
     {
         $expects = 'atributo LIKE #MODIFICADO#';
 
@@ -212,7 +212,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarExists(): void
+    public function generarExists(): void
     {
         $expects = 'atributo EXISTS #MODIFICADO#';
 
@@ -231,7 +231,7 @@ class ComparacionTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarNotExists(): void
+    public function generarNotExists(): void
     {
         $expects = 'atributo NOT EXISTS #MODIFICADO#';
 

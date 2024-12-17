@@ -60,7 +60,7 @@ class BetweenTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarBetween(): void
+    public function generarBetween(): void
     {
         $expects = 'atributo BETWEEN #MODIFICADO# AND #MODIFICADO#';
 
@@ -79,7 +79,7 @@ class BetweenTest extends TestCase
     }
 
     #[Test]
-    public function testGenerarNotBetween(): void
+    public function generarNotBetween(): void
     {
         $expects = 'atributo NOT BETWEEN #MODIFICADO# AND #MODIFICADO#';
 

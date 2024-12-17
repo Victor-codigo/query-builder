@@ -45,7 +45,8 @@ class QueryConstructorTest extends TestCase
         $this->object = new QueryConstructor($this->conexion);
     }
 
-    public function testGetConexion(): void
+    #[Test]
+    public function getConexion(): void
     {
         $resultado = $this->object->getconexion();
 

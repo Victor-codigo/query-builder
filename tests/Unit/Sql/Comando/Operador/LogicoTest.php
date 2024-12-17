@@ -227,7 +227,7 @@ class LogicoTest extends TestCase
     }
 
     #[Test]
-    public function testCondicionCrearCondicionIsTrue(): void
+    public function condicionCrearCondicionIsTrue(): void
     {
         $atributo = 'atributo';
         $tipo = OP::IS_TRUE;

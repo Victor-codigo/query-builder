@@ -8,6 +8,7 @@ use Lib\Conexion\Conexion;
 use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\Sql\Comando\Clausula\Select\SelectClausula;
 use Lib\Sql\Comando\Comando\FetchComando;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tests\Comun\PhpunitUtilTrait;
@@ -105,7 +106,8 @@ class FetchComandoTest extends TestCase
         return [$registro1, $registro2, $registro3];
     }
 
-    public function testFetchAllSoloElParametroModo(): void
+    #[Test]
+    public function FetchAllSoloElParametroModo(): void
     {
         $modo = \PDO::FETCH_OBJ;
         $expected = ['fetchAll'];
@@ -124,7 +126,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllParametroModoYFetchArg(): void
+    #[Test]
+    public function fetchAllParametroModoYFetchArg(): void
     {
         $modo = \PDO::FETCH_COLUMN;
         $fetch_arg = 1;
@@ -145,7 +148,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllTodosLosParametros(): void
+    #[Test]
+    public function fetchAllTodosLosParametros(): void
     {
         $modo = \PDO::FETCH_COLUMN;
         $fetch_arg = 1;
@@ -167,7 +171,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllBoth(): void
+    #[Test]
+    public function fetchAllBoth(): void
     {
         $expected = 'fetchAllBoth';
 
@@ -184,7 +189,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllAssoc(): void
+    #[Test]
+    public function fetchAllAssoc(): void
     {
         $expected = ['fetchAllAssoc'];
 
@@ -202,7 +208,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllClassConConstructor(): void
+    #[Test]
+    public function fetchAllClassConConstructor(): void
     {
         $expected = ['fetchAllClass'];
         $clase_nombre = 'clase';
@@ -222,7 +229,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllClassSinConstructor(): void
+    #[Test]
+    public function fetchAllClassSinConstructor(): void
     {
         $expected = 'fetchAllClass';
         $clase_nombre = 'clase';
@@ -240,7 +248,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllObject(): void
+    #[Test]
+    public function fetchAllObject(): void
     {
         $expected = ['fetchAllObject'];
 
@@ -258,7 +267,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchAllColumn(): void
+    #[Test]
+    public function fetchAllColumn(): void
     {
         $column = 'id';
         $expected = 'fetchAllColumn';
@@ -293,7 +303,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchFirstObject(): void
+    #[Test]
+    public function fetchFirstObject(): void
     {
         $field = 'id';
         $value = 'id2';
@@ -326,7 +337,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchFirstAssoc(): void
+    #[Test]
+    public function fetchFirstAssoc(): void
     {
         $field = 'id';
         $value = 'id1';
@@ -359,7 +371,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchLastObject(): void
+    #[Test]
+    public function fetchLastObject(): void
     {
         $field = 'id';
         $value = 'id2';
@@ -392,7 +405,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchLastAssoc(): void
+    #[Test]
+    public function fetchLastAssoc(): void
     {
         $field = 'id';
         $value = 'id1';
@@ -425,7 +439,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchFindObject(): void
+    #[Test]
+    public function fetchFindObject(): void
     {
         $field = 'id';
         $value = 'id2';
@@ -466,7 +481,8 @@ class FetchComandoTest extends TestCase
         );
     }
 
-    public function testFetchFindAssoc(): void
+    #[Test]
+    public function fetchFindAssoc(): void
     {
         $field = 'id';
         $value = 'id1';
