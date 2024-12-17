@@ -87,10 +87,8 @@ class ComandoMock extends TestCase
      * @param bool                      $grupo_operadores    TRUE si se crea un grupo de operadores para la clausula
      *                                                       FALSE si no se crea
      * @param list<non-empty-string>    $metodos             métodos para los que se crea un stub
-     *
-     * @return Clausula
      */
-    public function getClausulaMock(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $grupo_operadores, array $metodos = [])
+    public function getClausulaMock(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $grupo_operadores, array $metodos = []): Clausula&MockObject
     {
         return $this->getMockBuilder(Clausula::class)
                     ->setConstructorArgs([$comando, $fabrica_condiciones, $grupo_operadores])
