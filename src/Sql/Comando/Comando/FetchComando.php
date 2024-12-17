@@ -149,7 +149,7 @@ abstract class FetchComando extends ComandoDml
      * @return \stdClass|mixed[]|null con el registro
      *                                NULL si no se encuentra
      */
-    public function fetchFirst($field, $value, $modo = \PDO::FETCH_OBJ)
+    public function fetchFirst($field, mixed $value, $modo = \PDO::FETCH_OBJ)
     {
         if (false === $this->statement) {
             return null;
@@ -185,7 +185,7 @@ abstract class FetchComando extends ComandoDml
      * @return \stdClass|mixed[]|null con el registro
      *                                NULL si no se encuentra
      */
-    public function fetchLast($field, $value, $modo = \PDO::FETCH_OBJ)
+    public function fetchLast($field, mixed $value, $modo = \PDO::FETCH_OBJ)
     {
         if (false === $this->statement) {
             return null;
@@ -221,7 +221,7 @@ abstract class FetchComando extends ComandoDml
      * @return mixed[] con el registro
      *                 si no se encuentra devuelve un array vacío
      */
-    public function fetchFind($field, $value, $modo = \PDO::FETCH_OBJ)
+    public function fetchFind($field, mixed $value, $modo = \PDO::FETCH_OBJ)
     {
         if (false === $this->statement) {
             return [];

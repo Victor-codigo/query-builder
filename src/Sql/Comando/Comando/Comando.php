@@ -68,11 +68,6 @@ abstract class Comando implements ComandoInterface
     }
 
     /**
-     * Fábrica de clausulas SQL.
-     */
-    private ?\Lib\Sql\Comando\Clausula\ClausulaFabricaInterface $fabrica_clausulas = null;
-
-    /**
      * Obtiene la fábrica de clausulas SQL.
      *
      * @version 1.0
@@ -102,11 +97,6 @@ abstract class Comando implements ComandoInterface
     {
         return $this->clausulas;
     }
-
-    /**
-     * Fábrica de condiciones.
-     */
-    private ?\Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface $fabrica_condiciones = null;
 
     /**
      * Obtiene la fábrica de condiciones.
@@ -195,14 +185,15 @@ abstract class Comando implements ComandoInterface
      * @version 1.0
      *
      * @param Conexion                  $conexion            conexión con la base de datos
-     * @param ClausulaFabricaInterface  $fabrica             Fabrica de clausulas SQL
+     * @param ClausulaFabricaInterface  $fabrica_clausulas   Fabrica de clausulas SQL
      * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
      */
-    public function __construct(Conexion $conexion, ClausulaFabricaInterface $fabrica, CondicionFabricaInterface $fabrica_condiciones)
-    {
+    public function __construct(
+        Conexion $conexion,
+        private ?ClausulaFabricaInterface $fabrica_clausulas,
+        private ?CondicionFabricaInterface $fabrica_condiciones,
+    ) {
         $this->conexion = $conexion;
-        $this->fabrica_clausulas = $fabrica;
-        $this->fabrica_condiciones = $fabrica_condiciones;
     }
 
     /**

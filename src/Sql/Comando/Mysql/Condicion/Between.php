@@ -12,34 +12,6 @@ use Lib\Sql\Comando\Clausula\Clausula;
 class Between extends CondicionMysql
 {
     /**
-     * Atributo.
-     *
-     * @var string
-     */
-    private $atributo;
-
-    /**
-     * Operador de comparación. Uno de los valores de TIPOS::*.
-     *
-     * @var string
-     */
-    private $operador;
-
-    /**
-     * Valor mínimo.
-     *
-     * @var int|string
-     */
-    private $min;
-
-    /**
-     * Valor máximo.
-     *
-     * @var int|string
-     */
-    private $max;
-
-    /**
      * Constructor.
      *
      * @version 1.0
@@ -50,14 +22,25 @@ class Between extends CondicionMysql
      * @param int|string $min      Valor mínimo
      * @param int|string $max      Valor máximo
      */
-    public function __construct(Clausula $clausula, $atributo, $operador, $min, $max)
-    {
+    public function __construct(Clausula $clausula,
+        /**
+         * Atributo.
+         */
+        private $atributo,
+        /**
+         * Operador de comparación. Uno de los valores de TIPOS::*.
+         */
+        private $operador,
+        /**
+         * Valor mínimo.
+         */
+        private $min,
+        /**
+         * Valor máximo.
+         */
+        private $max,
+    ) {
         parent::__construct($clausula);
-
-        $this->atributo = $atributo;
-        $this->operador = $operador;
-        $this->min = $min;
-        $this->max = $max;
     }
 
     /**

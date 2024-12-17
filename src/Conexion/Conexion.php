@@ -182,7 +182,7 @@ abstract class Conexion
             );
             $this->setAtributos();
             $this->conectado = true;
-        } catch (\PDOException $ex) {
+        } catch (\PDOException) {
             throw new ConexionException('Se produjo un error al conectar con la base de datos');
         }
 
@@ -341,7 +341,7 @@ abstract class Conexion
      *
      * @return mixed valor escapado
      */
-    public function quote($valor, $parameter_tipo = \PDO::PARAM_STR)
+    public function quote(mixed $valor, $parameter_tipo = \PDO::PARAM_STR)
     {
         return $this->conexion->quote($valor, $parameter_tipo);
     }

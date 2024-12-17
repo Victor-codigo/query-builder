@@ -12,27 +12,6 @@ use Lib\Sql\Comando\Clausula\Clausula;
 class Comparacion extends CondicionMysql
 {
     /**
-     * Atributo.
-     *
-     * @var string
-     */
-    private $atributo;
-
-    /**
-     * Operador de comparación. Uno de los valores de TIPOS::*.
-     *
-     * @var string
-     */
-    private $operador;
-
-    /**
-     * Valor contra el que se compara.
-     *
-     * @var int|string
-     */
-    private $valor;
-
-    /**
      * Constructor.
      *
      * @version 1.0
@@ -42,13 +21,21 @@ class Comparacion extends CondicionMysql
      * @param string     $operador Operador de comparación. Uno de los valores de TIPOS::*
      * @param int|string $valor    Valor contra el que se compara
      */
-    public function __construct(Clausula $clausula, $atributo, $operador, $valor)
-    {
+    public function __construct(Clausula $clausula,
+        /**
+         * Atributo.
+         */
+        private $atributo,
+        /**
+         * Operador de comparación. Uno de los valores de TIPOS::*.
+         */
+        private $operador,
+        /**
+         * Valor contra el que se compara.
+         */
+        private $valor,
+    ) {
         parent::__construct($clausula);
-
-        $this->atributo = $atributo;
-        $this->operador = $operador;
-        $this->valor = $valor;
     }
 
     /**

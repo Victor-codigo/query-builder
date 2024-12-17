@@ -12,27 +12,6 @@ use Lib\Sql\Comando\Clausula\Clausula;
 class In extends CondicionMysql
 {
     /**
-     * Atributo.
-     *
-     * @var string
-     */
-    private $atributo;
-
-    /**
-     * Operador de comparación. Uno de los valores de TIPOS::*.
-     *
-     * @var string
-     */
-    private $operador;
-
-    /**
-     * Valores.
-     *
-     * @var int[]|string[]
-     */
-    private array $valores = [];
-
-    /**
      * Constructor.
      *
      * @version 1.0
@@ -42,13 +21,21 @@ class In extends CondicionMysql
      * @param string         $operador Operador de comparación. Uno de los valores de TIPOS::*
      * @param int[]|string[] $valores  Valor en los que se busca
      */
-    public function __construct(Clausula $clausula, $atributo, $operador, $valores)
-    {
+    public function __construct(Clausula $clausula,
+        /**
+         * Atributo.
+         */
+        private $atributo,
+        /**
+         * Operador de comparación. Uno de los valores de TIPOS::*.
+         */
+        private $operador,
+        /**
+         * Valores.
+         */
+        private array $valores,
+    ) {
         parent::__construct($clausula);
-
-        $this->atributo = $atributo;
-        $this->operador = $operador;
-        $this->valores = $valores;
     }
 
     /**

@@ -186,7 +186,7 @@ class SelectCadena extends CadenaDml
      * @return \stdClass|mixed[]|null con el registro
      *                                NULL si no se encuentra
      */
-    public function fetchFirst($field, $value, $modo = \PDO::FETCH_OBJ)
+    public function fetchFirst($field, mixed $value, $modo = \PDO::FETCH_OBJ)
     {
         return $this->comando->fetchFirst($field, $value, $modo);
     }
@@ -203,7 +203,7 @@ class SelectCadena extends CadenaDml
      * @return \stdClass|mixed[]|null con el registro
      *                                NULL si no se encuentra
      */
-    public function fetchLast($field, $value, $modo = \PDO::FETCH_OBJ)
+    public function fetchLast($field, mixed $value, $modo = \PDO::FETCH_OBJ)
     {
         return $this->comando->fetchLast($field, $value, $modo);
     }
@@ -220,7 +220,7 @@ class SelectCadena extends CadenaDml
      * @return \stdClass|mixed[] con el registro
      *                           si no se encuentra devuelve un array vacío
      */
-    public function fetchFind($field, $value, $modo = \PDO::FETCH_OBJ)
+    public function fetchFind($field, mixed $value, $modo = \PDO::FETCH_OBJ)
     {
         return $this->comando->fetchFind($field, $value, $modo);
     }

@@ -10,13 +10,6 @@ namespace Lib\Sql\Comando\Operador;
 class GrupoOperadores
 {
     /**
-     * Grupo padre al que pertenece el grupo.
-     *
-     * @var ?GrupoOperadores
-     */
-    private $grupo_padre;
-
-    /**
      * Grupo operadores que se esta creando actualmente.
      */
     private static \Lib\Sql\Comando\Operador\GrupoOperadores $grupo_actual;
@@ -66,13 +59,6 @@ class GrupoOperadores
     }
 
     /**
-     * Operador del grupo.
-     *
-     * @var string Una de las constantes TIPOS::*
-     */
-    private $operador;
-
-    /**
      * Establece el operador del grupo.
      *
      * @version 1.0
@@ -111,11 +97,14 @@ class GrupoOperadores
      * @param string          $operador    Tipo de operador que tiene el grupo.
      *                                     Una de las constes TIPO::* de operadores lógicos
      */
-    public function __construct($grupo_padre = null, $operador = null)
+    public function __construct(/**
+     * Grupo padre al que pertenece el grupo.
+     */
+    private $grupo_padre = null, /**
+     * Operador del grupo.
+     */
+    private $operador = null)
     {
-        $this->grupo_padre = $grupo_padre;
-        $this->operador = $operador;
-
         $this->setGrupoActual($this);
     }
 

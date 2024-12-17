@@ -21,7 +21,7 @@ trait PlaceHoldersTrait
      *
      * @return string
      */
-    public function parse($valor)
+    public function parse(mixed $valor)
     {
         if ($valor instanceof Param) {
             return $this->parseParam($valor);
@@ -39,7 +39,7 @@ trait PlaceHoldersTrait
      *
      * @return int una de las constantes PDO::PARAM_*
      */
-    private function getValorTipo($valor): int
+    private function getValorTipo(mixed $valor): int
     {
         if (null === $valor) {
             return \PDO::PARAM_NULL;
@@ -64,7 +64,7 @@ trait PlaceHoldersTrait
      *
      * @return string
      */
-    private function parseValor($valor)
+    private function parseValor(mixed $valor)
     {
         $tipo = $this->getValorTipo($valor);
 

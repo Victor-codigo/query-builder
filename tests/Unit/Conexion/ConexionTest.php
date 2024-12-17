@@ -371,9 +371,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('query')
-                    ->willReturnCallback(function () use ($expect): \PDOStatement {
-                        return $expect;
-                    });
+                    ->willReturnCallback(fn(): \PDOStatement => $expect);
 
         $resultado = $this->object->query($sql);
 
@@ -421,9 +419,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('exec')
-                    ->willReturnCallback(function () use ($expect): int {
-                        return $expect;
-                    });
+                    ->willReturnCallback(fn(): int => $expect);
 
         $resultado = $this->object->exec($sql);
 

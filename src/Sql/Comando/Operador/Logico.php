@@ -43,11 +43,6 @@ abstract class Logico extends Operador
     }
 
     /**
-     * Fábrica de condiciones.
-     */
-    private ?\Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface $fabrica_condiciones = null;
-
-    /**
      * Obtiene la fábrica de condiciones.
      *
      * @version 1.0
@@ -66,11 +61,12 @@ abstract class Logico extends Operador
      *
      * @param Clausula $clausula Clausula a la que pertenece la condición
      */
-    public function __construct(Clausula $clausula, CondicionFabricaInterface $fabrica_condicion)
+    public function __construct(Clausula $clausula, /**
+     * Fábrica de condiciones.
+     */
+    private ?\Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface $fabrica_condiciones)
     {
         parent::__construct($clausula);
-
-        $this->fabrica_condiciones = $fabrica_condicion;
     }
 
     /**
@@ -95,51 +91,33 @@ abstract class Logico extends Operador
      * @param string $tipo     tipo de comando. Una de las constantes TIPOS::*
      * @param mixed  $params   parámetros para los distintos comandos
      */
-    public function condicionCrear($atributo, $tipo, ...$params): void
+    public function condicionCrear($atributo, $tipo, mixed ...$params): void
     {
-        switch ($tipo) {
-            case OP::IN:
-            case OP::NOT_IN:
-                $this->condicion = $this->fabrica_condiciones->getIn(
-                    $this->clausula,
-                    $atributo,
-                    $tipo,
-                    ...$params
-                );
-
-                break;
-
-            case OP::IS_NULL:
-            case OP::IS_NOT_NULL:
-            case OP::IS_TRUE:
-            case OP::IS_FALSE:
-                $this->condicion = $this->fabrica_condiciones->getIs(
-                    $this->clausula,
-                    $atributo,
-                    $tipo
-                );
-
-                break;
-
-            case OP::BETWEEN:
-            case OP::NOT_BETWEEN:
-                $this->condicion = $this->fabrica_condiciones->getBetween(
-                    $this->clausula,
-                    $atributo,
-                    $tipo,
-                    $params[0],
-                    $params[1]
-                );
-
-                break;
-
-            default:
-                $this->condicion = $this->fabrica_condiciones->getComparacion(
-                    $this->clausula,
-                    $atributo,
-                    $tipo,
-                    $params[0]
-                );
-        }
+        $this->condicion = match ($tipo) {
+            OP::IN, OP::NOT_IN => $this->fabrica_condiciones->getIn(
+                $this->clausula,
+                $atributo,
+                $tipo,
+                ...$params
+            ),
+            OP::IS_NULL, OP::IS_NOT_NULL, OP::IS_TRUE, OP::IS_FALSE => $this->fabrica_condiciones->getIs(
+                $this->clausula,
+                $atributo,
+                $tipo
+            ),
+            OP::BETWEEN, OP::NOT_BETWEEN => $this->fabrica_condiciones->getBetween(
+                $this->clausula,
+                $atributo,
+                $tipo,
+                $params[0],
+                $params[1]
+            ),
+            default => $this->fabrica_condiciones->getComparacion(
+                $this->clausula,
+                $atributo,
+                $tipo,
+                $params[0]
+            ),
+        };
     }
 }

@@ -103,7 +103,7 @@ abstract class ComandoDmlConstructor extends ComandoConstructor
      *
      * @return Param[]|Param
      */
-    public function param(string $placeholder, $valor): array|Param
+    public function param(string $placeholder, mixed $valor): array|Param
     {
         $valores = \is_array($valor) ? $valor : [$valor];
 

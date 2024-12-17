@@ -62,7 +62,7 @@ class Struct implements \Serializable
      *
      * @param mixed $valor valor que se establece para todos las propiedades
      */
-    public function setPropiedadesValor($valor): void
+    public function setPropiedadesValor(mixed $valor): void
     {
         foreach (get_object_vars($this) as $propiedad => $no_se_usa) {
             $this->$propiedad = $valor;
@@ -95,7 +95,7 @@ class Struct implements \Serializable
      *                              con el siguiente formato:
      *                              - arr[propiedad] = mixed, valor de la propiedad
      */
-    public function getPropiedadesNoValor($valor, $strict = false): array
+    public function getPropiedadesNoValor(mixed $valor, $strict = false): array
     {
         $retorno = [];
         $valor_type = \gettype($valor);
@@ -267,7 +267,7 @@ class Struct implements \Serializable
      *
      * @param mixed $serialized estructura serializada
      */
-    public function __unserialize($serialized): void
+    public function __unserialize(mixed $serialized): void
     {
         if (false !== $serialized) {
             foreach ($serialized as $propiedad => $valor) {

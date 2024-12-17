@@ -330,19 +330,15 @@ class ComandoTest extends TestCase
             ->expects($pdo_statement_counter)
             ->method('bindValue')
             ->with(
-                $this->callback(function (int|string $param) use ($pdo_statement_counter, $param1, $param2): bool {
-                    return match ($pdo_statement_counter->numberOfInvocations()) {
-                        1 => $param === $param1::MARCA.$param1->id,
-                        2 => $param === $param2::MARCA.$param2->id,
-                        default => throw new \LogicException('No hay mas iteraciones'),
-                    };
+                $this->callback(fn(int|string $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
+                    1 => $param === $param1::MARCA.$param1->id,
+                    2 => $param === $param2::MARCA.$param2->id,
+                    default => throw new \LogicException('No hay mas iteraciones'),
                 }),
-                $this->callback(function (mixed $param) use ($pdo_statement_counter, $param1, $param2): bool {
-                    return match ($pdo_statement_counter->numberOfInvocations()) {
-                        1 => $param === $param1->valor,
-                        2 => $param === $param2->valor,
-                        default => throw new \LogicException('No hay mas iteraciones'),
-                    };
+                $this->callback(fn(mixed $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
+                    1 => $param === $param1->valor,
+                    2 => $param === $param2->valor,
+                    default => throw new \LogicException('No hay mas iteraciones'),
                 })
             );
 

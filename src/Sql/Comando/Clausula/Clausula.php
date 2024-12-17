@@ -28,7 +28,7 @@ abstract class Clausula implements ClausulaInterface
      *
      * @return string
      */
-    abstract public function parse($valor);
+    abstract public function parse(mixed $valor);
 
     /**
      * Tipo de clausula.

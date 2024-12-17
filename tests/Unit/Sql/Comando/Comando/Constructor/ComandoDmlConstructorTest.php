@@ -189,13 +189,11 @@ class ComandoDmlConstructorTest extends TestCase
         $this->comando_mock
             ->expects($comando_mock_invoke_counter)
             ->method('paramAdd')
-            ->with($this->callback(function (Param $param) use ($comando_mock_invoke_counter, $expect_param_1, $expect_param_2, $expect_param_3): bool {
-                return match ($comando_mock_invoke_counter->numberOfInvocations()) {
-                    1 => $param === $expect_param_1,
-                    2 => $param === $expect_param_2,
-                    3 => $param === $expect_param_3,
-                    default => throw new \Exception('ERROR: el número de invocaciones no es el esperado'),
-                };
+            ->with($this->callback(fn(Param $param): bool => match ($comando_mock_invoke_counter->numberOfInvocations()) {
+                1 => $param === $expect_param_1,
+                2 => $param === $expect_param_2,
+                3 => $param === $expect_param_3,
+                default => throw new \Exception('ERROR: el número de invocaciones no es el esperado'),
             }));
         $resultado = $this->object->param($placeholder, $valores);
 

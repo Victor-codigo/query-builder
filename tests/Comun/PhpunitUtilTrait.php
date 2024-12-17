@@ -155,7 +155,7 @@ trait PhpunitUtilTrait
      *
      * @throws \Exception
      */
-    protected function propertyEdit($object, $property_name, $value = null, $access = true): \ReflectionProperty
+    protected function propertyEdit($object, $property_name, mixed $value = null, $access = true): \ReflectionProperty
     {
         $property = $this->getProperty(
             $this->reflectClass($object),
