@@ -28,25 +28,13 @@ class GrupoOperadoresTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
-    /**
-     * @var Conexion&MockObject
-     */
-    private $conexion;
+    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
-    /**
-     * @var Clausula&MockObject
-     */
-    private $clausula;
+    private \Lib\Sql\Comando\Clausula\Clausula&\PHPUnit\Framework\MockObject\MockObject $clausula;
 
-    /**
-     * @var CondicionFabricaInterface&MockObject
-     */
-    private $fabrica_condiciones;
+    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
 
     protected function setUp(): void
     {

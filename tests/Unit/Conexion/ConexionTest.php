@@ -24,12 +24,9 @@ class ConexionTest extends TestCase
     /**
      * @var Conexion&MockObject
      */
-    protected $object;
+    protected \PHPUnit\Framework\MockObject\MockObject $object;
 
-    /**
-     * @var ConexionConfig
-     */
-    private $conexion_config;
+    private \Tests\Unit\Conexion\ConexionConfig $conexion_config;
 
     /**
      * @var \Closure
@@ -258,7 +255,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('beginTransaction')
-                    ->willReturnCallback(function () {
+                    ->willReturnCallback(function (): void {
                         throw new \PDOException();
                     });
 
@@ -293,7 +290,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('commit')
-                    ->willReturnCallback(function () {
+                    ->willReturnCallback(function (): void {
                         throw new \PDOException();
                     });
 
@@ -328,7 +325,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('rollBack')
-                    ->willReturnCallback(function () {
+                    ->willReturnCallback(function (): void {
                         throw new \PDOException();
                     });
 
@@ -346,11 +343,11 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('query')
-                    ->willReturnCallback(function () {
+                    ->willReturnCallback(function (): void {
                         throw new \PDOException();
                     });
 
-        static::$trigger_error = function ($error_msg, $error_type) {
+        static::$trigger_error = function ($error_msg, $error_type): void {
             $this->assertIsString($error_msg,
                 'ERROR: el valor $error_msg no es del tipo esperado'
             );
@@ -374,7 +371,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('query')
-                    ->willReturnCallback(function () use ($expect) {
+                    ->willReturnCallback(function () use ($expect): \PDOStatement {
                         return $expect;
                     });
 
@@ -396,11 +393,11 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('exec')
-                    ->willReturnCallback(function () {
+                    ->willReturnCallback(function (): void {
                         throw new \PDOException();
                     });
 
-        static::$trigger_error = function ($error_msg, $error_type) {
+        static::$trigger_error = function ($error_msg, $error_type): void {
             $this->assertIsString($error_msg,
                 'ERROR: el valor $error_msg no es del tipo esperado'
             );
@@ -424,7 +421,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('exec')
-                    ->willReturnCallback(function () use ($expect) {
+                    ->willReturnCallback(function () use ($expect): int {
                         return $expect;
                     });
 

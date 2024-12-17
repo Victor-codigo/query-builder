@@ -34,7 +34,7 @@ class AndOperador extends Logico
      *
      * @return string código del comando
      */
-    public function generar($operador = true)
+    public function generar($operador = true): string
     {
         return ($operador ? ' AND ' : '').$this->condicion->generar();
     }

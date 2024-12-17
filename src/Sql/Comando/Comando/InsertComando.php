@@ -42,7 +42,7 @@ class InsertComando extends ComandoDml
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
-    public function generar()
+    public function generar(): string
     {
         $select = $this->getClausula(CLAUSULA_TIPOS::INSERT);
 
@@ -62,9 +62,8 @@ class InsertComando extends ComandoDml
         $sql .= null === $values ? '' : ' '.$values->generar();
 
         $on_duplicate = $this->getClausula(CLAUSULA_TIPOS::ON_DUPLICATE_KEY_UPDATE);
-        $sql .= null === $on_duplicate ? '' : ' '.$on_duplicate->generar();
 
-        return $sql;
+        return $sql . (null === $on_duplicate ? '' : ' '.$on_duplicate->generar());
     }
 
     /**

@@ -23,10 +23,8 @@ class QueryConstructor
 {
     /**
      * Conexión con la base de datos.
-     *
-     * @var ?Conexion
      */
-    private $conexion;
+    private ?\Lib\Conexion\Conexion $conexion = null;
 
     /**
      * Establece la conexión con la base de datos.
@@ -47,7 +45,7 @@ class QueryConstructor
      *
      * @return Conexion
      */
-    public function getconexion()
+    public function getconexion(): ?\Lib\Conexion\Conexion
     {
         return $this->conexion;
     }
@@ -57,14 +55,14 @@ class QueryConstructor
      *
      * @var ?ClausulaFabricaInterface
      */
-    private $fabrica_clausulas;
+    private ?\Lib\Sql\Comando\Mysql\Clausulas\MysqlClausula $fabrica_clausulas = null;
 
     /**
      * Fabrica de condiciones.
      *
      * @var ?CondicionFabricaInterface
      */
-    private $fabrica_condiciones;
+    private ?\Lib\Sql\Comando\Mysql\Condicion\MysqlCondicionFabrica $fabrica_condiciones = null;
 
     /**
      * Constructor.
@@ -110,7 +108,7 @@ class QueryConstructor
      *
      * @param string $driver Una de las constantes DRIVERS::*
      */
-    private function crearFabrica($driver): void
+    private function crearFabrica(string $driver): void
     {
         switch ($driver) {
             case DRIVERS::MYSQL:
@@ -125,10 +123,8 @@ class QueryConstructor
      * Constructor de comandos SQL SELECT.
      *
      * @version 1.0
-     *
-     * @return SelectConstructor
      */
-    public function selectConstructor()
+    public function selectConstructor(): \Lib\Sql\Comando\Comando\Constructor\Select\SelectConstructor
     {
         $this->conectar();
 
@@ -156,10 +152,8 @@ class QueryConstructor
      * Constructor de comandos SQL DELETE.
      *
      * @version 1.0
-     *
-     * @return DeleteConstructor
      */
-    public function deleteConstructor()
+    public function deleteConstructor(): \Lib\Sql\Comando\Comando\Constructor\Delete\DeleteConstructor
     {
         $this->conectar();
 
@@ -174,10 +168,8 @@ class QueryConstructor
      * Constructor de comandos SQL INSERT.
      *
      * @version 1.0
-     *
-     * @return InsertConstructor
      */
-    public function insertConstructor()
+    public function insertConstructor(): \Lib\Sql\Comando\Comando\Constructor\Insert\InsertConstructor
     {
         $this->conectar();
 
@@ -190,10 +182,8 @@ class QueryConstructor
      * Constructor de comandos SQL.
      *
      * @version 1.0
-     *
-     * @return SqlConstructor
      */
-    public function sqlConstructor()
+    public function sqlConstructor(): \Lib\Sql\Comando\Comando\Constructor\Sql\SqlConstructor
     {
         $this->conectar();
 

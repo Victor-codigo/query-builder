@@ -59,7 +59,7 @@ class UpdateCadena extends CadenaDml
      *
      * @return CadenaDml
      */
-    public function limit($numero)
+    public function limit($numero): static
     {
         $this->comando->limit($numero);
 
@@ -95,11 +95,10 @@ class UpdateCadena extends CadenaDml
      * @param string $atributo   nombre del atributo
      * @param float  $decremento valor que se incrementa, (debe ser un valor positivo)
      *
-     * @return UpdateCadena
      *
      * @throws ComandoConstructorUpdateIncrementValorNegativoException
      */
-    public function decrement($atributo, $decremento = 1)
+    public function decrement($atributo, $decremento = 1): static
     {
         if ($decremento <= 0) {
             throw new ComandoConstructorUpdateDecrementValorNegativoException();

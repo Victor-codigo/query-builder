@@ -25,20 +25,11 @@ class SqlComandoTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface&MockObject
-     */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
-    /**
-     * @var Conexion&MockObject
-     */
-    private $conexion;
+    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
     protected function setUp(): void
     {

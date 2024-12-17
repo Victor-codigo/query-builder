@@ -66,7 +66,7 @@ final class From extends FromClausula
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         $retorno = '';
 

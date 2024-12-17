@@ -67,7 +67,7 @@ class SqlConstructor extends ComandoDmlConstructor
      *
      * @return SqlCadena Comando SQL
      */
-    public function sql($sql)
+    public function sql(string $sql)
     {
         if (null === $this->comando) {
             throw new \Exception('No se ha podido construir la clausula SQL. Comando no inicializado.');

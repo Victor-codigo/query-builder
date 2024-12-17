@@ -39,7 +39,7 @@ trait PlaceHoldersTrait
      *
      * @return int una de las constantes PDO::PARAM_*
      */
-    private function getValorTipo($valor)
+    private function getValorTipo($valor): int
     {
         if (null === $valor) {
             return \PDO::PARAM_NULL;
@@ -88,7 +88,7 @@ trait PlaceHoldersTrait
      *
      * @return string identificador del parámetro
      */
-    private function parseParam(Param $valor)
+    private function parseParam(Param $valor): string
     {
         return ':'.$valor->id;
     }

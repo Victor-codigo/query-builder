@@ -30,7 +30,7 @@ class In extends CondicionMysql
      *
      * @var int[]|string[]
      */
-    private $valores = [];
+    private array $valores = [];
 
     /**
      * Constructor.
@@ -55,10 +55,8 @@ class In extends CondicionMysql
      * Genera el código para la comparación IN.
      *
      * @version 1.0
-     *
-     * @return string
      */
-    public function generar()
+    public function generar(): string
     {
         $valores = [];
         foreach ($this->valores as $valor) {

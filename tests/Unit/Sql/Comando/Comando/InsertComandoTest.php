@@ -38,20 +38,11 @@ class InsertComandoTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface&MockObject
-     */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
-    /**
-     * @var Conexion&MockObject
-     */
-    private $conexion;
+    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
     protected function setUp(): void
     {
@@ -184,8 +175,6 @@ class InsertComandoTest extends TestCase
         $this->assertInstanceOf(ValuesParams::class, $clausula->getParams(),
             'ERROR: los parámetros no son los correctos'
         );
-
-        $params->valores = $params->valores;
         $this->assertEquals($params, $clausula->getParams(),
             'ERROR: los parámetros no son los esperados'
         );

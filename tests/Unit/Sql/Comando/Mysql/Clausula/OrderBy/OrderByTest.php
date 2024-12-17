@@ -20,30 +20,24 @@ class OrderByTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var OrderBy
-     */
-    private $object;
+    private \Lib\Sql\Comando\Mysql\Clausulas\OrderBy\OrderBy $object;
 
-    /**
-     * @var ComandoMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\ComandoMock $helper;
 
     /**
      * @var ClausulaFabricaInterface
      */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
     /**
      * @var Comando
      */
-    private $comando;
+    private \Lib\Sql\Comando\Comando\Comando&\PHPUnit\Framework\MockObject\MockObject $comando;
 
     /**
      * @var Conexion
      */
-    private $conexion;
+    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
     protected function setUp(): void
     {

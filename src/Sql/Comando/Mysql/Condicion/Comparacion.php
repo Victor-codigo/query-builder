@@ -55,10 +55,8 @@ class Comparacion extends CondicionMysql
      * Genera el código para la comparación.
      *
      * @version 1.0
-     *
-     * @return string
      */
-    public function generar()
+    public function generar(): string
     {
         return $this->atributo.' '.$this->operador.' '.$this->clausula->parse($this->valor);
     }

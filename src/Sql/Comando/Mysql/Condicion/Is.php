@@ -20,10 +20,8 @@ class Is extends CondicionMysql
 
     /**
      * Operador de comparación. Uno de los valores de TIPOS::*.
-     *
-     * @var string
      */
-    private $operador;
+    private string $operador;
 
     /**
      * Constructor.
@@ -45,10 +43,8 @@ class Is extends CondicionMysql
      * Genera el código para la comparación IS.
      *
      * @version 1.0
-     *
-     * @return string
      */
-    public function generar()
+    public function generar(): string
     {
         return $this->atributo.' '.$this->operador;
     }

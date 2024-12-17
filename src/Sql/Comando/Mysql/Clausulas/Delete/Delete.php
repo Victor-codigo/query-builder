@@ -46,7 +46,7 @@ final class Delete extends DeleteClausula
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         if (empty($this->params->tablas_referencia)) {
             return $this->delete();
@@ -59,10 +59,8 @@ final class Delete extends DeleteClausula
      * Genera la clausula delete para una sola tabla.
      *
      * @version 1.0
-     *
-     * @return string
      */
-    private function delete()
+    private function delete(): string
     {
         $modificadores = '';
 
@@ -78,10 +76,8 @@ final class Delete extends DeleteClausula
      * Genera la clausula delete para varias tablas.
      *
      * @version 1.0
-     *
-     * @return string
      */
-    private function multidelete()
+    private function multidelete(): string
     {
         return 'DELETE '.implode(' ', $this->params->modificadores).' '.
                             implode(', ', $this->params->tablas_eliminar).
@@ -95,7 +91,7 @@ final class Delete extends DeleteClausula
      *
      * @return string[]
      */
-    public function getRetornoCampos()
+    public function getRetornoCampos(): array
     {
         return [];
     }

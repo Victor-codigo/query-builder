@@ -21,10 +21,8 @@ class ConexionConfig extends TestCase
      * Información de la conexión.
      *
      * @version 1.0
-     *
-     * @return ConexionInfo
      */
-    public function getConexionInfo()
+    public function getConexionInfo(): \Lib\Conexion\ConexionInfo
     {
         $info = new ConexionInfo();
         $info->nombre = 'prueba';

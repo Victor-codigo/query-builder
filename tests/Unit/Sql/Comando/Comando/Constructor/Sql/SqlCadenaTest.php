@@ -21,15 +21,9 @@ class SqlCadenaTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var SqlComando&MockObject
-     */
-    private $comando_mock;
+    private \Lib\Sql\Comando\Comando\SqlComando&\PHPUnit\Framework\MockObject\MockObject $comando_mock;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
     protected function setUp(): void
     {

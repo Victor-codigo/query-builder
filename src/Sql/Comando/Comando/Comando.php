@@ -69,10 +69,8 @@ abstract class Comando implements ComandoInterface
 
     /**
      * Fábrica de clausulas SQL.
-     *
-     * @var ?ClausulaFabricaInterface
      */
-    private $fabrica_clausulas;
+    private ?\Lib\Sql\Comando\Clausula\ClausulaFabricaInterface $fabrica_clausulas = null;
 
     /**
      * Obtiene la fábrica de clausulas SQL.
@@ -91,7 +89,7 @@ abstract class Comando implements ComandoInterface
      *
      * @var ClausulaInterface[]
      */
-    private $clausulas = [];
+    private array $clausulas = [];
 
     /**
      * Obtiene las clausulas SQL del comando.
@@ -107,10 +105,8 @@ abstract class Comando implements ComandoInterface
 
     /**
      * Fábrica de condiciones.
-     *
-     * @var ?CondicionFabricaInterface
      */
-    private $fabrica_condiciones;
+    private ?\Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface $fabrica_condiciones = null;
 
     /**
      * Obtiene la fábrica de condiciones.
@@ -368,7 +364,7 @@ abstract class Comando implements ComandoInterface
      *
      * @throws ComandoFetchColumnNoExisteException
      */
-    protected function getClausulaMainCampoIndice($campo)
+    protected function getClausulaMainCampoIndice(string $campo)
     {
         $clausula = $this->getClausulaMain();
         $campos = $clausula->getRetornoCampos();

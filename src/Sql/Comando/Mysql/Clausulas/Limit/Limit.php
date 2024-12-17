@@ -66,7 +66,7 @@ final class Limit extends LimitClausula
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         if (null === $this->params->number) {
             return 'LIMIT '.$this->parse($this->params->offset);

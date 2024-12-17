@@ -41,7 +41,7 @@ class UpdateComando extends ComandoDml
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
-    public function generar()
+    public function generar(): string
     {
         $update = $this->getClausula(CLAUSULA_TIPOS::UPDATE);
 
@@ -61,9 +61,8 @@ class UpdateComando extends ComandoDml
         $sql .= null === $orderby ? '' : ' '.$orderby->generar();
 
         $limit = $this->getClausula(CLAUSULA_TIPOS::LIMIT);
-        $sql .= null === $limit ? '' : ' '.$limit->generar();
 
-        return $sql;
+        return $sql . (null === $limit ? '' : ' '.$limit->generar());
     }
 
     /**
@@ -118,7 +117,7 @@ class UpdateComando extends ComandoDml
      * @param string $atributo   nombre del atributo
      * @param float  $incremento valor que se incrementa
      */
-    public function increment($atributo, $incremento): void
+    public function increment(string $atributo, $incremento): void
     {
         $set = $this->getClausulaSet();
         $params = $set->getParams();

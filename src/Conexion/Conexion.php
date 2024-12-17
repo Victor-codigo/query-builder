@@ -116,10 +116,8 @@ abstract class Conexion
     /**
      * TRUE si está conectado a la base de datos
      * FALSE si no lo está
-     *
-     * @var bool
      */
-    private $conectado = false;
+    private bool $conectado = false;
 
     /**
      * Comprueba si la conexión con la base de datos esta establecida.

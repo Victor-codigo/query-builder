@@ -58,7 +58,7 @@ final class Sql extends SqlClausula
      *
      * @return string[]
      */
-    public function getRetornoCampos()
+    public function getRetornoCampos(): array
     {
         return [];
     }

@@ -41,10 +41,8 @@ class DeleteCadena extends CadenaDml
      * @version 1.0
      *
      * @param string[] $particiones nombre de las particiones
-     *
-     * @return DeleteCadena
      */
-    public function partition(array $particiones)
+    public function partition(array $particiones): static
     {
         $this->comando->partition($particiones);
 
@@ -60,7 +58,7 @@ class DeleteCadena extends CadenaDml
      *
      * @return CadenaDml
      */
-    public function limit($numero)
+    public function limit($numero): static
     {
         $this->comando->limit($numero);
 

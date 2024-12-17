@@ -36,27 +36,21 @@ class ComandoDmlTest extends TestCase
     /**
      * @var ComandoDml&MockObject
      */
-    protected $object;
+    protected \PHPUnit\Framework\MockObject\MockObject $object;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface&MockObject
-     */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
     /**
      * @var Conexion
      */
-    private $conexion;
+    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
     /**
      * @var CondicionFabricaInterface
      */
-    private $fabrica_condiciones;
+    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
 
     protected function setUp(): void
     {

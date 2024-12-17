@@ -64,10 +64,8 @@ class Between extends CondicionMysql
      * Genera el código para la comparación BETWEEN.
      *
      * @version 1.0
-     *
-     * @return string
      */
-    public function generar()
+    public function generar(): string
     {
         return $this->atributo.' '.$this->operador.' '.
                     $this->clausula->parse($this->min).' AND '.$this->clausula->parse($this->max);

@@ -28,27 +28,21 @@ class ComandoTest extends TestCase
     /**
      * @var Comando
      */
-    protected $object;
+    protected \PHPUnit\Framework\MockObject\MockObject $object;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
     /**
      * @var ClausulaFabricaInterface
      */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
     /**
      * @var CondicionFabricaInterface
      */
-    private $fabrica_condiciones;
+    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
 
-    /**
-     * @var Conexion&MockObject
-     */
-    private $conexion;
+    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
     protected function setUp(): void
     {
@@ -233,7 +227,7 @@ class ComandoTest extends TestCase
     #[Test]
     public function getClausulaNoEncuentraLaClausula(): void
     {
-        $delete = $this->helper->clausulaAddMock($this->object, ClausulaInterface::class, TIPOS::DELETE, [
+        $this->helper->clausulaAddMock($this->object, ClausulaInterface::class, TIPOS::DELETE, [
             'generar',
             'getParams',
             'setParams',
@@ -241,7 +235,7 @@ class ComandoTest extends TestCase
             'getOperadores',
             'operadorCrear',
         ]);
-        $select = $this->helper->clausulaAddMock($this->object, ClausulaInterface::class, TIPOS::SELECT, [
+        $this->helper->clausulaAddMock($this->object, ClausulaInterface::class, TIPOS::SELECT, [
             'generar',
             'getParams',
             'setParams',

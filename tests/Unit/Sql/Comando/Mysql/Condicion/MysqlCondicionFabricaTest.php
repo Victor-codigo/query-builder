@@ -27,20 +27,11 @@ class MysqlCondicionFabricaTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var ComandoMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\ComandoMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface&MockObject
-     */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
-    /**
-     * @var Clausula&MockObject
-     */
-    private $clausula;
+    private \Lib\Sql\Comando\Clausula\Clausula&\PHPUnit\Framework\MockObject\MockObject $clausula;
 
     protected function setUp(): void
     {

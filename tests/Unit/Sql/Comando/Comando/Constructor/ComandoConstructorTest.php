@@ -17,12 +17,9 @@ class ComandoConstructorTest extends TestCase
     /**
      * @var ComandoConstructor
      */
-    protected $object;
+    protected \PHPUnit\Framework\MockObject\MockObject $object;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $mock;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $mock;
 
     protected function setUp(): void
     {

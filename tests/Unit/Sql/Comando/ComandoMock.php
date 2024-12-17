@@ -191,7 +191,7 @@ class ComandoMock extends TestCase
      *
      * @return T&MockObject
      */
-    public function clausulaAddMock(Comando $comando, $clausula_class, $tipo, array $metodos)
+    public function clausulaAddMock(Comando $comando, string $clausula_class, $tipo, array $metodos): \PHPUnit\Framework\MockObject\MockObject
     {
         $clausula = $this
             ->getMockBuilder($clausula_class)

@@ -20,30 +20,15 @@ class SqlTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var Sql
-     */
-    private $object;
+    private \Lib\Sql\Comando\Mysql\Clausulas\Sql\Sql $object;
 
-    /**
-     * @var ComandoMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\ComandoMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface&MockObject
-     */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
-    /**
-     * @var Comando&MockObject
-     */
-    private $comando;
+    private \Lib\Sql\Comando\Comando\Comando&\PHPUnit\Framework\MockObject\MockObject $comando;
 
-    /**
-     * @var Conexion&MockObject
-     */
-    private $conexion;
+    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
     protected function setUp(): void
     {

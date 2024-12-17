@@ -20,15 +20,12 @@ class MysqlTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var ConexionConfig
-     */
-    private $conexion_config;
+    private \Tests\Unit\Conexion\ConexionConfig $conexion_config;
 
     /**
      * @var Conexion&MockObject
      */
-    private $conexion;
+    private \PHPUnit\Framework\MockObject\MockObject $conexion;
 
     protected function setUp(): void
     {

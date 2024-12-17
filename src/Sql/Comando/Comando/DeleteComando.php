@@ -39,7 +39,7 @@ class DeleteComando extends ComandoDml
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
-    public function generar()
+    public function generar(): string
     {
         $delete = $this->getClausula(CLAUSULA_TIPOS::DELETE);
 
@@ -59,9 +59,8 @@ class DeleteComando extends ComandoDml
         $sql .= null === $orderby ? '' : ' '.$orderby->generar();
 
         $limit = $this->getClausula(CLAUSULA_TIPOS::LIMIT);
-        $sql .= null === $limit ? '' : ' '.$limit->generar();
 
-        return $sql;
+        return $sql . (null === $limit ? '' : ' '.$limit->generar());
     }
 
     /**

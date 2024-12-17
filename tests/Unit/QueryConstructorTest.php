@@ -29,7 +29,7 @@ class QueryConstructorTest extends TestCase
     /**
      * @var MockObject&Conexion
      */
-    private $conexion;
+    private \PHPUnit\Framework\MockObject\MockObject $conexion;
 
     protected function setUp(): void
     {

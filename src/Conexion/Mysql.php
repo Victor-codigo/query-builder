@@ -40,7 +40,7 @@ final class Mysql extends Conexion
      *
      * @return string cadena de conexión
      */
-    protected function getConexionString()
+    protected function getConexionString(): string
     {
         $servidor = 'host='.$this->conexion_info->servidor.';';
         $nombre = 'dbname='.$this->conexion_info->nombre.';';

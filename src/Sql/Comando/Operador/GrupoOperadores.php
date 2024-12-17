@@ -18,20 +18,16 @@ class GrupoOperadores
 
     /**
      * Grupo operadores que se esta creando actualmente.
-     *
-     * @var GrupoOperadores
      */
-    private static $grupo_actual;
+    private static \Lib\Sql\Comando\Operador\GrupoOperadores $grupo_actual;
 
     /**
      * Obtiene el grupo de operadores que al cual se apunta, y en el que se
      * crean las condiciones.
      *
      * @version 1.0
-     *
-     * @return GrupoOperadores
      */
-    public function getGrupoActual()
+    public function getGrupoActual(): \Lib\Sql\Comando\Operador\GrupoOperadores
     {
         return self::$grupo_actual;
     }
@@ -55,7 +51,7 @@ class GrupoOperadores
      *
      * @var Operador[]|GrupoOperadores[]
      */
-    private $operadores = [];
+    private array $operadores = [];
 
     /**
      * Obtiene los grupos de operadores y los operadores del grupo.
@@ -64,7 +60,7 @@ class GrupoOperadores
      *
      * @return Operador[]|GrupoOperadores[]
      */
-    public function getOperadores()
+    public function getOperadores(): array
     {
         return $this->operadores;
     }
@@ -91,10 +87,8 @@ class GrupoOperadores
     /**
      * TRUE si se colocan paréntesis al principio y al final del grupo
      * FALSE no.
-     *
-     * @var bool
      */
-    private $parentesis = false;
+    private bool $parentesis = false;
 
     /**
      * Establece si el grupo de operadores, se coloca dentro de paréntesis
@@ -148,7 +142,7 @@ class GrupoOperadores
      *
      * @return string código de los operadores
      */
-    public function generar($colocar_operador = true)
+    public function generar($colocar_operador = true): string
     {
         $retorno = $this->parentesis ? ' '.$this->operador.' (' : '';
         $flag_operador = !$this->parentesis && $colocar_operador;
@@ -189,10 +183,8 @@ class GrupoOperadores
      *
      * @param string $tipo tipo de operador lógico que se coloca en el grupo creado.
      *                     Una de las constantes TIPOS::*
-     *
-     * @return GrupoOperadores
      */
-    public function grupoCrear($tipo)
+    public function grupoCrear($tipo): self
     {
         $grupo = new self($this, $tipo);
         $this->operadores[] = $grupo;

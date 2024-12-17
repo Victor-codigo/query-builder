@@ -44,7 +44,7 @@ class SelectComando extends FetchComando
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
-    public function generar()
+    public function generar(): string
     {
         $select = $this->getClausula(CLAUSULA_TIPOS::SELECT);
         $from = $this->getClausula(CLAUSULA_TIPOS::FROM);
@@ -68,9 +68,8 @@ class SelectComando extends FetchComando
         $sql .= null === $orderby ? '' : ' '.$orderby->generar();
 
         $limit = $this->getClausula(CLAUSULA_TIPOS::LIMIT);
-        $sql .= null === $limit ? '' : ' '.$limit->generar();
 
-        return $sql;
+        return $sql . (null === $limit ? '' : ' '.$limit->generar());
     }
 
     /**

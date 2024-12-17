@@ -40,7 +40,7 @@ class Struct implements \Serializable
      * @return array<string, mixed> con las propiedades de la estructura, con el siguiente formato:
      *                              - arr[nombre de la propiedad] = mixed, valor de la propiedad
      */
-    public function toArray($niveles = 10)
+    public function toArray($niveles = 10): array
     {
         $propiedades = [];
 
@@ -76,7 +76,7 @@ class Struct implements \Serializable
      *
      * @return int número de propiedades
      */
-    public function length()
+    public function length(): int
     {
         return \count(get_object_vars($this));
     }
@@ -95,7 +95,7 @@ class Struct implements \Serializable
      *                              con el siguiente formato:
      *                              - arr[propiedad] = mixed, valor de la propiedad
      */
-    public function getPropiedadesNoValor($valor, $strict = false)
+    public function getPropiedadesNoValor($valor, $strict = false): array
     {
         $retorno = [];
         $valor_type = \gettype($valor);
@@ -133,7 +133,7 @@ class Struct implements \Serializable
      *
      * @return string[] Nombre de las propiedades
      */
-    public function getPropiedades()
+    public function getPropiedades(): array
     {
         $retorno = [];
 
@@ -151,7 +151,7 @@ class Struct implements \Serializable
      *
      * @return mixed[] valores de las propiedades
      */
-    public function getValores()
+    public function getValores(): array
     {
         $retorno = [];
 
@@ -212,10 +212,8 @@ class Struct implements \Serializable
      * obtiene el número de propiedades que contiene la estructura.
      *
      * @version 1.0
-     *
-     * @return int
      */
-    public function count()
+    public function count(): int
     {
         return \count(get_object_vars($this));
     }

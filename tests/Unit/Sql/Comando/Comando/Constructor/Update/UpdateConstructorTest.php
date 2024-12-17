@@ -22,15 +22,9 @@ class UpdateConstructorTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var UpdateComando&MockObject
-     */
-    private $comando_mock;
+    private \Lib\Sql\Comando\Comando\UpdateComando&\PHPUnit\Framework\MockObject\MockObject $comando_mock;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
     protected function setUp(): void
     {

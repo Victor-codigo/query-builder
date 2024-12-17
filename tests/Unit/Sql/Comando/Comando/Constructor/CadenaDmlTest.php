@@ -25,22 +25,13 @@ class CadenaDmlTest extends TestCase
     /**
      * @var CadenaDml&MockObject
      */
-    protected $object;
+    protected \PHPUnit\Framework\MockObject\MockObject $object;
 
-    /**
-     * @var ComandoDml&MockObject
-     */
-    private $comando_mock;
+    private \Lib\Sql\Comando\Comando\ComandoDml&\PHPUnit\Framework\MockObject\MockObject $comando_mock;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
-    /**
-     * @var CondicionFabricaInterface&MockObject
-     */
-    private $fabrica_condiciones;
+    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
 
     protected function setUp(): void
     {

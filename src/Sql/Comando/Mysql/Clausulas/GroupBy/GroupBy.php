@@ -66,7 +66,7 @@ final class GroupBy extends GroupByClausula
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         return 'GROUP BY '.implode(', ', $this->params->atributos);
     }

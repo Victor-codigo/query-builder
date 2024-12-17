@@ -35,7 +35,7 @@ class XorOperador extends Logico
      *
      * @return string código del comando
      */
-    public function generar($operador = true)
+    public function generar($operador = true): string
     {
         return ($operador ? ' XOR ' : '').$this->condicion->generar();
     }

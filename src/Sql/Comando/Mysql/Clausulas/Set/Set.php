@@ -66,7 +66,7 @@ final class Set extends SetClausula
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         $valores = $this->params->codigo_sql;
 

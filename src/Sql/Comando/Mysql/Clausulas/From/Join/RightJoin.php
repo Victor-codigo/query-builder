@@ -33,7 +33,7 @@ final class RightJoin extends Join
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         return 'RIGHT JOIN '.$this->params->tabla2.
                 ' ON '.$this->params->atributo_tabla1.' '.$this->params->operador.' '.$this->params->atributo_tabla2;

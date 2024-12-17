@@ -46,7 +46,7 @@ class Select extends SelectClausula
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         return 'SELECT '.
                 implode(' ', $this->params->modificadores).' '.

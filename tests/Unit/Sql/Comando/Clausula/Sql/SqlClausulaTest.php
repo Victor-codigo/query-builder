@@ -20,17 +20,14 @@ class SqlClausulaTest extends TestCase
     /**
      * @var SqlClausula&MockObject
      */
-    protected $object;
+    protected \PHPUnit\Framework\MockObject\MockObject $object;
 
-    /**
-     * @var ComandoMock
-     */
-    private $clausula_mock;
+    private \Tests\Unit\Sql\Comando\ComandoMock $clausula_mock;
 
     /**
      * @var ClausulaFabricaInterface
      */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
     protected function setUp(): void
     {

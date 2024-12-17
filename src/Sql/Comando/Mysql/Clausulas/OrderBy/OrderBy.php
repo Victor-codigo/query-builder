@@ -66,7 +66,7 @@ final class OrderBy extends OrderByClausula
      *
      * @return string código de la clausula
      */
-    public function generar()
+    public function generar(): string
     {
         $valores = [];
 

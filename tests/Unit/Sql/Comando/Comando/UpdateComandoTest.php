@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Sql\Comando\Comando;
 
-use Lib\Conexion\Conexion;
-use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\Sql\Comando\Clausula\ClausulaInterface;
 use Lib\Sql\Comando\Clausula\Limit\LimitClausula;
 use Lib\Sql\Comando\Clausula\OrderBy\OrderByClausula;
@@ -32,20 +30,11 @@ class UpdateComandoTest extends TestCase
      */
     protected $object;
 
-    /**
-     * @var ComandoDmlMock
-     */
-    private $helper;
+    private ComandoDmlMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface&MockObject
-     */
-    private $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    /**
-     * @var Conexion&MockObject
-     */
-    private $conexion;
+    private \Lib\Conexion\Conexion&MockObject $conexion;
 
     protected function setUp(): void
     {
@@ -189,7 +178,7 @@ class UpdateComandoTest extends TestCase
      * @param SetClausula $clausula      mock de la clausula
      * @param SetParams   $params_expect parámetros esperados
      */
-    private function setValidar($clausula, $params_expect): void
+    private function setValidar(SetClausula&MockObject $clausula, SetParams $params_expect): void
     {
         $this->assertEquals($clausula, $this->object->getConstruccionClausula(),
             'ERROR: la clausula en construcción no es la esperada'
@@ -280,7 +269,7 @@ class UpdateComandoTest extends TestCase
      * @param SetClausula $clausula      mock de la clausula
      * @param SetParams   $params_expect parámetros esperados
      */
-    private function incrementValidar($clausula, $params_expect): void
+    private function incrementValidar(SetClausula&MockObject $clausula, SetParams $params_expect): void
     {
         $this->assertEquals($clausula, $this->object->getConstruccionClausula(),
             'ERROR: la clausula en construcción no es la esperada'

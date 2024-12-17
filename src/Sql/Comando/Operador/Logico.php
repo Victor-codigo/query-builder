@@ -44,10 +44,8 @@ abstract class Logico extends Operador
 
     /**
      * Fábrica de condiciones.
-     *
-     * @var ?CondicionFabricaInterface
      */
-    private $fabrica_condiciones;
+    private ?\Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface $fabrica_condiciones = null;
 
     /**
      * Obtiene la fábrica de condiciones.

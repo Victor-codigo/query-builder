@@ -8,6 +8,9 @@
             "Tests\\": "tests/"
         }
     },
+    "require": {
+        "php": "^8.4"
+    },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.65",
         "phpstan/phpstan": "^1.12",

@@ -94,7 +94,7 @@ class SelectCadena extends CadenaDml
      *
      * @return CadenaDml
      */
-    public function limit($offset, $numero = null)
+    public function limit($offset, $numero = null): static
     {
         $this->comando->limit($offset, $numero);
 

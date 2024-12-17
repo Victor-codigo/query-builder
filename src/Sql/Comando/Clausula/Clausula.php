@@ -94,10 +94,8 @@ abstract class Clausula implements ClausulaInterface
 
     /**
      * Grupo de operadores de la clausula.
-     *
-     * @var ?GrupoOperadores
      */
-    private $operadores;
+    private ?\Lib\Sql\Comando\Operador\GrupoOperadores $operadores = null;
 
     /**
      * Obtiene el gestor de operadores de la clausula.
