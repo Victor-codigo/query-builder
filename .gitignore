@@ -1,4 +1,4 @@
 .docker
 vendor
 .vscode
-.phpunit.cache
+.phpunit.cache/
