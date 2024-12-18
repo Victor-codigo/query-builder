@@ -6,8 +6,8 @@ namespace Lib\Sql\Comando\Comando;
 
 use Lib\Conexion\Conexion;
 use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
-use Lib\Sql\Comando\Clausula\InsertAttr\InsertAttrParams;
 use Lib\Sql\Comando\Clausula\Insert\InsertParams;
+use Lib\Sql\Comando\Clausula\InsertAttr\InsertAttrParams;
 use Lib\Sql\Comando\Clausula\OnDuplicate\OnDuplicateParams;
 use Lib\Sql\Comando\Clausula\TIPOS as CLAUSULA_TIPOS;
 use Lib\Sql\Comando\Clausula\Values\ValuesParams;

@@ -61,11 +61,12 @@ abstract class Logico extends Operador
      *
      * @param Clausula $clausula Clausula a la que pertenece la condición
      */
-    public function __construct(Clausula $clausula, /**
-     * Fábrica de condiciones.
-     */
-    private ?\Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface $fabrica_condiciones)
-    {
+    public function __construct(Clausula $clausula,
+        /**
+         * Fábrica de condiciones.
+         */
+        private ?CondicionFabricaInterface $fabrica_condiciones,
+    ) {
         parent::__construct($clausula);
     }
 
