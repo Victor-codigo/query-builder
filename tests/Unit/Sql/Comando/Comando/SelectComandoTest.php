@@ -35,18 +35,15 @@ class SelectComandoTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var SelectComando
-     */
-    protected $object;
+    protected SelectComando $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
+    private CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
     #[\Override]
     protected function setUp(): void
@@ -78,6 +75,7 @@ class SelectComandoTest extends TestCase
                 'parse',
                 'generar',
                 'getRetornoCampos',
+                'getTipo',
             ])
             ->getMock();
 
@@ -85,6 +83,11 @@ class SelectComandoTest extends TestCase
             ->expects($this->once())
             ->method('getSelect')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::SELECT);
 
         $this->object->select($params->atributos, $params->modificadores);
 
@@ -125,6 +128,7 @@ class SelectComandoTest extends TestCase
             ->onlyMethods([
                 'parse',
                 'generar',
+                'getTipo',
             ])
             ->getMock();
 
@@ -132,6 +136,11 @@ class SelectComandoTest extends TestCase
             ->expects($this->once())
             ->method('getFrom')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::FROM);
 
         $this->object->from($params->tablas);
 
@@ -171,6 +180,7 @@ class SelectComandoTest extends TestCase
                 'generar',
                 'getOperadores',
                 'operadorCrear',
+                'getTipo',
             ])
             ->getMock();
 
@@ -191,6 +201,11 @@ class SelectComandoTest extends TestCase
             ->expects($this->once())
             ->method('operadorCrear')
             ->willReturn($and_operador);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::HAVING);
 
         $this->object->having($atributo, $operador, $params);
 
@@ -229,6 +244,7 @@ class SelectComandoTest extends TestCase
             ->onlyMethods([
                 'parse',
                 'generar',
+                'getTipo',
             ])
             ->getMock();
 
@@ -236,6 +252,11 @@ class SelectComandoTest extends TestCase
             ->expects($this->once())
             ->method('getGroupBy')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::GROUPBY);
 
         $this->object->groupBy($params->atributos[0], $params->atributos[1], $params->atributos[2]);
 

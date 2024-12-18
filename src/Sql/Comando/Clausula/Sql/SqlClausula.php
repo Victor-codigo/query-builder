@@ -16,10 +16,8 @@ abstract class SqlClausula extends Clausula
 {
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::SQL;
+    protected int $tipo = TIPOS::SQL;
 
     /**
      * Parámetros de la clausula.
@@ -64,7 +62,7 @@ abstract class SqlClausula extends Clausula
      * @return string código de la clausula
      */
     #[\Override]
-    public function generar()
+    public function generar(): string
     {
         return $this->params->sql;
     }

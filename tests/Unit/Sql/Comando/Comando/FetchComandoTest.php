@@ -7,6 +7,7 @@ namespace Tests\Unit\Sql\Comando\Comando;
 use Lib\Conexion\Conexion;
 use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\Sql\Comando\Clausula\Select\SelectClausula;
+use Lib\Sql\Comando\Clausula\TIPOS;
 use Lib\Sql\Comando\Comando\FetchComando;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -17,16 +18,13 @@ class FetchComandoTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var FetchComando
-     */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected FetchComando&MockObject $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
     #[\Override]
     protected function setUp(): void
@@ -274,14 +272,21 @@ class FetchComandoTest extends TestCase
                 'parse',
                 'generar',
                 'getRetornoCampos',
+                'getTipo',
             ])
             ->getMock();
-        $this->invocar($this->object, 'clausulaAdd', [$clausula]);
 
         $clausula
             ->expects($this->once())
             ->method('getRetornoCampos')
             ->willReturn(['id', 'nick']);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(TIPOS::SELECT);
+
+        $this->invocar($this->object, 'clausulaAdd', [$clausula]);
 
         $pdo_statement = $this->fetchAllMock();
         $pdo_statement

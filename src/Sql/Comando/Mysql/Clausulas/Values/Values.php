@@ -19,10 +19,8 @@ final class Values extends ValuesClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::VALUES;
+    protected int $tipo = TIPOS::VALUES;
 
     /**
      * Constructor.

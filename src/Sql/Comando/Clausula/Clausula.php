@@ -32,10 +32,8 @@ abstract class Clausula implements ClausulaInterface
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo;
+    protected int $tipo;
 
     /**
      * Obtiene el tipo de consulta.
@@ -45,7 +43,7 @@ abstract class Clausula implements ClausulaInterface
      * @return int Una de las constates TIPO::*
      */
     #[\Override]
-    public function getTipo()
+    public function getTipo(): int
     {
         return $this->tipo;
     }
@@ -75,11 +73,9 @@ abstract class Clausula implements ClausulaInterface
      * Obtiene los parámetros de la clausula.
      *
      * @version 1.0
-     *
-     * @return Parametros
      */
     #[\Override]
-    public function getParams()
+    public function getParams(): Parametros
     {
         return $this->params;
     }
@@ -98,7 +94,7 @@ abstract class Clausula implements ClausulaInterface
     /**
      * Grupo de operadores de la clausula.
      */
-    private ?\Lib\Sql\Comando\Operador\GrupoOperadores $operadores = null;
+    private ?GrupoOperadores $operadores = null;
 
     /**
      * Obtiene el gestor de operadores de la clausula.

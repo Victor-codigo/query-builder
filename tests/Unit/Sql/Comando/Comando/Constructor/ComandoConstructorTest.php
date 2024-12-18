@@ -6,6 +6,7 @@ namespace Tests\Unit\Sql\Comando\Comando\Constructor;
 
 use Lib\Sql\Comando\Comando\Constructor\ComandoConstructor;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tests\Comun\PhpunitUtilTrait;
 use Tests\Unit\Sql\Comando\Comando\ComandoDmlMock;
@@ -14,12 +15,9 @@ class ComandoConstructorTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var ComandoConstructor
-     */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected ComandoConstructor&MockObject $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $mock;
+    private ComandoDmlMock $mock;
 
     #[\Override]
     protected function setUp(): void

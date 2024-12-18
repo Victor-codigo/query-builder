@@ -39,8 +39,9 @@ class InsertComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @return string|null código SQL del comando
-     *                     NULL si no se ejecuta
+     * @return string código SQL del comando
+     *
+     * @throws ComandoGenerarClausulaPrincipalNoExisteException
      */
     #[\Override]
     public function generar(): string
@@ -64,7 +65,7 @@ class InsertComando extends ComandoDml
 
         $on_duplicate = $this->getClausula(CLAUSULA_TIPOS::ON_DUPLICATE_KEY_UPDATE);
 
-        return $sql . (null === $on_duplicate ? '' : ' '.$on_duplicate->generar());
+        return $sql.(null === $on_duplicate ? '' : ' '.$on_duplicate->generar());
     }
 
     /**

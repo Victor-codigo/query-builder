@@ -22,23 +22,17 @@ class ComandoDmlConstructorTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var ComandoDmlConstructor
-     */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected ComandoDmlConstructor&MockObject $object;
 
-    private \Lib\Sql\Comando\Comando\Comando&\PHPUnit\Framework\MockObject\MockObject $comando_mock;
+    private Comando&MockObject $comando_mock;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    /**
-     * @var CadenaDml&MockObject
-     */
-    private \PHPUnit\Framework\MockObject\MockObject $cadena;
+    private CadenaDml&MockObject $cadena;
 
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
+    private CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
     #[\Override]
     protected function setUp(): void
@@ -190,7 +184,7 @@ class ComandoDmlConstructorTest extends TestCase
         $this->comando_mock
             ->expects($comando_mock_invoke_counter)
             ->method('paramAdd')
-            ->with($this->callback(fn(Param $param): bool => match ($comando_mock_invoke_counter->numberOfInvocations()) {
+            ->with($this->callback(fn (Param $param): bool => match ($comando_mock_invoke_counter->numberOfInvocations()) {
                 1 => $param === $expect_param_1,
                 2 => $param === $expect_param_2,
                 3 => $param === $expect_param_3,

@@ -66,6 +66,7 @@ class UpdateComandoTest extends TestCase
                 'parse',
                 'generar',
                 'getRetornoCampos',
+                'getTipo',
             ])
             ->getMock();
 
@@ -73,6 +74,11 @@ class UpdateComandoTest extends TestCase
             ->expects($this->once())
             ->method('getUpdate')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::UPDATE);
 
         $this->object->update($params->tablas, $params->modificadores);
 
@@ -115,6 +121,7 @@ class UpdateComandoTest extends TestCase
                 'parse',
                 'generar',
                 'getRetornoCampos',
+                'getTipo',
             ])
             ->getMock();
 
@@ -122,6 +129,11 @@ class UpdateComandoTest extends TestCase
             ->expects($this->once())
             ->method('getUpdate')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::UPDATE);
 
         $this->object->update($params->tablas, $params->modificadores);
 
@@ -176,8 +188,8 @@ class UpdateComandoTest extends TestCase
      *
      * @version 1.0
      *
-     * @param SetClausula $clausula      mock de la clausula
-     * @param SetParams   $params_expect parámetros esperados
+     * @param SetClausula&MockObject $clausula      mock de la clausula
+     * @param SetParams              $params_expect parámetros esperados
      */
     private function setValidar(SetClausula&MockObject $clausula, SetParams $params_expect): void
     {
@@ -267,8 +279,8 @@ class UpdateComandoTest extends TestCase
      *
      * @version 1.0
      *
-     * @param SetClausula $clausula      mock de la clausula
-     * @param SetParams   $params_expect parámetros esperados
+     * @param SetClausula&MockObject $clausula      mock de la clausula
+     * @param SetParams              $params_expect parámetros esperados
      */
     private function incrementValidar(SetClausula&MockObject $clausula, SetParams $params_expect): void
     {

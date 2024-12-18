@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Sql\Comando\Operador;
 
-use Lib\Conexion\Conexion;
-use Lib\Sql\Comando\Clausula\Clausula;
-use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\Sql\Comando\Operador\Condicion\Condicion;
-use Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 use Lib\Sql\Comando\Operador\Logico;
 use Lib\Sql\Comando\Operador\OP;
 use PHPUnit\Framework\Attributes\Test;
@@ -21,20 +17,17 @@ class LogicoTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var Logico
-     */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected Logico&MockObject $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private \Lib\Conexion\Conexion&MockObject $conexion;
 
-    private \Lib\Sql\Comando\Clausula\Clausula&\PHPUnit\Framework\MockObject\MockObject $clausula;
+    private \Lib\Sql\Comando\Clausula\Clausula&MockObject $clausula;
 
-    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
+    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
     #[\Override]
     protected function setUp(): void

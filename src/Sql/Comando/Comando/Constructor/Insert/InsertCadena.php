@@ -52,10 +52,8 @@ class InsertCadena extends CadenaDml
      * @version 1.0
      *
      * @param string[] $particiones nombre de las particiones
-     *
-     * @return CadenaDml
      */
-    public function partition(array $particiones): static
+    public function partition(array $particiones): self
     {
         $this->comando->partition($particiones);
 
@@ -68,10 +66,8 @@ class InsertCadena extends CadenaDml
      * @version 1.0
      *
      * @param string[] $atributos nombre de los atributos
-     *
-     * @return CadenaDml
      */
-    public function attributes(array $atributos): static
+    public function attributes(array $atributos): self
     {
         $this->comando->attributes($atributos);
 
@@ -84,10 +80,8 @@ class InsertCadena extends CadenaDml
      * @version 1.0
      *
      * @param string[][] $valores valores
-     *
-     * @return CadenaDml
      */
-    public function values(array $valores): static
+    public function values(array $valores): self
     {
         $this->comando->values($valores);
 
@@ -100,10 +94,8 @@ class InsertCadena extends CadenaDml
      * @version 1.0
      *
      * @param string[] $valores valores
-     *
-     * @return CadenaDml
      */
-    public function onDuplicate(array $valores): static
+    public function onDuplicate(array $valores): self
     {
         $this->comando->onDuplicate($valores);
 

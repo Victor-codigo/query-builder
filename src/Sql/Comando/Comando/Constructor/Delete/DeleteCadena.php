@@ -56,10 +56,8 @@ class DeleteCadena extends CadenaDml
      * @version 1.0
      *
      * @param int $numero Número de registros que pueden ser actualizados
-     *
-     * @return CadenaDml
      */
-    public function limit($numero): static
+    public function limit($numero): self
     {
         $this->comando->limit($numero);
 

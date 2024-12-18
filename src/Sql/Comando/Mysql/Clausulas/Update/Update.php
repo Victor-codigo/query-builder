@@ -19,10 +19,8 @@ final class Update extends UpdateClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::UPDATE;
+    protected int $tipo = TIPOS::UPDATE;
 
     /**
      * Constructor.

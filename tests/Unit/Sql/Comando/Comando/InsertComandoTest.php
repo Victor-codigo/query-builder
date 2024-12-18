@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Sql\Comando\Comando;
 
-use Lib\Conexion\Conexion;
-use Lib\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\Sql\Comando\Clausula\ClausulaInterface;
 use Lib\Sql\Comando\Clausula\Delete\DeleteClausula;
 use Lib\Sql\Comando\Clausula\InsertAttr\InsertAttrClausula;
@@ -38,11 +36,11 @@ class InsertComandoTest extends TestCase
      */
     protected $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private \Lib\Conexion\Conexion&MockObject $conexion;
 
     #[\Override]
     protected function setUp(): void
@@ -74,6 +72,7 @@ class InsertComandoTest extends TestCase
                 'parse',
                 'generar',
                 'getRetornoCampos',
+                'getTipo',
             ])
             ->getMock();
 
@@ -81,6 +80,11 @@ class InsertComandoTest extends TestCase
             ->expects($this->once())
             ->method('getInsert')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::INSERT);
 
         $this->object->insert($params->tabla, $params->modificadores);
 
@@ -121,6 +125,7 @@ class InsertComandoTest extends TestCase
             ->onlyMethods([
                 'parse',
                 'generar',
+                'getTipo',
             ])
             ->getMock();
 
@@ -128,6 +133,11 @@ class InsertComandoTest extends TestCase
             ->expects($this->once())
             ->method('getInsertAttr')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::INSERT_ATTR);
 
         $this->object->attributes($params->atributos);
 
@@ -159,6 +169,7 @@ class InsertComandoTest extends TestCase
             ->onlyMethods([
                 'parse',
                 'generar',
+                'getTipo',
             ])
             ->getMock();
 
@@ -166,6 +177,11 @@ class InsertComandoTest extends TestCase
             ->expects($this->once())
             ->method('getValues')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::VALUES);
 
         $this->object->values($params->valores);
 
@@ -205,6 +221,7 @@ class InsertComandoTest extends TestCase
             ->onlyMethods([
                 'parse',
                 'generar',
+                'getTipo',
             ])
             ->getMock();
 
@@ -212,6 +229,11 @@ class InsertComandoTest extends TestCase
             ->expects($this->once())
             ->method('getValues')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::VALUES);
 
         $this->object->values($params->valores);
 
@@ -248,6 +270,7 @@ class InsertComandoTest extends TestCase
             ->onlyMethods([
                 'parse',
                 'generar',
+                'getTipo',
             ])
             ->getMock();
 
@@ -255,6 +278,11 @@ class InsertComandoTest extends TestCase
             ->expects($this->once())
             ->method('getOnDuplicate')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::DELETE);
 
         $this->object->onDuplicate($params->valores);
 

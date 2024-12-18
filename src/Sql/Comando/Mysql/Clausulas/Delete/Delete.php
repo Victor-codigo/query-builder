@@ -19,10 +19,8 @@ final class Delete extends DeleteClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::DELETE;
+    protected int $tipo = TIPOS::DELETE;
 
     /**
      * Constructor.

@@ -31,10 +31,8 @@ abstract class Comando implements ComandoInterface
 
     /**
      * Tipo de comando. Una de las constantes TIPO::*.
-     *
-     * @var int
      */
-    protected $tipo;
+    protected int $tipo;
 
     /**
      * Tipo de comando SQL.
@@ -44,7 +42,7 @@ abstract class Comando implements ComandoInterface
      * @return int Una de las constantes TIPO::*
      */
     #[\Override]
-    public function getTipo()
+    public function getTipo(): int
     {
         return $this->tipo;
     }

@@ -17,17 +17,11 @@ class SqlClausulaTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var SqlClausula&MockObject
-     */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected SqlClausula&MockObject $object;
 
-    private \Tests\Unit\Sql\Comando\ComandoMock $clausula_mock;
+    private ComandoMock $clausula_mock;
 
-    /**
-     * @var ClausulaFabricaInterface
-     */
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
     #[\Override]
     protected function setUp(): void

@@ -20,10 +20,8 @@ final class GroupBy extends GroupByClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::GROUPBY;
+    protected int $tipo = TIPOS::GROUPBY;
 
     /**
      * Parámetros de la clausula.

@@ -20,10 +20,8 @@ final class Limit extends LimitClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::LIMIT;
+    protected int $tipo = TIPOS::LIMIT;
 
     /**
      * Parámetros de la clausula.

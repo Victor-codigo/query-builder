@@ -20,10 +20,8 @@ final class Set extends SetClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::SET;
+    protected int $tipo = TIPOS::SET;
 
     /**
      * Parámetros de la clausula.

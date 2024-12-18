@@ -19,10 +19,8 @@ final class Having extends HavingClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::HAVING;
+    protected int $tipo = TIPOS::HAVING;
 
     /**
      * Constructor.

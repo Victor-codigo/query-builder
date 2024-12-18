@@ -19,10 +19,8 @@ final class Partition extends PartitionClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::PARTITION;
+    protected int $tipo = TIPOS::PARTITION;
 
     /**
      * Constructor.

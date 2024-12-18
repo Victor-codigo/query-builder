@@ -19,10 +19,8 @@ final class Where extends WhereClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::WHERE;
+    protected int $tipo = TIPOS::WHERE;
 
     /**
      * Constructor.

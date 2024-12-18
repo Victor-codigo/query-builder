@@ -41,8 +41,9 @@ class SelectComando extends FetchComando
      *
      * @version 1.0
      *
-     * @return string|null código SQL del comando
-     *                     NULL si no se ejecuta
+     * @return string código SQL del comando
+     *
+     * @throws ComandoGenerarClausulaPrincipalNoExisteException
      */
     #[\Override]
     public function generar(): string
@@ -70,7 +71,7 @@ class SelectComando extends FetchComando
 
         $limit = $this->getClausula(CLAUSULA_TIPOS::LIMIT);
 
-        return $sql . (null === $limit ? '' : ' '.$limit->generar());
+        return $sql.(null === $limit ? '' : ' '.$limit->generar());
     }
 
     /**

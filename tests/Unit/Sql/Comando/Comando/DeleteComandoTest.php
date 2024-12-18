@@ -25,19 +25,13 @@ class DeleteComandoTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var DeleteComando
-     */
-    protected $object;
+    protected DeleteComando $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    /**
-     * @var Conexion
-     */
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
     #[\Override]
     protected function setUp(): void
@@ -70,6 +64,7 @@ class DeleteComandoTest extends TestCase
                 'generar',
                 'parse',
                 'getRetornoCampos',
+                'getTipo',
             ])
             ->getMock();
 
@@ -77,6 +72,11 @@ class DeleteComandoTest extends TestCase
             ->expects($this->once())
             ->method('getDelete')
             ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(CLAUSULA_TIPOS::DELETE);
 
         $this->object->delete($params->tablas_eliminar,
             $params->tablas_referencia,

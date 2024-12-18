@@ -19,10 +19,8 @@ final class InsertAttr extends InsertAttrClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::INSERT_ATTR;
+    protected int $tipo = TIPOS::INSERT_ATTR;
 
     /**
      * Constructor.

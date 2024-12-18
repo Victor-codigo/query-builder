@@ -14,6 +14,7 @@ use Lib\Sql\Comando\Mysql\Clausulas\From\From;
 use Lib\Sql\Comando\Mysql\Clausulas\From\Join\LeftJoin;
 use Lib\Sql\Comando\Mysql\Clausulas\From\Join\RightJoin;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tests\Comun\PhpunitUtilTrait;
 use Tests\Unit\Sql\Comando\ComandoMock;
@@ -22,24 +23,15 @@ class FromTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    private \Lib\Sql\Comando\Mysql\Clausulas\From\From $object;
+    private From $object;
 
-    private \Tests\Unit\Sql\Comando\ComandoMock $helper;
+    private ComandoMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface
-     */
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    /**
-     * @var Comando
-     */
-    private \Lib\Sql\Comando\Comando\Comando&\PHPUnit\Framework\MockObject\MockObject $comando;
+    private Comando&MockObject $comando;
 
-    /**
-     * @var Conexion
-     */
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
     #[\Override]
     protected function setUp(): void

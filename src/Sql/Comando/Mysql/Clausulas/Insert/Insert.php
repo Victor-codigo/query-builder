@@ -19,10 +19,8 @@ final class Insert extends InsertClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::INSERT;
+    protected int $tipo = TIPOS::INSERT;
 
     /**
      * Constructor.

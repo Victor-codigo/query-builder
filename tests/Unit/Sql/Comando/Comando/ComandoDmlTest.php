@@ -16,6 +16,7 @@ use Lib\Sql\Comando\Clausula\OrderBy\OrderByClausula;
 use Lib\Sql\Comando\Clausula\OrderBy\OrderByParams;
 use Lib\Sql\Comando\Clausula\Partition\PartitionClausula;
 use Lib\Sql\Comando\Clausula\Partition\PartitionParams;
+use Lib\Sql\Comando\Clausula\TIPOS;
 use Lib\Sql\Comando\Clausula\Where\WhereClausula;
 use Lib\Sql\Comando\Comando\ComandoDml;
 use Lib\Sql\Comando\Operador\AndOperador;
@@ -33,24 +34,15 @@ class ComandoDmlTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var ComandoDml&MockObject
-     */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected ComandoDml&MockObject $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    /**
-     * @var Conexion
-     */
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    /**
-     * @var CondicionFabricaInterface
-     */
-    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
+    private CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
     #[\Override]
     protected function setUp(): void
@@ -130,6 +122,7 @@ class ComandoDmlTest extends TestCase
                 'generar',
                 'getOperadores',
                 'operadorCrear',
+                'getTipo',
             ])
             ->getMock();
 
@@ -141,13 +134,20 @@ class ComandoDmlTest extends TestCase
             ->method('getWhere')
             ->willReturn($clausula);
 
-        $clausula->expects($this->once())
-                 ->method('getOperadores')
-                 ->willReturn($operadores_grupo);
+        $clausula
+            ->expects($this->once())
+            ->method('getOperadores')
+            ->willReturn($operadores_grupo);
 
-        $clausula->expects($this->once())
-                 ->method('operadorCrear')
-                 ->willReturn($and_operador);
+        $clausula
+            ->expects($this->once())
+            ->method('operadorCrear')
+            ->willReturn($and_operador);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(TIPOS::WHERE);
 
         $this->object->where($atributo, $operador, $params);
 
@@ -228,17 +228,25 @@ class ComandoDmlTest extends TestCase
         $params = new OrderByParams();
         $params->atributos = ['atributo1', 'atributo2', 'atributo3'];
 
-        $clausula = $this->getMockBuilder(OrderByClausula::class)
-                         ->disableOriginalConstructor()
-                         ->onlyMethods([
-                             'parse',
-                             'generar',
-                         ])
-                         ->getMock();
+        $clausula = $this
+            ->getMockBuilder(OrderByClausula::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods([
+                'parse',
+                'generar',
+                'getTipo',
+            ])
+            ->getMock();
 
-        $this->clausula_fabrica->expects($this->once())
-                               ->method('getOrder')
-                               ->willReturn($clausula);
+        $this->clausula_fabrica
+            ->expects($this->once())
+            ->method('getOrder')
+            ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(TIPOS::ORDERBY);
 
         $this->object->orderBy($params->atributos);
 
@@ -270,17 +278,25 @@ class ComandoDmlTest extends TestCase
         $params->number = 3;
         $params->offset = 2;
 
-        $clausula = $this->getMockBuilder(LimitClausula::class)
-                        ->disableOriginalConstructor()
-                        ->onlyMethods([
-                            'parse',
-                            'generar',
-                        ])
-                        ->getMock();
+        $clausula = $this
+            ->getMockBuilder(LimitClausula::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods([
+                'parse',
+                'generar',
+                'getTipo',
+            ])
+            ->getMock();
 
-        $this->clausula_fabrica->expects($this->once())
-                                ->method('getLimit')
-                                ->willReturn($clausula);
+        $this->clausula_fabrica
+            ->expects($this->once())
+            ->method('getLimit')
+            ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(TIPOS::LIMIT);
 
         $this->object->limit($params->offset, $params->number);
 
@@ -311,17 +327,25 @@ class ComandoDmlTest extends TestCase
         $params = new PartitionParams();
         $params->particiones = ['particion1', 'particion2', 'particion3'];
 
-        $clausula = $this->getMockBuilder(PartitionClausula::class)
-                         ->disableOriginalConstructor()
-                         ->onlyMethods([
-                             'parse',
-                             'generar',
-                         ])
-                         ->getMock();
+        $clausula = $this
+            ->getMockBuilder(PartitionClausula::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods([
+                'parse',
+                'generar',
+                'getTipo',
+            ])
+            ->getMock();
 
-        $this->clausula_fabrica->expects($this->once())
-                               ->method('getPartition')
-                               ->willReturn($clausula);
+        $this->clausula_fabrica
+            ->expects($this->once())
+            ->method('getPartition')
+            ->willReturn($clausula);
+
+        $clausula
+            ->expects($this->once())
+            ->method('getTipo')
+            ->willReturn(TIPOS::PARTITION);
 
         $this->object->partition($params->particiones);
 

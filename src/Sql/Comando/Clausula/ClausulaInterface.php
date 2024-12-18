@@ -19,7 +19,7 @@ interface ClausulaInterface
      *
      * @return string código de la clausula
      */
-    public function generar();
+    public function generar(): string;
 
     /**
      * Obtiene el tipo de consulta.
@@ -28,16 +28,14 @@ interface ClausulaInterface
      *
      * @return int Una de las constates TIPO::*
      */
-    public function getTipo();
+    public function getTipo(): int;
 
     /**
      * Obtiene los parámetros de la clausula.
      *
      * @version 1.0
-     *
-     * @return Parametros
      */
-    public function getParams();
+    public function getParams(): Parametros;
 
     /**
      * Establece los parámetros de la clausula.

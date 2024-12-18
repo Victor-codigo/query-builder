@@ -16,14 +16,11 @@ class DeleteCadenaTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var DeleteCadena
-     */
-    protected MockObject $object;
+    protected DeleteCadena&MockObject $object;
 
-    private \Lib\Sql\Comando\Comando\ComandoDml&\PHPUnit\Framework\MockObject\MockObject $comando_mock;
+    private ComandoDml&MockObject $comando_mock;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
     #[\Override]
     protected function setUp(): void

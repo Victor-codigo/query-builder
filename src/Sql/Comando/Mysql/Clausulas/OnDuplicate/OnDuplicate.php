@@ -19,10 +19,8 @@ final class OnDuplicate extends OnDuplicateClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::ON_DUPLICATE_KEY_UPDATE;
+    protected int $tipo = TIPOS::ON_DUPLICATE_KEY_UPDATE;
 
     /**
      * Constructor.

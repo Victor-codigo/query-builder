@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lib\Sql\Comando\Comando\Constructor\Update;
 
 use Lib\Sql\Comando\Comando\Comando;
-use Lib\Sql\Comando\Comando\ComandoDml;
 use Lib\Sql\Comando\Comando\Constructor\CadenaDml;
 use Lib\Sql\Comando\Comando\Constructor\Excepciones\ComandoConstructorUpdateDecrementValorNegativoException;
 use Lib\Sql\Comando\Comando\Constructor\Excepciones\ComandoConstructorUpdateIncrementValorNegativoException;
@@ -22,18 +21,6 @@ class UpdateCadena extends CadenaDml
      * @var ?UpdateComando
      */
     protected $comando;
-
-    /**
-     * Constructor.
-     *
-     * @version 1.0
-     *
-     * @param ComandoDml $comando comando UPDATE que se construye
-     */
-    public function __construct(ComandoDml $comando)
-    {
-        parent::__construct($comando);
-    }
 
     /**
      * Construye la clausula SET de el comando SQL UPDATE.
@@ -56,10 +43,8 @@ class UpdateCadena extends CadenaDml
      * @version 1.0
      *
      * @param int $numero Número de registros que pueden ser actualizados
-     *
-     * @return CadenaDml
      */
-    public function limit($numero): static
+    public function limit($numero): self
     {
         $this->comando->limit($numero);
 
@@ -94,7 +79,6 @@ class UpdateCadena extends CadenaDml
      *
      * @param string $atributo   nombre del atributo
      * @param float  $decremento valor que se incrementa, (debe ser un valor positivo)
-     *
      *
      * @throws ComandoConstructorUpdateIncrementValorNegativoException
      */

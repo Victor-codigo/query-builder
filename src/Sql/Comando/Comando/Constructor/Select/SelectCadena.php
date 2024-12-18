@@ -91,10 +91,8 @@ class SelectCadena extends CadenaDml
      * @param int $offset Número de registro a partir del cual los registros son devueltos.
      *                    Si solo se pasa $offset, número de registros que se devuelven
      * @param int $numero Número de registros que se devuelven
-     *
-     * @return CadenaDml
      */
-    public function limit($offset, $numero = null): static
+    public function limit($offset, $numero = null): self
     {
         $this->comando->limit($offset, $numero);
 

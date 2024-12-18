@@ -20,10 +20,8 @@ final class From extends FromClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::FROM;
+    protected int $tipo = TIPOS::FROM;
 
     /**
      * Parámetros de la clausula.

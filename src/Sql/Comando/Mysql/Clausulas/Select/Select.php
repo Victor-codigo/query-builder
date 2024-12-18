@@ -19,10 +19,8 @@ class Select extends SelectClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::SELECT;
+    protected int $tipo = TIPOS::SELECT;
 
     /**
      * Constructor.

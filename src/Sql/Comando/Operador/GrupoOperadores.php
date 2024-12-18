@@ -12,7 +12,7 @@ class GrupoOperadores
     /**
      * Grupo operadores que se esta creando actualmente.
      */
-    private static \Lib\Sql\Comando\Operador\GrupoOperadores $grupo_actual;
+    private static GrupoOperadores $grupo_actual;
 
     /**
      * Obtiene el grupo de operadores que al cual se apunta, y en el que se
@@ -20,7 +20,7 @@ class GrupoOperadores
      *
      * @version 1.0
      */
-    public function getGrupoActual(): \Lib\Sql\Comando\Operador\GrupoOperadores
+    public function getGrupoActual(): self
     {
         return self::$grupo_actual;
     }
@@ -97,14 +97,16 @@ class GrupoOperadores
      * @param string          $operador    Tipo de operador que tiene el grupo.
      *                                     Una de las constes TIPO::* de operadores lógicos
      */
-    public function __construct(/**
-     * Grupo padre al que pertenece el grupo.
-     */
-    private $grupo_padre = null, /**
-     * Operador del grupo.
-     */
-    private $operador = null)
-    {
+    public function __construct(
+        /**
+         * Grupo padre al que pertenece el grupo.
+         */
+        private ?self $grupo_padre = null,
+        /**
+         * Operador del grupo.
+         */
+        private ?string $operador = null,
+    ) {
         $this->setGrupoActual($this);
     }
 

@@ -20,10 +20,8 @@ final class OrderBy extends OrderByClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::ORDERBY;
+    protected int $tipo = TIPOS::ORDERBY;
 
     /**
      * Parámetros de la clausula.

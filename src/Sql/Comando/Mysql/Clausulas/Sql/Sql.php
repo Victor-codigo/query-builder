@@ -19,10 +19,8 @@ final class Sql extends SqlClausula
 
     /**
      * Tipo de clausula.
-     *
-     * @var int
      */
-    protected $tipo = TIPOS::SQL;
+    protected int $tipo = TIPOS::SQL;
 
     /**
      * Constructor.
@@ -47,7 +45,7 @@ final class Sql extends SqlClausula
      * @return string código de la clausula
      */
     #[\Override]
-    public function generar()
+    public function generar(): string
     {
         return parent::generar();
     }

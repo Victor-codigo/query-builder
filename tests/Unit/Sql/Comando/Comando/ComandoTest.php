@@ -25,24 +25,15 @@ class ComandoTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    /**
-     * @var Comando
-     */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected Comando&MockObject $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface
-     */
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    /**
-     * @var CondicionFabricaInterface
-     */
-    private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
+    private CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
     #[\Override]
     protected function setUp(): void
@@ -70,7 +61,7 @@ class ComandoTest extends TestCase
     #[Test]
     public function GetTipo(): void
     {
-        $expects = 'valor tipo';
+        $expects = TIPOS::SELECT;
 
         $this->propertyEdit($this->object, 'tipo', $expects);
 
@@ -331,12 +322,12 @@ class ComandoTest extends TestCase
             ->expects($pdo_statement_counter)
             ->method('bindValue')
             ->with(
-                $this->callback(fn(int|string $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
+                $this->callback(fn (int|string $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
                     1 => $param === $param1::MARCA.$param1->id,
                     2 => $param === $param2::MARCA.$param2->id,
                     default => throw new \LogicException('No hay mas iteraciones'),
                 }),
-                $this->callback(fn(mixed $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
+                $this->callback(fn (mixed $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
                     1 => $param === $param1->valor,
                     2 => $param === $param2->valor,
                     default => throw new \LogicException('No hay mas iteraciones'),

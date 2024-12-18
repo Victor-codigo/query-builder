@@ -35,8 +35,11 @@ final class FullOuterJoin extends Join
      * @return string código de la clausula
      */
     #[\Override]
-    public function generar(): never
+    public function generar(): string
     {
         throw new JoinNoExisteException('MySql no tiene FULL OUTER JOIN');
+
+        // @phpstan-ignore deadCode.unreachable
+        return null;
     }
 }

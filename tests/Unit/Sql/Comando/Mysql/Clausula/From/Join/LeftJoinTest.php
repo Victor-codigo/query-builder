@@ -21,21 +21,15 @@ class LeftJoinTest extends TestCase
 {
     use PhpunitUtilTrait;
 
-    private \Lib\Sql\Comando\Mysql\Clausulas\From\Join\LeftJoin $object;
+    private LeftJoin $object;
 
-    private \Tests\Unit\Sql\Comando\ComandoMock $helper;
+    private ComandoMock $helper;
 
-    /**
-     * @var ClausulaFabricaInterface
-     */
-    private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    /**
-     * @var Comando
-     */
-    private \Lib\Sql\Comando\Comando\Comando&\PHPUnit\Framework\MockObject\MockObject $comando;
+    private Comando&MockObject $comando;
 
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
     #[\Override]
     protected function setUp(): void

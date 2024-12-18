@@ -8,6 +8,7 @@ use Lib\Conexion\Conexion;
 use Lib\Sql\Comando\Operador\Condicion\Condicion;
 use Lib\Sql\Comando\Operador\XorOperador;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tests\Comun\PhpunitUtilTrait;
 use Tests\Unit\Sql\Comando\Comando\ComandoDmlMock;
@@ -21,12 +22,9 @@ class XorOperadorTest extends TestCase
      */
     protected $object;
 
-    private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
+    private ComandoDmlMock $helper;
 
-    /**
-     * @var Conexion
-     */
-    private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
     #[\Override]
     protected function setUp(): void

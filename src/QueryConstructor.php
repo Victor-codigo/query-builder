@@ -24,7 +24,7 @@ class QueryConstructor
     /**
      * Conexión con la base de datos.
      */
-    private ?\Lib\Conexion\Conexion $conexion = null;
+    private ?Conexion $conexion = null;
 
     /**
      * Establece la conexión con la base de datos.
@@ -42,27 +42,21 @@ class QueryConstructor
      * Obtiene la conexión con la base de datos.
      *
      * @version 1.0
-     *
-     * @return Conexion
      */
-    public function getconexion(): ?\Lib\Conexion\Conexion
+    public function getconexion(): ?Conexion
     {
         return $this->conexion;
     }
 
     /**
      * Fabrica de clausulas.
-     *
-     * @var ?ClausulaFabricaInterface
      */
-    private ?\Lib\Sql\Comando\Mysql\Clausulas\MysqlClausula $fabrica_clausulas = null;
+    private ?ClausulaFabricaInterface $fabrica_clausulas = null;
 
     /**
      * Fabrica de condiciones.
-     *
-     * @var ?CondicionFabricaInterface
      */
-    private ?\Lib\Sql\Comando\Mysql\Condicion\MysqlCondicionFabrica $fabrica_condiciones = null;
+    private ?CondicionFabricaInterface $fabrica_condiciones = null;
 
     /**
      * Constructor.
@@ -124,7 +118,7 @@ class QueryConstructor
      *
      * @version 1.0
      */
-    public function selectConstructor(): \Lib\Sql\Comando\Comando\Constructor\Select\SelectConstructor
+    public function selectConstructor(): SelectConstructor
     {
         $this->conectar();
 
@@ -153,7 +147,7 @@ class QueryConstructor
      *
      * @version 1.0
      */
-    public function deleteConstructor(): \Lib\Sql\Comando\Comando\Constructor\Delete\DeleteConstructor
+    public function deleteConstructor(): DeleteConstructor
     {
         $this->conectar();
 
@@ -169,7 +163,7 @@ class QueryConstructor
      *
      * @version 1.0
      */
-    public function insertConstructor(): \Lib\Sql\Comando\Comando\Constructor\Insert\InsertConstructor
+    public function insertConstructor(): InsertConstructor
     {
         $this->conectar();
 
@@ -183,7 +177,7 @@ class QueryConstructor
      *
      * @version 1.0
      */
-    public function sqlConstructor(): \Lib\Sql\Comando\Comando\Constructor\Sql\SqlConstructor
+    public function sqlConstructor(): SqlConstructor
     {
         $this->conectar();
 
