@@ -46,6 +46,7 @@ final class Values extends ValuesClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         $registros = [];

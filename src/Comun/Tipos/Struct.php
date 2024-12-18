@@ -250,6 +250,7 @@ class Struct implements \Serializable
      *
      * @version 1.0
      */
+    #[\Override]
     public function serialize(): string
     {
         $serializar = $this->__serialize();
@@ -286,6 +287,7 @@ class Struct implements \Serializable
         }
     }
 
+    #[\Override]
     public function unserialize(string $serialized): void
     {
         $retorno = unserialize($serialized);

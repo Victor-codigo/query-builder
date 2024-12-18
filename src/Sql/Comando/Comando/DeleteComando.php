@@ -39,6 +39,7 @@ class DeleteComando extends ComandoDml
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
+    #[\Override]
     public function generar(): string
     {
         $delete = $this->getClausula(CLAUSULA_TIPOS::DELETE);

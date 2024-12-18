@@ -46,6 +46,7 @@ final class Insert extends InsertClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         $modificadores = '';
@@ -65,6 +66,7 @@ final class Insert extends InsertClausula
      *
      * @return string[]
      */
+    #[\Override]
     public function getRetornoCampos(): array
     {
         return [];

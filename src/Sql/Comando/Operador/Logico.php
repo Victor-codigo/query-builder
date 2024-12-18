@@ -74,6 +74,7 @@ abstract class Logico extends Operador
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         $this->condicion = null;

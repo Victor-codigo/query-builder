@@ -29,6 +29,7 @@ class IsTest extends TestCase
 
     private \Lib\Sql\Comando\Clausula\Clausula&\PHPUnit\Framework\MockObject\MockObject $clausula;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');

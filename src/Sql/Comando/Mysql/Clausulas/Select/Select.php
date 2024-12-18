@@ -46,6 +46,7 @@ class Select extends SelectClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'SELECT '.
@@ -60,6 +61,7 @@ class Select extends SelectClausula
      *
      * @return string[]
      */
+    #[\Override]
     public function getRetornoCampos()
     {
         return $this->params->atributos;

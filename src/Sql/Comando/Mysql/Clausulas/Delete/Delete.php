@@ -46,6 +46,7 @@ final class Delete extends DeleteClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         if (empty($this->params->tablas_referencia)) {
@@ -91,6 +92,7 @@ final class Delete extends DeleteClausula
      *
      * @return string[]
      */
+    #[\Override]
     public function getRetornoCampos(): array
     {
         return [];

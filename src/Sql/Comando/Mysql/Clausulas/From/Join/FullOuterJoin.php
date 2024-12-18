@@ -34,6 +34,7 @@ final class FullOuterJoin extends Join
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): never
     {
         throw new JoinNoExisteException('MySql no tiene FULL OUTER JOIN');

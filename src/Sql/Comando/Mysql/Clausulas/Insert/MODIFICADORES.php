@@ -16,17 +16,17 @@ final class MODIFICADORES extends MODIFICADORES_BASE
      *
      * @var string
      */
-    public const LOW_PRIORITY = 'LOW_PRIORITY';
+    public const string LOW_PRIORITY = 'LOW_PRIORITY';
 
     /**
      * Ignora errores.
      *
      * @var string
      */
-    public const IGNORE = 'IGNORE';
+    public const string IGNORE = 'IGNORE';
 
     /**
      * @var string
      */
-    public const HIGH_PRIORITY = 'HIGH_PRIORITY';
+    public const string HIGH_PRIORITY = 'HIGH_PRIORITY';
 }

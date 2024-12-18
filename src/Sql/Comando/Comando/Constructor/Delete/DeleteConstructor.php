@@ -50,6 +50,7 @@ class DeleteConstructor extends ComandoDmlConstructor
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         $this->comando = null;

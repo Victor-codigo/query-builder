@@ -28,6 +28,7 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      *
      * @return JoinInterface[]
      */
+    #[\Override]
     public function getJoins()
     {
         return $this->joins;
@@ -53,6 +54,7 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         foreach ($this->joins as &$join) {
@@ -69,6 +71,7 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      *
      * @param Join $join JOIN que se añade
      */
+    #[\Override]
     public function joinAdd(Join $join): void
     {
         $this->joins[] = $join;
@@ -85,6 +88,7 @@ abstract class FromClausula extends Clausula implements FromClausulaInterface
      *
      * @throws \InvalidArgumentException
      */
+    #[\Override]
     public function joinCrear(ClausulaFabricaInterface $fabrica, $tipo, JoinParams $params): Join
     {
         return match ($tipo) {

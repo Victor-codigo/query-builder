@@ -41,6 +41,7 @@ abstract class UpdateClausula extends Clausula implements ClausulaMainInterface
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         $this->params = null;

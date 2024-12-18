@@ -30,6 +30,7 @@ class DeleteCadena extends CadenaDml
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         parent::__destruct();

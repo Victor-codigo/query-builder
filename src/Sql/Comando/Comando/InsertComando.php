@@ -42,6 +42,7 @@ class InsertComando extends ComandoDml
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
+    #[\Override]
     public function generar(): string
     {
         $select = $this->getClausula(CLAUSULA_TIPOS::INSERT);

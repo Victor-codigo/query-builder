@@ -46,6 +46,7 @@ final class Where extends WhereClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'WHERE '.$this->getOperadores()->generar(false);

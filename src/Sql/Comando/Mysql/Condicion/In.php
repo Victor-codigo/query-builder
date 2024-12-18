@@ -43,6 +43,7 @@ class In extends CondicionMysql
      *
      * @version 1.0
      */
+    #[\Override]
     public function generar(): string
     {
         $valores = [];

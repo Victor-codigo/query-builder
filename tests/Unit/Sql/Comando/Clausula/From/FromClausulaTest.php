@@ -29,6 +29,7 @@ class FromClausulaTest extends TestCase
 
     private \Lib\Sql\Comando\Clausula\ClausulaFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $clausula_fabrica;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->clausula_mock = new ComandoMock('name');

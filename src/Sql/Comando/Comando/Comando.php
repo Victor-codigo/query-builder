@@ -43,6 +43,7 @@ abstract class Comando implements ComandoInterface
      *
      * @return int Una de las constantes TIPO::*
      */
+    #[\Override]
     public function getTipo()
     {
         return $this->tipo;

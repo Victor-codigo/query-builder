@@ -48,6 +48,7 @@ abstract class SqlClausula extends Clausula
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         $this->params = null;
@@ -62,6 +63,7 @@ abstract class SqlClausula extends Clausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar()
     {
         return $this->params->sql;

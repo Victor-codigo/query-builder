@@ -16,21 +16,21 @@ final class MODIFICADORES extends SELECT_MODIFICADORES
      *
      * @var string
      */
-    public const ALL = 'ALL';
+    public const string ALL = 'ALL';
 
     /**
      * Modificador DISTINCT.
      *
      * @var string
      */
-    public const DISTINCT = 'DISTINCT';
+    public const string DISTINCT = 'DISTINCT';
 
-    public const HIGH_PRIORITY = 'HIGH_PRIORITY';
-    public const STRAIGHT_JOIN = 'STRAIGHT_JOIN';
-    public const SQL_SMALL_RESULT = 'SQL_SMALL_RESULT';
-    public const SQL_BIG_RESULT = 'SQL_BIG_RESULT';
-    public const SQL_BUFFER_RESULT = 'SQL_BUFFER_RESULT';
-    public const SQL_CACHE = 'SQL_CACHE';
-    public const SQL_NO_CACHE = 'SQL_NO_CACHE';
-    public const SQL_CALC_FOUND_ROWS = 'SQL_CALC_FOUND_ROWS';
+    public const string HIGH_PRIORITY = 'HIGH_PRIORITY';
+    public const string STRAIGHT_JOIN = 'STRAIGHT_JOIN';
+    public const string SQL_SMALL_RESULT = 'SQL_SMALL_RESULT';
+    public const string SQL_BIG_RESULT = 'SQL_BIG_RESULT';
+    public const string SQL_BUFFER_RESULT = 'SQL_BUFFER_RESULT';
+    public const string SQL_CACHE = 'SQL_CACHE';
+    public const string SQL_NO_CACHE = 'SQL_NO_CACHE';
+    public const string SQL_CALC_FOUND_ROWS = 'SQL_CALC_FOUND_ROWS';
 }

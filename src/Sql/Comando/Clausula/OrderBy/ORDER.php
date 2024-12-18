@@ -16,12 +16,12 @@ final class ORDER extends Enum
      *
      * @var string
      */
-    public const ASC = 'ASC';
+    public const string ASC = 'ASC';
 
     /**
      * Orden descendente.
      *
      * @var string
      */
-    public const DESC = 'DESC';
+    public const string DESC = 'DESC';
 }

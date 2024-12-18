@@ -16,12 +16,12 @@ final class MODIFICADORES extends UPDATE_MODIFICADORES
      *
      * @var string
      */
-    public const LOW_PRIORITY = 'LOW_PRIORITY';
+    public const string LOW_PRIORITY = 'LOW_PRIORITY';
 
     /**
      * Ignora errores.
      *
      * @var string
      */
-    public const IGNORE = 'IGNORE';
+    public const string IGNORE = 'IGNORE';
 }

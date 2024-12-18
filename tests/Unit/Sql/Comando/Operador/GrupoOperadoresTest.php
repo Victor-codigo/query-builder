@@ -36,6 +36,7 @@ class GrupoOperadoresTest extends TestCase
 
     private \Lib\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&\PHPUnit\Framework\MockObject\MockObject $fabrica_condiciones;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

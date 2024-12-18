@@ -33,6 +33,7 @@ final class InnerJoin extends Join
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'INNER JOIN '.$this->params->tabla2.

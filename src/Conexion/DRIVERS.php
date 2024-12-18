@@ -16,5 +16,5 @@ final class DRIVERS extends Enum
      *
      * @var string
      */
-    public const MYSQL = 'mysql';
+    public const string MYSQL = 'mysql';
 }

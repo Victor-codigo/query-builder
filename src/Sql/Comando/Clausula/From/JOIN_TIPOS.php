@@ -16,33 +16,33 @@ final class JOIN_TIPOS extends Enum
      *
      * @var int
      */
-    public const INNER_JOIN = 0;
+    public const int INNER_JOIN = 0;
 
     /**
      * Left join.
      *
      * @var int
      */
-    public const LEFT_JOIN = 1;
+    public const int LEFT_JOIN = 1;
 
     /**
      * Right join.
      *
      * @var int
      */
-    public const RIGHT_JOIN = 2;
+    public const int RIGHT_JOIN = 2;
 
     /**
      * Full outer join.
      *
      * @var int
      */
-    public const FULL_OUTER_JOIN = 3;
+    public const int FULL_OUTER_JOIN = 3;
 
     /**
      * Cross join.
      *
      * @var int
      */
-    public const CROSS_JOIN = 4;
+    public const int CROSS_JOIN = 4;
 }

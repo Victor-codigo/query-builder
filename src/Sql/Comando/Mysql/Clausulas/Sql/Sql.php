@@ -46,6 +46,7 @@ final class Sql extends SqlClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar()
     {
         return parent::generar();

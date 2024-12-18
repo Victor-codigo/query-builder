@@ -31,6 +31,7 @@ class QueryConstructorTest extends TestCase
      */
     private \PHPUnit\Framework\MockObject\MockObject $conexion;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->conexion = $this->getMockBuilder(Conexion::class)

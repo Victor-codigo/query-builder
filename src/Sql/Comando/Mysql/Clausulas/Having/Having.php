@@ -46,6 +46,7 @@ final class Having extends HavingClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'HAVING '.$this->getOperadores()->generar(false);

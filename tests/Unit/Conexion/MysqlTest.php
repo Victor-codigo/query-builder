@@ -27,6 +27,7 @@ class MysqlTest extends TestCase
      */
     private \PHPUnit\Framework\MockObject\MockObject $conexion;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->conexion_config = new ConexionConfig('name');

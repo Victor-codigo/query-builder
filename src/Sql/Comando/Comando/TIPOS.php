@@ -16,33 +16,33 @@ final class TIPOS extends Enum
      *
      * @var int
      */
-    public const SQL = 0;
+    public const int SQL = 0;
 
     /**
      * Comando SELECT.
      *
      * @var int
      */
-    public const SELECT = 1;
+    public const int SELECT = 1;
 
     /**
      * Comando UPDATE.
      *
      * @var int
      */
-    public const UPDATE = 2;
+    public const int UPDATE = 2;
 
     /**
      * Comando INSERT.
      *
      * @var int
      */
-    public const INSERT = 3;
+    public const int INSERT = 3;
 
     /**
      * Comando DELETE.
      *
      * @var int
      */
-    public const DELETE = 4;
+    public const int DELETE = 4;
 }

@@ -33,6 +33,7 @@ final class LeftJoin extends Join
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'LEFT JOIN '.$this->params->tabla2.

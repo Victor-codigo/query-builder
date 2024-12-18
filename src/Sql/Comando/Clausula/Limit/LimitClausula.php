@@ -40,6 +40,7 @@ abstract class LimitClausula extends Clausula
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         $this->params = null;

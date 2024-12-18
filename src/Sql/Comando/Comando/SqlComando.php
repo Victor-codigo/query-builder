@@ -39,6 +39,7 @@ class SqlComando extends FetchComando
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
+    #[\Override]
     public function generar()
     {
         $select = $this->getClausula(CLAUSULA_TIPOS::SQL);

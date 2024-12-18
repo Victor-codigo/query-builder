@@ -46,6 +46,7 @@ final class Partition extends PartitionClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'PARTITION ('.implode(', ', $this->params->particiones).')';

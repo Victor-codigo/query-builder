@@ -44,6 +44,7 @@ abstract class Clausula implements ClausulaInterface
      *
      * @return int Una de las constates TIPO::*
      */
+    #[\Override]
     public function getTipo()
     {
         return $this->tipo;
@@ -77,6 +78,7 @@ abstract class Clausula implements ClausulaInterface
      *
      * @return Parametros
      */
+    #[\Override]
     public function getParams()
     {
         return $this->params;
@@ -87,6 +89,7 @@ abstract class Clausula implements ClausulaInterface
      *
      * @version 1.0
      */
+    #[\Override]
     public function setParams(Parametros $params): void
     {
         $this->params = $params;
@@ -104,6 +107,7 @@ abstract class Clausula implements ClausulaInterface
      *
      * @return ?GrupoOperadores
      */
+    #[\Override]
     public function getOperadores()
     {
         return $this->operadores;
@@ -153,6 +157,7 @@ abstract class Clausula implements ClausulaInterface
      *
      * @throws \InvalidArgumentException
      */
+    #[\Override]
     public function operadorCrear($tipo)
     {
         return match ($tipo) {

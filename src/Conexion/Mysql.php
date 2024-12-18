@@ -28,6 +28,7 @@ final class Mysql extends Conexion
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         parent::__destruct();
@@ -40,6 +41,7 @@ final class Mysql extends Conexion
      *
      * @return string cadena de conexión
      */
+    #[\Override]
     protected function getConexionString(): string
     {
         $servidor = 'host='.$this->conexion_info->servidor.';';
@@ -59,6 +61,7 @@ final class Mysql extends Conexion
      *
      * @version 1.0
      */
+    #[\Override]
     protected function setAtributos(): void
     {
         $this->conexion->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -75,6 +78,7 @@ final class Mysql extends Conexion
      *
      * @return string|false valor del último registro
      */
+    #[\Override]
     public function lastInsertId($atributo)
     {
         return $this->conexion->lastInsertId($atributo);

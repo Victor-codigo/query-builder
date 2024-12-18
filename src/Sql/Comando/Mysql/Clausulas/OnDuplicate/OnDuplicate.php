@@ -46,6 +46,7 @@ final class OnDuplicate extends OnDuplicateClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         $valores = [];

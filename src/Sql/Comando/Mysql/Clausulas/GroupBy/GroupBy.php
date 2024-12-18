@@ -52,6 +52,7 @@ final class GroupBy extends GroupByClausula
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         $this->params = null;
@@ -66,6 +67,7 @@ final class GroupBy extends GroupByClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'GROUP BY '.implode(', ', $this->params->atributos);

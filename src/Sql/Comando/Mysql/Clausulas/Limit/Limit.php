@@ -52,6 +52,7 @@ final class Limit extends LimitClausula
      *
      * @version 1.0
      */
+    #[\Override]
     public function __destruct()
     {
         $this->params = null;
@@ -66,6 +67,7 @@ final class Limit extends LimitClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         if (null === $this->params->number) {

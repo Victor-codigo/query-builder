@@ -41,6 +41,7 @@ class UpdateComando extends ComandoDml
      * @return string|null código SQL del comando
      *                     NULL si no se ejecuta
      */
+    #[\Override]
     public function generar(): string
     {
         $update = $this->getClausula(CLAUSULA_TIPOS::UPDATE);

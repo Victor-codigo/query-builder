@@ -27,6 +27,7 @@ class UpdateCadenaTest extends TestCase
 
     private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $helper;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

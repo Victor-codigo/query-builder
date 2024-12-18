@@ -46,6 +46,7 @@ final class InsertAttr extends InsertAttrClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return '('.implode(', ', $this->params->atributos).')';

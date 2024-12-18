@@ -33,6 +33,7 @@ final class CrossJoin extends Join
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         return 'CROSS JOIN '.$this->params->tabla2.

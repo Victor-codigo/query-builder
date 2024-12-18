@@ -48,6 +48,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param bool                      $operadores          TRUE si se crea el gestor de operadores
      *                                                       FALSE no
      */
+    #[\Override]
     public function getSql(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores): Sql
     {
         return new Sql($comando, $fabrica_condiciones, $operadores);
@@ -58,6 +59,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @version 1.0
      */
+    #[\Override]
     public function getParam(): \Lib\Sql\Comando\Mysql\Clausulas\Param\ParamMysql
     {
         return new ParamMysql();
@@ -75,6 +77,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Select clausula SELECT
      */
+    #[\Override]
     public function getSelect(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores): \Lib\Sql\Comando\Mysql\Clausulas\Select\Select
     {
         return new Select($comando, $fabrica_condiciones, $operadores);
@@ -92,6 +95,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Update clausula UPDATE
      */
+    #[\Override]
     public function getUpdate(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores): \Lib\Sql\Comando\Mysql\Clausulas\Update\Update
     {
         return new Update($comando, $fabrica_condiciones, $operadores);
@@ -109,6 +113,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Delete clausula UPDATE
      */
+    #[\Override]
     public function getDelete(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores): \Lib\Sql\Comando\Mysql\Clausulas\Delete\Delete
     {
         return new Delete($comando, $fabrica_condiciones, $operadores);
@@ -126,6 +131,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Insert clausula INSERT
      */
+    #[\Override]
     public function getInsert(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\Insert\Insert
     {
         return new Insert($comando, $fabrica_condiciones, $operadores_gestor);
@@ -143,6 +149,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return From clausula FROM
      */
+    #[\Override]
     public function getFrom(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\From\From
     {
         return new From($comando, $fabrica_condiciones, $operadores_gestor);
@@ -160,6 +167,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Set clausula SET
      */
+    #[\Override]
     public function getSet(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\Set\Set
     {
         return new Set($comando, $fabrica_condiciones, $operadores_gestor);
@@ -173,6 +181,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      */
+    #[\Override]
     public function getInnerJoin(FromClausula $from, JoinParams $params): \Lib\Sql\Comando\Mysql\Clausulas\From\Join\InnerJoin
     {
         return new InnerJoin($from, $params);
@@ -186,6 +195,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      */
+    #[\Override]
     public function getLeftJoin(FromClausula $from, JoinParams $params): \Lib\Sql\Comando\Mysql\Clausulas\From\Join\LeftJoin
     {
         return new LeftJoin($from, $params);
@@ -199,6 +209,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      */
+    #[\Override]
     public function getRightJoin(FromClausula $from, JoinParams $params): \Lib\Sql\Comando\Mysql\Clausulas\From\Join\RightJoin
     {
         return new RightJoin($from, $params);
@@ -212,6 +223,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      */
+    #[\Override]
     public function getCrossJoin(FromClausula $from, JoinParams $params): \Lib\Sql\Comando\Mysql\Clausulas\From\Join\CrossJoin
     {
         return new CrossJoin($from, $params);
@@ -225,6 +237,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      * @param FromClausula $from   Clausula FORM a la que pertenece el JOIN
      * @param JoinParams   $params parámetros de la sentencia JOIN
      */
+    #[\Override]
     public function getFullOuterJoin(FromClausula $from, JoinParams $params): \Lib\Sql\Comando\Mysql\Clausulas\From\Join\FullOuterJoin
     {
         return new FullOuterJoin($from, $params);
@@ -242,6 +255,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Where clausula WHERE
      */
+    #[\Override]
     public function getWhere(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\Where\Where
     {
         return new Where($comando, $fabrica_condiciones, $operadores_gestor);
@@ -259,6 +273,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return GroupBy clausula GROUP BY
      */
+    #[\Override]
     public function getGroupBy(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\GroupBy\GroupBy
     {
         return new GroupBy($comando, $fabrica_condiciones, $operadores_gestor);
@@ -276,6 +291,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Having clausula HAVING
      */
+    #[\Override]
     public function getHaving(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\Having\Having
     {
         return new Having($comando, $fabrica_condiciones, $operadores_gestor);
@@ -293,6 +309,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return OrderBy clausula ORDER BY
      */
+    #[\Override]
     public function getOrder(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\OrderBy\OrderBy
     {
         return new OrderBy($comando, $fabrica_condiciones, $operadores_gestor);
@@ -310,6 +327,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Limit clausula LIMIT
      */
+    #[\Override]
     public function getLimit(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\Limit\Limit
     {
         return new Limit($comando, $fabrica_condiciones, $operadores_gestor);
@@ -327,6 +345,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return InsertAttr clausula PARTITION
      */
+    #[\Override]
     public function getInsertAttr(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\InsertAttr\InsertAttr
     {
         return new InsertAttr($comando, $fabrica_condiciones, $operadores_gestor);
@@ -344,6 +363,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Values clausula VALUES
      */
+    #[\Override]
     public function getValues(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\Values\Values
     {
         return new Values($comando, $fabrica_condiciones, $operadores_gestor);
@@ -361,6 +381,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return OnDuplicate clausula ON DUPLICATE KEY UPDATE
      */
+    #[\Override]
     public function getOnDuplicate(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\OnDuplicate\OnDuplicate
     {
         return new OnDuplicate($comando, $fabrica_condiciones, $operadores_gestor);
@@ -378,6 +399,7 @@ class MysqlClausula extends MysqlFabrica implements ClausulaFabricaInterface
      *
      * @return Partition clausula PARTITION
      */
+    #[\Override]
     public function getPartition(Comando $comando, CondicionFabricaInterface $fabrica_condiciones, $operadores_gestor): \Lib\Sql\Comando\Mysql\Clausulas\Partition\Partition
     {
         return new Partition($comando, $fabrica_condiciones, $operadores_gestor);

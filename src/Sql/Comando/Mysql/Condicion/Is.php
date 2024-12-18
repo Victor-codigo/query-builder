@@ -37,6 +37,7 @@ class Is extends CondicionMysql
      *
      * @version 1.0
      */
+    #[\Override]
     public function generar(): string
     {
         return $this->atributo.' '.$this->operador;

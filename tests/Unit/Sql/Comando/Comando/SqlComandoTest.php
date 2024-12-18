@@ -31,6 +31,7 @@ class SqlComandoTest extends TestCase
 
     private \Lib\Conexion\Conexion&\PHPUnit\Framework\MockObject\MockObject $conexion;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

@@ -1,6 +1,7 @@
 <?php
 
 use Rector\Config\RectorConfig;
+use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -10,6 +11,9 @@ return RectorConfig::configure()
     ->withPreparedSets(
         deadCode: true,
     )
-    ->withPhpSets(php80: true)
+    ->withSkip([
+        ReadOnlyPropertyRector::class,
+    ])
+    ->withPhpSets(php84: true)
     ->withTypeCoverageLevel(100)
 ;

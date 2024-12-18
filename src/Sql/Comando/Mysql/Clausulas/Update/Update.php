@@ -46,6 +46,7 @@ final class Update extends UpdateClausula
      *
      * @return string código de la clausula
      */
+    #[\Override]
     public function generar(): string
     {
         $modificadores = '';
@@ -66,6 +67,7 @@ final class Update extends UpdateClausula
      *
      * @return string[]
      */
+    #[\Override]
     public function getRetornoCampos(): array
     {
         return [];

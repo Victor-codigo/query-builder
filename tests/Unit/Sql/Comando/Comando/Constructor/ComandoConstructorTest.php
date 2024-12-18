@@ -21,6 +21,7 @@ class ComandoConstructorTest extends TestCase
 
     private \Tests\Unit\Sql\Comando\Comando\ComandoDmlMock $mock;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->mock = new ComandoDmlMock('name');

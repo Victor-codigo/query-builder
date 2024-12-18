@@ -33,6 +33,7 @@ class ConexionTest extends TestCase
      */
     public static $trigger_error;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->conexion_config = new ConexionConfig('name');
