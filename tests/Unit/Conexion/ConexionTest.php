@@ -24,9 +24,9 @@ class ConexionTest extends TestCase
     /**
      * @var Conexion&MockObject
      */
-    protected \PHPUnit\Framework\MockObject\MockObject $object;
+    protected MockObject $object;
 
-    private \Tests\Unit\Conexion\ConexionConfig $conexion_config;
+    private ConexionConfig $conexion_config;
 
     /**
      * @var \Closure
@@ -372,7 +372,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('query')
-                    ->willReturnCallback(fn(): \PDOStatement => $expect);
+                    ->willReturnCallback(fn (): \PDOStatement => $expect);
 
         $resultado = $this->object->query($sql);
 
@@ -420,7 +420,7 @@ class ConexionTest extends TestCase
 
         $pdo_mock->expects($this->once())
                     ->method('exec')
-                    ->willReturnCallback(fn(): int => $expect);
+                    ->willReturnCallback(fn (): int => $expect);
 
         $resultado = $this->object->exec($sql);
 
