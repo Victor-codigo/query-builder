@@ -11,6 +11,7 @@ use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaInterface;
 use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoConstructor;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoDmlConstructor;
+use Lib\QueryConstructor\Sql\Comando\Comando\FetchComando;
 use Lib\QueryConstructor\Sql\Comando\Operador\AndOperador;
 use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
 use Lib\QueryConstructor\Sql\Comando\Operador\GrupoOperadores;
@@ -72,6 +73,24 @@ class ComandoMock extends TestCase
     public function getComandoMock(Conexion $conexion, ClausulaFabricaInterface $fabrica, CondicionFabricaInterface $fabrica_condiciones, array $metodos = []): Comando&MockObject
     {
         return $this->getMockBuilder(Comando::class)
+                    ->setConstructorArgs([$conexion, $fabrica, $fabrica_condiciones])
+                    ->onlyMethods($metodos)
+                    ->getMock();
+    }
+
+    /**
+     * Genera un mock de un comando.
+     *
+     * @version 1.0
+     *
+     * @param Conexion                  $conexion            conexión con la base de datos
+     * @param ClausulaFabricaInterface  $fabrica             Fabrica de clausulas SQL
+     * @param CondicionFabricaInterface $fabrica_condiciones Fábrica de condiciones
+     * @param list<non-empty-string>    $metodos             métodos para los que se crea un stub
+     */
+    public function getFetchComandoMock(Conexion $conexion, ClausulaFabricaInterface $fabrica, CondicionFabricaInterface $fabrica_condiciones, array $metodos = []): FetchComando&MockObject
+    {
+        return $this->getMockBuilder(FetchComando::class)
                     ->setConstructorArgs([$conexion, $fabrica, $fabrica_condiciones])
                     ->onlyMethods($metodos)
                     ->getMock();
