@@ -24,7 +24,7 @@ PHP 7.0
 # Usage
 
 1. Create The database conexion configuration
-```
+```php
 use Lib\Conexion\ConexionInfo;
 
 $conexion_info = new ConexionInfo();
@@ -40,7 +40,7 @@ $conexion = new Mysql($conexion_info);
   - Select command
 
 
-```
+```php
 use Lib\Comun\Tipos\Struct;
 use Lib\Conexion\Conexion;
 use Lib\Conexion\DRIVERS;
@@ -65,7 +65,7 @@ $select_comando->fetchAllClass(Struct::class);;
 ```
 
 - Insert command
-```
+```php
 use Lib\Comun\Tipos\Struct;
 use Lib\Conexion\Conexion;
 use Lib\Conexion\DRIVERS;
@@ -85,7 +85,7 @@ $sql = $insert_comando->getSql();
 $insert_comando->execute();
 ```
 - Update command
-```
+```php
 use Lib\Comun\Tipos\Struct;
 use Lib\Conexion\Conexion;
 use Lib\Conexion\DRIVERS;
@@ -107,7 +107,7 @@ $sql = $update_comando->getSql();
 $update_comando->execute();
 ```
 - Delete command
-```
+```php
 use Lib\Comun\Tipos\Struct;
 use Lib\Conexion\Conexion;
 use Lib\Conexion\DRIVERS;
@@ -125,7 +125,7 @@ $delete_comando->execute();
 ```
 
 3. Group commands and execute in once in a transaction
-```
+```php
 $grupoComandos = new GrupoComandos($this->conexion);
 $grupoComandos->add($insert_comando);
 $grupoComandos->add($update_comando);
