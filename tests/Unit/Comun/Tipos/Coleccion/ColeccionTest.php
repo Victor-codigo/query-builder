@@ -19,6 +19,7 @@ class ColeccionTest extends TestCase
      */
     protected Coleccion $object;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->object = new Coleccion([1, 'hola', 2, 'adios']);

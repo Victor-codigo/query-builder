@@ -19,6 +19,7 @@ class ItemTest extends TestCase
      */
     protected $object;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->object = new Item(5, 'id');

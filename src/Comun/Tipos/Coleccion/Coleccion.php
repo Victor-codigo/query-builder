@@ -59,6 +59,7 @@ class Coleccion extends ArrayBase
      * @param TValue          $item elemento que se añade
      * @param int|string|null $id   identificador del elemento
      */
+    #[\Override]
     public function push(mixed $item, int|string|null $id = null): void
     {
         if (!$item instanceof Item) {
@@ -77,6 +78,7 @@ class Coleccion extends ArrayBase
      * @param TValue          $item elemento que se añade
      * @param int|string|null $id   identificador del elemento
      */
+    #[\Override]
     public function prepend(mixed $item, int|string|null $id = null): void
     {
         if (!$item instanceof Item) {
@@ -96,6 +98,7 @@ class Coleccion extends ArrayBase
      *
      * @return TValue Devuelve el elemento eliminado
      */
+    #[\Override]
     public function remove(int $indice): mixed
     {
         $removed = parent::remove($indice);
@@ -366,6 +369,7 @@ class Coleccion extends ArrayBase
      * @return TValue|null item
      *                     NULL si no se encuentra
      */
+    #[\Override]
     public function get(int $index): mixed
     {
         $item = parent::get($index);
@@ -591,6 +595,7 @@ class Coleccion extends ArrayBase
      *
      * @return TValue|null
      */
+    #[\Override]
     public function pop(): mixed
     {
         $item = parent::pop();
@@ -609,6 +614,7 @@ class Coleccion extends ArrayBase
      *
      * @return TValue|null
      */
+    #[\Override]
     public function shift(): mixed
     {
         $item = parent::shift();
@@ -668,6 +674,7 @@ class Coleccion extends ArrayBase
      * @return bool TRUE si se cambió correctamente.
      *              FALSE si se produjo un error
      */
+    #[\Override]
     public function change(int|string $index, mixed $item): bool
     {
         if (!isset($this->array[$index])) {

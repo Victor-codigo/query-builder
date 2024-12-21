@@ -26,6 +26,7 @@ class GrupoComandosTest extends TestCase
 
     private Conexion&MockObject $conexion;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');

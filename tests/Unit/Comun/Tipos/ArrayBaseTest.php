@@ -26,6 +26,7 @@ class ArrayBaseTest extends TestCase
      */
     private array $array = [];
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->array = [

@@ -19,6 +19,7 @@ class StructTest extends TestCase
 
     protected StructForTesting $object;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->object = new StructForTesting();

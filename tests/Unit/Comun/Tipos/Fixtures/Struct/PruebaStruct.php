@@ -14,6 +14,7 @@ class PruebaStruct implements \Serializable
      */
     public array $propiedad_4 = [1, 2, 3];
 
+    #[\Override]
     public function serialize(): string
     {
         return serialize([
@@ -25,6 +26,7 @@ class PruebaStruct implements \Serializable
         );
     }
 
+    #[\Override]
     public function unserialize($serialized): void
     {
         $serialized = unserialize($serialized);

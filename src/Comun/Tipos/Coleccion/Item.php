@@ -90,6 +90,7 @@ class Item implements \JsonSerializable, \Serializable
      *
      * @version 1.0
      */
+    #[\Override]
     public function jsonSerialize(): mixed
     {
         if ($this->item instanceof \JsonSerializable) {
@@ -108,6 +109,7 @@ class Item implements \JsonSerializable, \Serializable
      *
      * @return string clase serializada
      */
+    #[\Override]
     public function serialize(): string
     {
         if ($this->item instanceof \Serializable) {
@@ -132,6 +134,7 @@ class Item implements \JsonSerializable, \Serializable
      * @return bool TRUE si se ejecuta correctamente,
      *              FALSE si se produce un error
      */
+    #[\Override]
     public function unserialize(string $serialized): bool
     {
         $data = unserialize($serialized);

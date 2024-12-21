@@ -13,9 +13,9 @@ return RectorConfig::configure()
         // typeDeclarations: true
     )
     ->withSkip([
-        // ReadOnlyPropertyRector::class,
+        ReadOnlyPropertyRector::class,
     ])
 
-    ->withPhpSets(php80: true)
+    ->withPhpSets(php84: true)
     ->withTypeCoverageLevel(100)
 ;

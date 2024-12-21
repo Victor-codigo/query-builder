@@ -41,6 +41,7 @@ abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
      *
      * @version 1.0
      */
+    #[\Override]
     public function count(): int
     {
         return \count($this->array);
@@ -54,6 +55,7 @@ abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
      * @return mixed valor
      *               FALSE si está vacío o ha alcanzado el final
      */
+    #[\Override]
     public function current(): mixed
     {
         return current($this->array);
@@ -67,6 +69,7 @@ abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
      * @return int|null indice actual
      *                  NULL si está vacío o ha alcanzado el final
      */
+    #[\Override]
     public function key(): int|string|null
     {
         return key($this->array);
@@ -77,6 +80,7 @@ abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
      *
      * @version 1.0
      */
+    #[\Override]
     public function next(): void
     {
         next($this->array);
@@ -87,6 +91,7 @@ abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
      *
      * @version 1.0
      */
+    #[\Override]
     public function rewind(): void
     {
         reset($this->array);
@@ -100,6 +105,7 @@ abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
      * @return bool TRUE si el indice interno es válido
      *              FALSE si no lo es
      */
+    #[\Override]
     public function valid(): bool
     {
         return false === current($this->array) ? false : true;
@@ -318,6 +324,7 @@ abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
      * @return string|false array en JSON
      *                      FALSE Si se produce un error
      */
+    #[\Override]
     public function jsonSerialize(): string|false
     {
         return json_encode($this->array);
