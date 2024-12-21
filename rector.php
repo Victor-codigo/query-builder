@@ -10,7 +10,6 @@ return RectorConfig::configure()
     ])
     ->withPreparedSets(
         deadCode: true,
-        // typeDeclarations: true
     )
     ->withSkip([
         ReadOnlyPropertyRector::class,

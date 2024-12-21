@@ -145,7 +145,7 @@ abstract class Comando implements ComandoInterface
      *
      * @var Param[]
      */
-    protected $params = [];
+    protected array $params = [];
 
     /**
      * Obtiene los parámetros que se sustituyen en la consulta.
@@ -154,26 +154,22 @@ abstract class Comando implements ComandoInterface
      *
      * @return Param[] parámetros
      */
-    public function getParams()
+    public function getParams(): array
     {
         return $this->params;
     }
 
     /**
      * Comando PDO.
-     *
-     * @var \PDOStatement|false|null
      */
-    protected $statement;
+    protected \PDOStatement|false|null $statement;
 
     /**
      * Obtiene el Resultado del comando.
      *
      * @version 1.0
-     *
-     * @return \PDOStatement|false|null
      */
-    protected function getStatement()
+    protected function getStatement(): \PDOStatement|false|null
     {
         return $this->statement;
     }
@@ -235,10 +231,8 @@ abstract class Comando implements ComandoInterface
      * @version 1.0
      *
      * @param int $tipo tipo de clausula. Una de las constates TIPO::*
-     *
-     * @return ClausulaInterface|null
      */
-    protected function getClausula($tipo)
+    protected function getClausula($tipo): ?ClausulaInterface
     {
         if (!\array_key_exists($tipo, $this->clausulas)) {
             return null;
@@ -251,10 +245,8 @@ abstract class Comando implements ComandoInterface
      * Obtiene la clausula principal del comando.
      *
      * @version 1.0
-     *
-     * @return ?ClausulaMainInterface
      */
-    protected function getClausulaMain()
+    protected function getClausulaMain(): ?ClausulaMainInterface
     {
         foreach ($this->clausulas as $clausula) {
             if ($clausula instanceof ClausulaMainInterface) {
@@ -288,7 +280,7 @@ abstract class Comando implements ComandoInterface
      *
      * @return \PDOStatement|false — FALSE si falla
      */
-    protected function getPDOStatement($sql, array $opciones = [])
+    protected function getPDOStatement($sql, array $opciones = []): \PDOStatement|false
     {
         $statement = $this->conexion->prepare($sql, $opciones);
 
@@ -334,10 +326,8 @@ abstract class Comando implements ComandoInterface
      * Alias de la función generar.
      *
      * @version 1.0
-     *
-     * @return string
      */
-    public function getSql()
+    public function getSql(): string
     {
         return $this->generar();
     }
@@ -354,7 +344,7 @@ abstract class Comando implements ComandoInterface
      *
      * @throws ComandoFetchColumnNoExisteException
      */
-    protected function getClausulaMainCampoIndice(string $campo)
+    protected function getClausulaMainCampoIndice(string $campo): int
     {
         $clausula = $this->getClausulaMain();
         $campos = $clausula->getRetornoCampos();

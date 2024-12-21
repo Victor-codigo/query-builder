@@ -10,6 +10,7 @@ use Lib\QueryConstructor\Sql\Comando\Clausula\From\FromClausula;
 use Lib\QueryConstructor\Sql\Comando\Clausula\From\JoinParams;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Limit\LimitParams;
 use Lib\QueryConstructor\Sql\Comando\Clausula\OrderBy\OrderByParams;
+use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Partition\PartitionParams;
 use Lib\QueryConstructor\Sql\Comando\Operador\AndOperador;
 use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
@@ -67,10 +68,10 @@ abstract class ComandoDml extends Comando
      *
      * @version 1.0
      *
-     * @param string     $atributo atributo
-     * @param string     $operador Operador de comparación
-     * @param int|string $params   parámetros de la comparación. Depende del
-     *                             tipo de comparación
+     * @param string                   $atributo atributo
+     * @param string                   $operador Operador de comparación
+     * @param int|string|Param|Param[] $params   parámetros de la comparación. Depende del
+     *                                           tipo de comparación
      */
     public function where($atributo, $operador, ...$params): void
     {

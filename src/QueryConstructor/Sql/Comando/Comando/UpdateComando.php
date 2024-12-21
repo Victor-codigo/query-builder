@@ -96,8 +96,8 @@ class UpdateComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @param array<string, mixed> $atributos atributos que se actualizan. Con el siguiente formato:
-     *                                        - arr[nombre del atributo] = mixed, valor del atributo
+     * @param array<int|string, mixed> $atributos atributos que se actualizan. Con el siguiente formato:
+     *                                            - arr[nombre del atributo] = mixed, valor del atributo
      */
     public function set(array $atributos): void
     {

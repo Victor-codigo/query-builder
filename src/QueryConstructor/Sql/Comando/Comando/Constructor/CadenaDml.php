@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lib\QueryConstructor\Sql\Comando\Comando\Constructor;
 
 use Lib\QueryConstructor\Sql\Comando\Clausula\From\JOIN_TIPOS;
+use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
 use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
 use Lib\QueryConstructor\Sql\Comando\Comando\ComandoDml;
 use Lib\QueryConstructor\Sql\Comando\Operador\TIPOS as OPERADOR_TIPOS;
@@ -51,14 +52,14 @@ abstract class CadenaDml extends Cadena
      *
      * @version 1.0
      *
-     * @param string     $atributo atributo
-     * @param string     $operador operador de comparación
-     * @param int|string $params   parámetros de la comparación.
-     *                             Depende del tipo de comparación
+     * @param string                   $atributo atributo
+     * @param string                   $operador operador de comparación
+     * @param int|string|Param|Param[] $params   parámetros de la comparación.
+     *                                           Depende del tipo de comparación
      *
      * @return CadenaDml
      */
-    public function where($atributo, $operador, ...$params)
+    public function where($atributo, $operador, int|string|Param|array ...$params)
     {
         $this->comando->where($atributo, $operador, ...$params);
 
@@ -108,10 +109,8 @@ abstract class CadenaDml extends Cadena
      * @param string        $operador operador de comparación
      * @param string|int    $params   parámetros adicionales.
      *                                Depende del tipo de comparación
-     *
-     * @return CadenaDml
      */
-    public function andOp($atributo, $operador = null, ...$params)
+    public function andOp($atributo, $operador = null, ...$params): self
     {
         if ($atributo instanceof Cadena) {
             $this->cerrarGrupoOperadores(OPERADOR_TIPOS::AND_OP);

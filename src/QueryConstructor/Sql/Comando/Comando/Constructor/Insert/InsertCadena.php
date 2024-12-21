@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Insert;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
 use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
 use Lib\QueryConstructor\Sql\Comando\Comando\ComandoDml;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\CadenaDml;
@@ -79,7 +80,7 @@ class InsertCadena extends CadenaDml
      *
      * @version 1.0
      *
-     * @param string[][] $valores valores
+     * @param array<int array<int, mixed>> $valores valores
      */
     public function values(array $valores): self
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Update;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
 use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\CadenaDml;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Excepciones\ComandoConstructorUpdateDecrementValorNegativoException;
@@ -27,8 +28,8 @@ class UpdateCadena extends CadenaDml
      *
      * @version 1.0
      *
-     * @param array<string, mixed> $atributos atributos que se actualizan. Con el siguiente formato:
-     *                                        - arr[nombre del atributo] = mixed, valor del atributo
+     * @param array<int|string, mixed> $atributos atributos que se actualizan. Con el siguiente formato:
+     *                                            - arr[nombre del atributo] = mixed, valor del atributo
      */
     public function set($atributos): self
     {
