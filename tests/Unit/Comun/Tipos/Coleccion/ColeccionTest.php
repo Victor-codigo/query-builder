@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Comun\Tipos\Coleccion;
 
+use Override;
 use Lib\Comun\Tipos\Coleccion\Coleccion;
 use Lib\Comun\Tipos\Coleccion\Item;
 use PHPUnit\Framework\Attributes\Test;
@@ -19,7 +20,7 @@ class ColeccionTest extends TestCase
      */
     protected Coleccion $object;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->object = new Coleccion([1, 'hola', 2, 'adios']);

@@ -10,11 +10,11 @@ return RectorConfig::configure()
     ])
     ->withPreparedSets(
         deadCode: true,
+        typeDeclarations: true,
     )
     ->withSkip([
         ReadOnlyPropertyRector::class,
     ])
-
     ->withPhpSets(php84: true)
-    ->withTypeCoverageLevel(100)
+    ->withImportNames()
 ;

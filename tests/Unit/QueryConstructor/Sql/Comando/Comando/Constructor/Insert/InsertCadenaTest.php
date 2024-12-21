@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor\Insert;
 
+use Lib\QueryConstructor\Sql\Comando\Comando\InsertComando;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Insert\InsertCadena;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -20,11 +22,11 @@ class InsertCadenaTest extends TestCase
      */
     protected $object;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\InsertComando&MockObject $comando_mock;
+    private InsertComando&MockObject $comando_mock;
 
     private ComandoDmlMock $helper;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

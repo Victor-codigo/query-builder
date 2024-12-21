@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Mysql\Clausula\Partition;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
+use Lib\Conexion\Conexion;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Partition\PartitionParams;
 use Lib\QueryConstructor\Sql\Comando\Clausula\TIPOS;
 use Lib\QueryConstructor\Sql\Comando\Mysql\Clausulas\Partition\Partition;
@@ -21,13 +25,13 @@ class PartitionTest extends TestCase
 
     private ComandoMock $helper;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\Comando&MockObject $comando;
+    private Comando&MockObject $comando;
 
-    private \Lib\Conexion\Conexion&MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');

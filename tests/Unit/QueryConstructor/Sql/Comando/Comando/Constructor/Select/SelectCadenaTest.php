@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor\Select;
 
+use Lib\QueryConstructor\Sql\Comando\Comando\SelectComando;
+use Override;
+use PDO;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Select\SelectCadena;
 use Lib\QueryConstructor\Sql\Comando\Operador\OP;
 use PHPUnit\Framework\Attributes\Test;
@@ -21,11 +24,11 @@ class SelectCadenaTest extends TestCase
      */
     protected $object;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\SelectComando&MockObject $comando_mock;
+    private SelectComando&MockObject $comando_mock;
 
     private ComandoDmlMock $helper;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');
@@ -217,7 +220,7 @@ class SelectCadenaTest extends TestCase
     {
         $field = 'campo';
         $value = 2;
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $this->comando_mock
             ->expects($this->once())
@@ -237,7 +240,7 @@ class SelectCadenaTest extends TestCase
     {
         $field = 'campo';
         $value = 2;
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $this->comando_mock
             ->expects($this->once())
@@ -257,7 +260,7 @@ class SelectCadenaTest extends TestCase
     {
         $field = 'campo';
         $value = 2;
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $this->comando_mock
             ->expects($this->once())

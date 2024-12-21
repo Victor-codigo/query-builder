@@ -4,21 +4,25 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Comun\Tipos\Coleccion\Fixtures;
 
-class pruebaInterfazJsonSerializableYSerialilzable implements \JsonSerializable, \Serializable
+use JsonSerializable;
+use Serializable;
+use Override;
+
+class pruebaInterfazJsonSerializableYSerialilzable implements JsonSerializable, Serializable
 {
-    #[\Override]
+    #[Override]
     public function jsonSerialize(): mixed
     {
         return '';
     }
 
-    #[\Override]
+    #[Override]
     public function serialize(): ?string
     {
         return null;
     }
 
-    #[\Override]
+    #[Override]
     public function unserialize($serialized): void
     {
     }

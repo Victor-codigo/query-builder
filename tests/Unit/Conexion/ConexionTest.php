@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Conexion;
 
+use Override;
+use PDOException;
+use PDOStatement;
+use PDO;
+use Closure;
 use Lib\Conexion\Conexion;
 use Lib\Conexion\Excepciones\ConexionBeginTransactionException;
 use Lib\Conexion\Excepciones\ConexionCommitException;
@@ -29,11 +34,11 @@ class ConexionTest extends TestCase
     private ConexionConfig $conexion_config;
 
     /**
-     * @var \Closure
+     * @var Closure
      */
     public static $trigger_error;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->conexion_config = new ConexionConfig('name');
@@ -257,7 +262,7 @@ class ConexionTest extends TestCase
         $pdo_mock->expects($this->once())
                     ->method('beginTransaction')
                     ->willReturnCallback(function (): void {
-                        throw new \PDOException();
+                        throw new PDOException();
                     });
 
         $this->object->beginTransaction();
@@ -292,7 +297,7 @@ class ConexionTest extends TestCase
         $pdo_mock->expects($this->once())
                     ->method('commit')
                     ->willReturnCallback(function (): void {
-                        throw new \PDOException();
+                        throw new PDOException();
                     });
 
         $this->object->commit();
@@ -327,7 +332,7 @@ class ConexionTest extends TestCase
         $pdo_mock->expects($this->once())
                     ->method('rollBack')
                     ->willReturnCallback(function (): void {
-                        throw new \PDOException();
+                        throw new PDOException();
                     });
 
         $this->object->rollBack();
@@ -345,7 +350,7 @@ class ConexionTest extends TestCase
         $pdo_mock->expects($this->once())
                     ->method('query')
                     ->willReturnCallback(function (): void {
-                        throw new \PDOException();
+                        throw new PDOException();
                     });
 
         static::$trigger_error = function ($error_msg, $error_type): void {
@@ -365,14 +370,14 @@ class ConexionTest extends TestCase
     public function queryOk(): void
     {
         $sql = '';
-        $expect = new \PDOStatement();
+        $expect = new PDOStatement();
         $pdo_mock = $this->conexion_config->getPDO(['query']);
 
         $this->propertyEdit($this->object, 'conexion', $pdo_mock);
 
         $pdo_mock->expects($this->once())
                     ->method('query')
-                    ->willReturnCallback(fn (): \PDOStatement => $expect);
+                    ->willReturnCallback(fn (): PDOStatement => $expect);
 
         $resultado = $this->object->query($sql);
 
@@ -393,7 +398,7 @@ class ConexionTest extends TestCase
         $pdo_mock->expects($this->once())
                     ->method('exec')
                     ->willReturnCallback(function (): void {
-                        throw new \PDOException();
+                        throw new PDOException();
                     });
 
         static::$trigger_error = function ($error_msg, $error_type): void {
@@ -434,7 +439,7 @@ class ConexionTest extends TestCase
     {
         $sql = 'sql';
         $driver_opciones = [];
-        $expect = new \PDOStatement();
+        $expect = new PDOStatement();
         $pdo_mock = $this->conexion_config->getPDO(['prepare']);
 
         $this->propertyEdit($this->object, 'conexion', $pdo_mock);
@@ -455,7 +460,7 @@ class ConexionTest extends TestCase
     public function quoteOk(): void
     {
         $valor = 'valor';
-        $parameter_tipo = \PDO::PARAM_STR;
+        $parameter_tipo = PDO::PARAM_STR;
         $expect = "'valor'";
         $pdo_mock = $this->conexion_config->getPDO(['quote']);
 

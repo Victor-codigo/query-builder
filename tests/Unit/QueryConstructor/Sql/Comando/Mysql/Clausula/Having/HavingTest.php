@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Mysql\Clausula\Having;
 
+use Override;
+use LogicException;
 use Lib\Conexion\Conexion;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\QueryConstructor\Sql\Comando\Clausula\TIPOS;
@@ -35,7 +37,7 @@ class HavingTest extends TestCase
 
     private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');
@@ -72,7 +74,7 @@ class HavingTest extends TestCase
 
         $and_operador = $this->object->operadorCrear(OPERADORES_TIPOS::AND_OP);
         if (!$and_operador instanceof Logico) {
-            throw new \LogicException('$and_operador no es del tipo: [Logico]');
+            throw new LogicException('$and_operador no es del tipo: [Logico]');
         }
 
         $and_operador->condicionCrear('atributo', OP::EQUAL, 3);

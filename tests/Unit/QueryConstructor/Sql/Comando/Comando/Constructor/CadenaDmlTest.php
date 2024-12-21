@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor;
 
+use Lib\QueryConstructor\Sql\Comando\Comando\ComandoDml;
+use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Clausula\From\JOIN_TIPOS;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\CadenaDml;
@@ -25,13 +28,13 @@ class CadenaDmlTest extends TestCase
      */
     protected MockObject $object;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\ComandoDml&MockObject $comando_mock;
+    private ComandoDml&MockObject $comando_mock;
 
     private ComandoDmlMock $helper;
 
-    private \Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&MockObject $fabrica_condiciones;
+    private CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

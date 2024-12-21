@@ -9,6 +9,8 @@ use Lib\QueryConstructor\Sql\Comando\Comando\ComandoDml;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\CadenaDml;
 use Lib\QueryConstructor\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoExisteException;
 use Lib\QueryConstructor\Sql\Comando\Comando\SelectComando;
+use PDO;
+use stdClass;
 
 /**
  * Encadena los elementos SQL de un comando SELECT.

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Comun\Excepciones;
 
-class GetMethodException extends \Exception
+use Exception;
+
+class GetMethodException extends Exception
 {
 }

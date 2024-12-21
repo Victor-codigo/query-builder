@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Conexion;
 
+use Override;
 use Lib\Conexion\Conexion;
 use Lib\Conexion\Mysql;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,7 +28,7 @@ class MysqlTest extends TestCase
      */
     private MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->conexion_config = new ConexionConfig('name');

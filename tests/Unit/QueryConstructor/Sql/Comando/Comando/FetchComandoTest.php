@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando;
 
+use Override;
+use PDOStatement;
+use stdClass;
+use PDO;
 use Lib\Conexion\Conexion;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Select\SelectClausula;
@@ -26,7 +30,7 @@ class FetchComandoTest extends TestCase
 
     private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');
@@ -47,10 +51,10 @@ class FetchComandoTest extends TestCase
             ->getMock();
     }
 
-    private function fetchAllMock(): \PDOStatement&MockObject
+    private function fetchAllMock(): PDOStatement&MockObject
     {
         $pdo_statement = $this
-            ->getMockBuilder(\PDOStatement::class)
+            ->getMockBuilder(PDOStatement::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['execute', 'fetchAll', 'closeCursor', 'rowCount'])
             ->getMock();
@@ -77,19 +81,19 @@ class FetchComandoTest extends TestCase
      *
      * @version 1.0
      *
-     * @return \stdClass[]
+     * @return stdClass[]
      */
     private function fetchRegistrosCargar(): array
     {
-        $registro1 = new \stdClass();
+        $registro1 = new stdClass();
         $registro1->id = 'id1';
         $registro1->nick = 'nick1';
 
-        $registro2 = new \stdClass();
+        $registro2 = new stdClass();
         $registro2->id = 'id2';
         $registro2->nick = 'nick2';
 
-        $registro3 = new \stdClass();
+        $registro3 = new stdClass();
         $registro3->id = 'id2';
         $registro3->nick = 'nick3';
 
@@ -99,7 +103,7 @@ class FetchComandoTest extends TestCase
     #[Test]
     public function FetchAllSoloElParametroModo(): void
     {
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
         $expected = ['fetchAll'];
 
         $pdo_statement = $this->fetchAllMock();
@@ -119,7 +123,7 @@ class FetchComandoTest extends TestCase
     #[Test]
     public function fetchAllParametroModoYFetchArg(): void
     {
-        $modo = \PDO::FETCH_COLUMN;
+        $modo = PDO::FETCH_COLUMN;
         $fetch_arg = 1;
         $expected = ['fetchAll'];
 
@@ -141,7 +145,7 @@ class FetchComandoTest extends TestCase
     #[Test]
     public function fetchAllTodosLosParametros(): void
     {
-        $modo = \PDO::FETCH_COLUMN;
+        $modo = PDO::FETCH_COLUMN;
         $fetch_arg = 1;
         $constructor_arg = ['class'];
         $expected = ['fetchAll'];
@@ -170,7 +174,7 @@ class FetchComandoTest extends TestCase
         $pdo_statement
             ->expects($this->once())
             ->method('fetchAll')
-            ->with(\PDO::FETCH_BOTH)
+            ->with(PDO::FETCH_BOTH)
             ->willReturn($expected);
 
         $resultado = $this->object->fetchAllBoth();
@@ -189,7 +193,7 @@ class FetchComandoTest extends TestCase
         $pdo_statement
             ->expects($this->once())
             ->method('fetchAll')
-            ->with(\PDO::FETCH_ASSOC)
+            ->with(PDO::FETCH_ASSOC)
             ->willReturn($expected);
 
         $resultado = $this->object->fetchAllAssoc();
@@ -210,7 +214,7 @@ class FetchComandoTest extends TestCase
         $pdo_statement
             ->expects($this->once())
             ->method('fetchAll')
-            ->with(\PDO::FETCH_CLASS, $clase_nombre, $constructor_arg)
+            ->with(PDO::FETCH_CLASS, $clase_nombre, $constructor_arg)
             ->willReturn($expected);
 
         $resultado = $this->object->fetchAllClass($clase_nombre, $constructor_arg);
@@ -230,7 +234,7 @@ class FetchComandoTest extends TestCase
         $pdo_statement
             ->expects($this->once())
             ->method('fetchAll')
-            ->with(\PDO::FETCH_CLASS, $clase_nombre)
+            ->with(PDO::FETCH_CLASS, $clase_nombre)
             ->willReturn($expected);
 
         $resultado = $this->object->fetchAllClass($clase_nombre);
@@ -249,7 +253,7 @@ class FetchComandoTest extends TestCase
         $pdo_statement
             ->expects($this->once())
             ->method('fetchAll')
-            ->with(\PDO::FETCH_CLASS, \stdClass::class)
+            ->with(PDO::FETCH_CLASS, stdClass::class)
             ->willReturn($expected);
 
         $resultado = $this->object->fetchAllObject();
@@ -292,7 +296,7 @@ class FetchComandoTest extends TestCase
         $pdo_statement
             ->expects($this->once())
             ->method('fetchAll')
-            ->with(\PDO::FETCH_COLUMN)
+            ->with(PDO::FETCH_COLUMN)
             ->willReturn($expected);
 
         $resultado = $this->object->fetchAllColumn($column);
@@ -307,14 +311,14 @@ class FetchComandoTest extends TestCase
     {
         $field = 'id';
         $value = 'id2';
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $expected = $this->fetchRegistrosCargar();
         $pdo_statement = $this->fetchAllMock();
 
         $pdo_statement->expects($this->once())
                         ->method('fetchAll')
-                        ->with(\PDO::FETCH_CLASS, \stdClass::class)
+                        ->with(PDO::FETCH_CLASS, stdClass::class)
                         ->willReturn($expected);
 
         $pdo_statement->expects($this->once())
@@ -323,7 +327,7 @@ class FetchComandoTest extends TestCase
 
         $resultado = $this->object->fetchFirst($field, $value, $modo);
 
-        $this->assertInstanceOf(\stdClass::class, $resultado,
+        $this->assertInstanceOf(stdClass::class, $resultado,
             'ERROR: el valor devuelto no es un array de objetos'
         );
 
@@ -341,14 +345,14 @@ class FetchComandoTest extends TestCase
     {
         $field = 'id';
         $value = 'id1';
-        $modo = \PDO::FETCH_ASSOC;
+        $modo = PDO::FETCH_ASSOC;
 
         $expected = $this->fetchRegistrosCargar();
         $pdo_statement = $this->fetchAllMock();
 
         $pdo_statement->expects($this->once())
                         ->method('fetchAll')
-                        ->with(\PDO::FETCH_CLASS, \stdClass::class)
+                        ->with(PDO::FETCH_CLASS, stdClass::class)
                         ->willReturn($expected);
 
         $pdo_statement->expects($this->once())
@@ -375,14 +379,14 @@ class FetchComandoTest extends TestCase
     {
         $field = 'id';
         $value = 'id2';
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $expected = $this->fetchRegistrosCargar();
         $pdo_statement = $this->fetchAllMock();
 
         $pdo_statement->expects($this->once())
                         ->method('fetchAll')
-                        ->with(\PDO::FETCH_CLASS, \stdClass::class)
+                        ->with(PDO::FETCH_CLASS, stdClass::class)
                         ->willReturn($expected);
 
         $pdo_statement->expects($this->once())
@@ -391,7 +395,7 @@ class FetchComandoTest extends TestCase
 
         $resultado = $this->object->fetchLast($field, $value, $modo);
 
-        $this->assertInstanceOf(\stdClass::class, $resultado,
+        $this->assertInstanceOf(stdClass::class, $resultado,
             'ERROR: el valor devuelto no es un array de objetos'
         );
 
@@ -409,14 +413,14 @@ class FetchComandoTest extends TestCase
     {
         $field = 'id';
         $value = 'id1';
-        $modo = \PDO::FETCH_ASSOC;
+        $modo = PDO::FETCH_ASSOC;
 
         $expected = $this->fetchRegistrosCargar();
         $pdo_statement = $this->fetchAllMock();
 
         $pdo_statement->expects($this->once())
                         ->method('fetchAll')
-                        ->with(\PDO::FETCH_CLASS, \stdClass::class)
+                        ->with(PDO::FETCH_CLASS, stdClass::class)
                         ->willReturn($expected);
 
         $pdo_statement->expects($this->once())
@@ -443,14 +447,14 @@ class FetchComandoTest extends TestCase
     {
         $field = 'id';
         $value = 'id2';
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $expected = $this->fetchRegistrosCargar();
         $pdo_statement = $this->fetchAllMock();
 
         $pdo_statement->expects($this->once())
                         ->method('fetchAll')
-                        ->with(\PDO::FETCH_CLASS, \stdClass::class)
+                        ->with(PDO::FETCH_CLASS, stdClass::class)
                         ->willReturn($expected);
 
         $pdo_statement->expects($this->once())
@@ -459,7 +463,7 @@ class FetchComandoTest extends TestCase
 
         $resultado = $this->object->fetchFind($field, $value, $modo);
 
-        $this->assertArrayInstancesOf(\stdClass::class, $resultado,
+        $this->assertArrayInstancesOf(stdClass::class, $resultado,
             'ERROR: el valor devuelto no es un array de objetos'
         );
 
@@ -485,14 +489,14 @@ class FetchComandoTest extends TestCase
     {
         $field = 'id';
         $value = 'id1';
-        $modo = \PDO::FETCH_ASSOC;
+        $modo = PDO::FETCH_ASSOC;
 
         $expected = $this->fetchRegistrosCargar();
         $pdo_statement = $this->fetchAllMock();
 
         $pdo_statement->expects($this->once())
                         ->method('fetchAll')
-                        ->with(\PDO::FETCH_CLASS, \stdClass::class)
+                        ->with(PDO::FETCH_CLASS, stdClass::class)
                         ->willReturn($expected);
 
         $pdo_statement->expects($this->once())

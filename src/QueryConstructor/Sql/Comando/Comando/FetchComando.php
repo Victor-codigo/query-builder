@@ -8,6 +8,8 @@ use Lib\Conexion\Conexion;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\QueryConstructor\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoExisteException;
 use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use PDO;
+use stdClass;
 
 /**
  * Comando SQL que devuelve información.

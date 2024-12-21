@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor\Select;
 
+use Lib\QueryConstructor\Sql\Comando\Comando\SelectComando;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Select\SelectCadena;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Select\SelectConstructor;
 use PHPUnit\Framework\Attributes\Test;
@@ -21,11 +23,11 @@ class SelectConstructorTest extends TestCase
      */
     protected $object;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\SelectComando&MockObject $comando_mock;
+    private SelectComando&MockObject $comando_mock;
 
     private ComandoDmlMock $helper;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

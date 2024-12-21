@@ -14,6 +14,8 @@ use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
 use Lib\QueryConstructor\Sql\Comando\Comando\Excepciones\ComandoEjecutarException;
 use Lib\QueryConstructor\Sql\Comando\Comando\Excepciones\ComandoFetchColumnNoExisteException;
 use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use PDO;
+use PDOStatement;
 
 /**
  * Comando SQL.
@@ -162,7 +164,7 @@ abstract class Comando implements ComandoInterface
     /**
      * Comando PDO.
      */
-    protected \PDOStatement|false|null $statement;
+    protected \PDOStatement|false|null $statement = null;
 
     /**
      * Obtiene el Resultado del comando.

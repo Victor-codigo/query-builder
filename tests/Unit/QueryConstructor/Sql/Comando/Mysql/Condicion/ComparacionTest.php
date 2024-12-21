@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Mysql\Condicion;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\QueryConstructor\Sql\Comando\Clausula\Clausula;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Mysql\Condicion\Comparacion;
 use Lib\QueryConstructor\Sql\Comando\Operador\OP;
 use PHPUnit\Framework\Attributes\Test;
@@ -23,11 +26,11 @@ class ComparacionTest extends TestCase
 
     private ComandoMock $helper;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\Clausula&MockObject $clausula;
+    private Clausula&MockObject $clausula;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');

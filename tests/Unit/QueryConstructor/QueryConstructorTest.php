@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Unit;
 
+use Override;
 use Lib\Conexion\Conexion;
 use Lib\Conexion\DRIVERS;
 use Lib\QueryConstructor\QueryConstructor;
@@ -31,7 +32,7 @@ class QueryConstructorTest extends TestCase
      */
     private MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->conexion = $this->getMockBuilder(Conexion::class)

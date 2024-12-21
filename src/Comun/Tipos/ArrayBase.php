@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Lib\Comun\Tipos;
 
+use Iterator;
+
 /**
  * Crea una clase base para extender la funcionalidad del array.
  *
  * @template TKey of array-key
  * @template TValue of mixed
  *
- * @implements \Iterator<TKey, TValue>
+ * @implements Iterator<TKey, TValue>
  */
 abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
 {

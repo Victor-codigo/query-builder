@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Clausula\Sql;
 
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Sql\SqlClausula;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Sql\SqlParams;
@@ -23,7 +24,7 @@ class SqlClausulaTest extends TestCase
 
     private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->clausula_mock = new ComandoMock('name');

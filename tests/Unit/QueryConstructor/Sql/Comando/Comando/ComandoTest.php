@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando;
 
+use Override;
+use PDOStatement;
+use LogicException;
 use Lib\Conexion\Conexion;
 use Lib\Excepciones\BDException;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
@@ -35,7 +38,7 @@ class ComandoTest extends TestCase
 
     private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');
@@ -158,7 +161,7 @@ class ComandoTest extends TestCase
     #[Test]
     public function getStatement(): void
     {
-        $expects = new \PDOStatement();
+        $expects = new PDOStatement();
 
         $this->propertyEdit($this->object, 'statement', $expects);
 
@@ -308,7 +311,7 @@ class ComandoTest extends TestCase
         $param2->valor = 'valor2';
         $this->object->paramAdd($param2);
 
-        $pdo_statement = $this->getMockBuilder(\PDOStatement::class)
+        $pdo_statement = $this->getMockBuilder(PDOStatement::class)
                                 ->disableOriginalConstructor()
                                 ->getMock();
 
@@ -325,12 +328,12 @@ class ComandoTest extends TestCase
                 $this->callback(fn (int|string $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
                     1 => $param === $param1::MARCA.$param1->id,
                     2 => $param === $param2::MARCA.$param2->id,
-                    default => throw new \LogicException('No hay mas iteraciones'),
+                    default => throw new LogicException('No hay mas iteraciones'),
                 }),
                 $this->callback(fn (mixed $param): bool => match ($pdo_statement_counter->numberOfInvocations()) {
                     1 => $param === $param1->valor,
                     2 => $param === $param2->valor,
-                    default => throw new \LogicException('No hay mas iteraciones'),
+                    default => throw new LogicException('No hay mas iteraciones'),
                 })
             );
 
@@ -354,7 +357,7 @@ class ComandoTest extends TestCase
     {
         $this->expectException(ComandoEjecutarException::class);
 
-        $pdo_statement = $this->getMockBuilder(\PDOStatement::class)
+        $pdo_statement = $this->getMockBuilder(PDOStatement::class)
                                 ->disableOriginalConstructor()
                                 ->getMock();
 
@@ -372,7 +375,7 @@ class ComandoTest extends TestCase
     #[Test]
     public function ejecutarOk(): void
     {
-        $pdo_statement = $this->getMockBuilder(\PDOStatement::class)
+        $pdo_statement = $this->getMockBuilder(PDOStatement::class)
                                 ->disableOriginalConstructor()
                                 ->getMock();
 
@@ -393,7 +396,7 @@ class ComandoTest extends TestCase
     #[Test]
     public function ejecutarErrorEnLaEjecucion(): void
     {
-        $pdo_statement = $this->getMockBuilder(\PDOStatement::class)
+        $pdo_statement = $this->getMockBuilder(PDOStatement::class)
                                 ->disableOriginalConstructor()
                                 ->getMock();
 

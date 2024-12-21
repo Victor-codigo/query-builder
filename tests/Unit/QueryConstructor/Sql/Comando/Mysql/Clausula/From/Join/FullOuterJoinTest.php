@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Mysql\Clausula\From\Join;
 
+use Override;
 use Lib\Conexion\Conexion;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Excepciones\JoinNoExisteException;
@@ -32,7 +33,7 @@ class FullOuterJoinTest extends TestCase
 
     private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');

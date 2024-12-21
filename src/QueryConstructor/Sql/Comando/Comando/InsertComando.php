@@ -6,8 +6,8 @@ namespace Lib\QueryConstructor\Sql\Comando\Comando;
 
 use Lib\Conexion\Conexion;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
-use Lib\QueryConstructor\Sql\Comando\Clausula\InsertAttr\InsertAttrParams;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Insert\InsertParams;
+use Lib\QueryConstructor\Sql\Comando\Clausula\InsertAttr\InsertAttrParams;
 use Lib\QueryConstructor\Sql\Comando\Clausula\OnDuplicate\OnDuplicateParams;
 use Lib\QueryConstructor\Sql\Comando\Clausula\TIPOS as CLAUSULA_TIPOS;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Values\ValuesParams;
@@ -118,7 +118,7 @@ class InsertComando extends ComandoDml
      *
      * @version 1.0
      *
-     * @param array<int array<int, mixed>> $valores valores
+     * @param array<int, array<int, mixed>> $valores valores
      */
     public function values(array $valores): void
     {

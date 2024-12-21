@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Tests\Comun;
 
+use ReflectionClass;
+use ReflectionProperty;
+use ReflectionMethod;
+use Exception;
 use Tests\Comun\Excepciones\GetMethodException;
 use Tests\Comun\Excepciones\GetPropertyException;
 
 trait PhpunitUtilTrait
 {
     /**
-     * @var \ReflectionClass<object>[]
+     * @var ReflectionClass<object>[]
      */
     private $reflect_class = [];
 
@@ -21,9 +25,9 @@ trait PhpunitUtilTrait
      *
      * @param object $object objeto que se reflecta
      *
-     * @return \ReflectionClass<object>|null clase reflectada
+     * @return ReflectionClass<object>|null clase reflectada
      */
-    private function reflectClass($object): ?\ReflectionClass
+    private function reflectClass($object): ?ReflectionClass
     {
         $encontrado = false;
         $class_name = $object::class;
@@ -39,7 +43,7 @@ trait PhpunitUtilTrait
         }
 
         if (!$encontrado) {
-            $reflect_class = new \ReflectionClass($class_name);
+            $reflect_class = new ReflectionClass($class_name);
             $this->reflect_class[] = $reflect_class;
         }
 
@@ -51,13 +55,13 @@ trait PhpunitUtilTrait
      *
      * @version 1.0
      *
-     * @param \ReflectionClass<object> $class clase para la que se buscan los parientes
+     * @param ReflectionClass<object> $class clase para la que se buscan los parientes
      * @param ?string                  $until nombre completo de la clase en la que se detiene,
      *                                        la búsqueda de parientes
      *
-     * @return \ReflectionClass<object>[] clases parientes
+     * @return ReflectionClass<object>[] clases parientes
      */
-    private function getParents(\ReflectionClass $class, ?string $until = null): array
+    private function getParents(ReflectionClass $class, ?string $until = null): array
     {
         $parents = [];
 
@@ -78,15 +82,15 @@ trait PhpunitUtilTrait
      *
      * @version 1.0
      *
-     * @param \ReflectionClass<object> $class  clase en la que se busca la propiedad
+     * @param ReflectionClass<object> $class clase en la que se busca la propiedad
      * @param string                   $name   nombre de la propiedad
      * @param bool                     $access TRUE si la propiedad se hace publica, FALSE si no
      *
-     * @return \ReflectionProperty propiedad
+     * @return ReflectionProperty propiedad
      *
      * @throws GetPropertyException
      */
-    private function getProperty(\ReflectionClass $class, string $name, bool $access): \ReflectionProperty
+    private function getProperty(ReflectionClass $class, string $name, bool $access): ReflectionProperty
     {
         $reflected_clases = $this->getParents($class);
         array_unshift($reflected_clases, $class);
@@ -112,15 +116,15 @@ trait PhpunitUtilTrait
      *
      * @version 1.0
      *
-     * @param \ReflectionClass<object> $class  clase en la que se busca el método
+     * @param ReflectionClass<object> $class clase en la que se busca el método
      * @param string                   $name   nombre del método
      * @param bool                     $access TRUE si la propiedad se hace publica, FALSE si no
      *
-     * @return \ReflectionMethod método
+     * @return ReflectionMethod método
      *
      * @throws GetMethodException
      */
-    private function getMethod(\ReflectionClass $class, string $name, bool $access): \ReflectionMethod
+    private function getMethod(ReflectionClass $class, string $name, bool $access): ReflectionMethod
     {
         $reflected_clases = $this->getParents($class);
         array_unshift($reflected_clases, $class);
@@ -151,11 +155,11 @@ trait PhpunitUtilTrait
      * @param mixed  $value         valor en que se establece la propiedad
      * @param bool   $access        TRUE si la propiedad se hace publica, FALSE si no
      *
-     * @return \ReflectionProperty Propiedad
+     * @return ReflectionProperty Propiedad
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    protected function propertyEdit($object, $property_name, mixed $value = null, $access = true): \ReflectionProperty
+    protected function propertyEdit($object, $property_name, mixed $value = null, $access = true): ReflectionProperty
     {
         $property = $this->getProperty(
             $this->reflectClass($object),
@@ -178,7 +182,7 @@ trait PhpunitUtilTrait
      * @param object $object objeto que se reflecta
      * @param string $method nombre del método
      *
-     * @return \ReflectionMethod Método
+     * @return ReflectionMethod Método
      */
     protected function setMethodPublic($object, $method)
     {

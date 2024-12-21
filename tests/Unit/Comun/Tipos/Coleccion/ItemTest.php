@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Comun\Tipos\Coleccion;
 
+use Override;
 use Lib\Comun\Tipos\Coleccion\Item;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +20,7 @@ class ItemTest extends TestCase
      */
     protected $object;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->object = new Item(5, 'id');

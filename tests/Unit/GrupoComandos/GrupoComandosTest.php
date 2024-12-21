@@ -2,6 +2,7 @@
 
 namespace GT\Libs\Sistema\BD\GrupoComandos;
 
+use Override;
 use Lib\Conexion\Conexion;
 use Lib\Excepciones\BDException;
 use Lib\GrupoComandos\Comando as GrupoComando;
@@ -26,7 +27,7 @@ class GrupoComandosTest extends TestCase
 
     private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');

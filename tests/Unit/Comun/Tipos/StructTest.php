@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Comun\Tipos;
 
+use Override;
 use Lib\Comun\Tipos\Struct;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -19,7 +20,7 @@ class StructTest extends TestCase
 
     protected StructForTesting $object;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->object = new StructForTesting();

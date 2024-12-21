@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Operador;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Conexion\Conexion;
+use Lib\QueryConstructor\Sql\Comando\Clausula\Clausula;
+use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\Condicion;
 use Lib\QueryConstructor\Sql\Comando\Operador\Logico;
 use Lib\QueryConstructor\Sql\Comando\Operador\OP;
@@ -21,15 +26,15 @@ class LogicoTest extends TestCase
 
     private ComandoDmlMock $helper;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\Conexion\Conexion&MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\Clausula&MockObject $clausula;
+    private Clausula&MockObject $clausula;
 
-    private \Lib\QueryConstructor\Sql\Comando\Operador\Condicion\CondicionFabricaInterface&MockObject $fabrica_condiciones;
+    private CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

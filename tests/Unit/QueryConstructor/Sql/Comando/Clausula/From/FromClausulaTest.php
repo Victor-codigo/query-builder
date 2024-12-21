@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Clausula\From;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Clausula\From\FromClausula;
 use Lib\QueryConstructor\Sql\Comando\Clausula\From\JOIN_TIPOS;
 use Lib\QueryConstructor\Sql\Comando\Clausula\From\JoinParams;
@@ -26,9 +28,9 @@ class FromClausulaTest extends TestCase
 
     private ComandoMock $clausula_mock;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->clausula_mock = new ComandoMock('name');

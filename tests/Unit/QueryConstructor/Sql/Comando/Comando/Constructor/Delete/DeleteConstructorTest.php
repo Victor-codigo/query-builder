@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor\Delete;
 
+use Lib\QueryConstructor\Sql\Comando\Comando\DeleteComando;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Delete\DeleteCadena;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Delete\DeleteConstructor;
 use PHPUnit\Framework\Attributes\Test;
@@ -22,11 +24,11 @@ class DeleteConstructorTest extends TestCase
      */
     protected $object;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\DeleteComando&MockObject $comando_mock;
+    private DeleteComando&MockObject $comando_mock;
 
     private ComandoDmlMock $helper;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

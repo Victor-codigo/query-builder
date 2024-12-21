@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Operador;
 
+use Override;
 use Lib\Conexion\Conexion;
 use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\Condicion;
 use Lib\QueryConstructor\Sql\Comando\Operador\XorOperador;
@@ -26,7 +27,7 @@ class XorOperadorTest extends TestCase
 
     private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

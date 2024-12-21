@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor;
 
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\ComandoConstructor;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -19,7 +20,7 @@ class ComandoConstructorTest extends TestCase
 
     private ComandoDmlMock $mock;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->mock = new ComandoDmlMock('name');

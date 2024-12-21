@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Mysql\Clausula\Values;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
+use Lib\Conexion\Conexion;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Clausula\TIPOS;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Values\ValuesParams;
 use Lib\QueryConstructor\Sql\Comando\Mysql\Clausulas\Values\Values;
@@ -21,13 +25,13 @@ class ValuesTest extends TestCase
 
     private ComandoMock $helper;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\Comando&MockObject $comando;
+    private Comando&MockObject $comando;
 
-    private \Lib\Conexion\Conexion&MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');

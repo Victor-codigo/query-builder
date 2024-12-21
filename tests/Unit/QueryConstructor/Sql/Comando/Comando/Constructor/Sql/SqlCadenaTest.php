@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor\Sql;
 
+use Lib\QueryConstructor\Sql\Comando\Comando\SqlComando;
+use Override;
+use PDO;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Sql\SqlCadena;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -20,11 +23,11 @@ class SqlCadenaTest extends TestCase
      */
     protected $object;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\SqlComando&MockObject $comando_mock;
+    private SqlComando&MockObject $comando_mock;
 
     private ComandoDmlMock $helper;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');
@@ -108,7 +111,7 @@ class SqlCadenaTest extends TestCase
         $this->comando_mock
             ->expects($this->once())
             ->method('fetchAllClass')
-            ->with(\PDO::FETCH_CLASS, $constructor_arg)
+            ->with(PDO::FETCH_CLASS, $constructor_arg)
             ->willReturn($expects);
 
         $resultado = $this->object->fetchAllClass($constructor_arg);
@@ -160,7 +163,7 @@ class SqlCadenaTest extends TestCase
         $expects = 'retorno';
         $field = 'nombre';
         $value = 'valor';
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $this->comando_mock
             ->expects($this->once())
@@ -181,7 +184,7 @@ class SqlCadenaTest extends TestCase
         $expects = 'retorno';
         $field = 'nombre';
         $value = 'valor';
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $this->comando_mock
             ->expects($this->once())
@@ -202,7 +205,7 @@ class SqlCadenaTest extends TestCase
         $expects = 'retorno';
         $field = 'nombre';
         $value = 'valor';
-        $modo = \PDO::FETCH_OBJ;
+        $modo = PDO::FETCH_OBJ;
 
         $this->comando_mock
             ->expects($this->once())

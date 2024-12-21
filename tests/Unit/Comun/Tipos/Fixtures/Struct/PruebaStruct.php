@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Comun\Tipos\Fixtures\Struct;
 
-class PruebaStruct implements \Serializable
+use Serializable;
+use Override;
+
+class PruebaStruct implements Serializable
 {
     public int $propiedad_1 = 1;
     public string $propiedad_2 = 'string';
@@ -14,7 +17,7 @@ class PruebaStruct implements \Serializable
      */
     public array $propiedad_4 = [1, 2, 3];
 
-    #[\Override]
+    #[Override]
     public function serialize(): string
     {
         return serialize([
@@ -26,7 +29,7 @@ class PruebaStruct implements \Serializable
         );
     }
 
-    #[\Override]
+    #[Override]
     public function unserialize($serialized): void
     {
         $serialized = unserialize($serialized);

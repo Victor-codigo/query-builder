@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor;
 
+use Override;
+use Exception;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
 use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
@@ -34,7 +36,7 @@ class ComandoDmlConstructorTest extends TestCase
 
     private CondicionFabricaInterface&MockObject $fabrica_condiciones;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');
@@ -188,7 +190,7 @@ class ComandoDmlConstructorTest extends TestCase
                 1 => $param === $expect_param_1,
                 2 => $param === $expect_param_2,
                 3 => $param === $expect_param_3,
-                default => throw new \Exception('ERROR: el número de invocaciones no es el esperado'),
+                default => throw new Exception('ERROR: el número de invocaciones no es el esperado'),
             }));
         $resultado = $this->object->param($placeholder, $valores);
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando\Constructor\Update;
 
+use Lib\QueryConstructor\Sql\Comando\Comando\UpdateComando;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Excepciones\ComandoConstructorUpdateDecrementValorNegativoException;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Excepciones\ComandoConstructorUpdateIncrementValorNegativoException;
 use Lib\QueryConstructor\Sql\Comando\Comando\Constructor\Update\UpdateCadena;
@@ -22,11 +24,11 @@ class UpdateCadenaTest extends TestCase
      */
     protected $object;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\UpdateComando&MockObject $comando_mock;
+    private UpdateComando&MockObject $comando_mock;
 
     private ComandoDmlMock $helper;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

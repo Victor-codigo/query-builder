@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Comando;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\Conexion\Conexion;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaInterface;
 use Lib\QueryConstructor\Sql\Comando\Clausula\Limit\LimitClausula;
 use Lib\QueryConstructor\Sql\Comando\Clausula\OrderBy\OrderByClausula;
@@ -32,11 +35,11 @@ class UpdateComandoTest extends TestCase
 
     private ComandoDmlMock $helper;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\Conexion\Conexion&MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

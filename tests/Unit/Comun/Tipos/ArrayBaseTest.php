@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Comun\Tipos;
 
+use Override;
+use stdClass;
 use Lib\Comun\Tipos\ArrayBase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -26,7 +28,7 @@ class ArrayBaseTest extends TestCase
      */
     private array $array = [];
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->array = [
@@ -36,7 +38,7 @@ class ArrayBaseTest extends TestCase
             'indice 3' => [
                 'coche', 'casa', 'perro',
             ],
-            4 => new \stdClass(),
+            4 => new stdClass(),
             'indice 5 ' => 5,
             6 => [
                 'animales' => [

@@ -80,7 +80,7 @@ class InsertCadena extends CadenaDml
      *
      * @version 1.0
      *
-     * @param array<int array<int, mixed>> $valores valores
+     * @param array<int, array<int, mixed>> $valores valores
      */
     public function values(array $valores): self
     {

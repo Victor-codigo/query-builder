@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Operador;
 
+use Lib\Conexion\Conexion;
+use Override;
 use Lib\QueryConstructor\Sql\Comando\Operador\Condicion\Condicion;
 use Lib\QueryConstructor\Sql\Comando\Operador\OrOperador;
 use PHPUnit\Framework\Attributes\Test;
@@ -23,9 +25,9 @@ class OrOperadorTest extends TestCase
 
     private ComandoDmlMock $helper;
 
-    private \Lib\Conexion\Conexion&MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoDmlMock('name');

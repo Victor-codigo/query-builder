@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lib\QueryConstructor\Sql\Comando\Mysql\Clausulas;
 
 use Lib\QueryConstructor\Sql\Comando\Clausula\Param;
+use PDO;
 
 /**
  * Funciones para las clausulas, para la sustitución de parámetros.

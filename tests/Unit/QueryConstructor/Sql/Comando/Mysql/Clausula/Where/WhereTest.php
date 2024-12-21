@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\QueryConstructor\Sql\Comando\Mysql\Clausula\Where;
 
+use Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface;
+use Lib\QueryConstructor\Sql\Comando\Comando\Comando;
+use Lib\Conexion\Conexion;
+use Override;
+use LogicException;
 use Lib\QueryConstructor\Sql\Comando\Clausula\TIPOS;
 use Lib\QueryConstructor\Sql\Comando\Mysql\Clausulas\Where\Where;
 use Lib\QueryConstructor\Sql\Comando\Mysql\Condicion\MysqlCondicionFabrica;
@@ -24,13 +29,13 @@ class WhereTest extends TestCase
 
     private ComandoMock $helper;
 
-    private \Lib\QueryConstructor\Sql\Comando\Clausula\ClausulaFabricaInterface&MockObject $clausula_fabrica;
+    private ClausulaFabricaInterface&MockObject $clausula_fabrica;
 
-    private \Lib\QueryConstructor\Sql\Comando\Comando\Comando&MockObject $comando;
+    private Comando&MockObject $comando;
 
-    private \Lib\Conexion\Conexion&MockObject $conexion;
+    private Conexion&MockObject $conexion;
 
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->helper = new ComandoMock('name');
@@ -67,7 +72,7 @@ class WhereTest extends TestCase
 
         $and_operador = $this->object->operadorCrear(OPERADORES_TIPOS::AND_OP);
         if (!$and_operador instanceof Logico) {
-            throw new \LogicException('$and_operador no es del tipo: [Logico]');
+            throw new LogicException('$and_operador no es del tipo: [Logico]');
         }
 
         $and_operador->condicionCrear('atributo', OP::EQUAL, 3);

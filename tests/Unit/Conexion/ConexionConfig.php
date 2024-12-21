@@ -44,7 +44,7 @@ class ConexionConfig extends TestCase
      */
     public function getPDO(array $metodos = []): MockObject
     {
-        return $this->getMockBuilder(\PDO::class)
+        return $this->getMockBuilder(PDO::class)
                     ->disableOriginalConstructor()
                     ->onlyMethods($metodos)
                     ->getMock();
