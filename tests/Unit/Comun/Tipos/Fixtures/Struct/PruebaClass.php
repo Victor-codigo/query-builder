@@ -22,8 +22,4 @@ class PruebaClass extends Struct
     {
         return ['propiedad_1', 'propiedad_2', 'propiedad_3', 'propiedad_4'];
     }
-
-    public function __wakeup()
-    {
-    }
 }

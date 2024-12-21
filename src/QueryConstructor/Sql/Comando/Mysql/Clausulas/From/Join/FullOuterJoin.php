@@ -38,8 +38,5 @@ final class FullOuterJoin extends Join
     public function generar(): string
     {
         throw new JoinNoExisteException('MySql no tiene FULL OUTER JOIN');
-
-        // @phpstan-ignore deadCode.unreachable
-        return null;
     }
 }

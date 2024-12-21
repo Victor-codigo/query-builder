@@ -307,7 +307,7 @@ class ColeccionTest extends TestCase
         $cont = 0;
         $items = $this->object->getItems();
 
-        $this->object->each(function ($item, $key) use (&$cont, $items) {
+        $this->object->each(function ($item, $key) use (&$cont, $items): void {
             $this->assertInstanceOf(Item::class, $item,
                 'ERROR: el parámetro $item pasado al callback no es del tipo esperado'
             );
@@ -335,7 +335,7 @@ class ColeccionTest extends TestCase
         $items = array_reverse($this->object->getItems());
         $num_items = $this->object->count();
 
-        $this->object->filter(function ($item, $key) use (&$cont, $items) {
+        $this->object->filter(function ($item, $key) use (&$cont, $items): bool {
             $this->assertInstanceOf(Item::class, $item,
                 'ERROR: el parámetro $item pasado al callback no es del tipo esperado'
             );

@@ -178,7 +178,7 @@ class StructTest extends TestCase
      */
     #[Test]
     #[DataProvider('providerToArray')]
-    public function toArray($provider): void
+    public function toArray(array $provider): void
     {
         $resultado = $this->object->toArray($provider['params']['niveles']);
         $expect = $this->structToArray($this->object, $provider['params']['niveles']);

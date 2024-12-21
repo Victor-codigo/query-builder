@@ -24,7 +24,7 @@ class ArrayBaseTest extends TestCase
      *
      * @var mixed[]
      */
-    private $array = [];
+    private array $array = [];
 
     protected function setUp(): void
     {

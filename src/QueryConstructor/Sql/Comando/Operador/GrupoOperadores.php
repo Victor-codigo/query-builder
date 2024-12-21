@@ -65,7 +65,7 @@ class GrupoOperadores
      *
      * @param string $operador operador
      */
-    public function setOperador($operador): void
+    public function setOperador(?string $operador): void
     {
         $this->operador = $operador;
     }
