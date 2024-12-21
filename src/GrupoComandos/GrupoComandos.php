@@ -18,11 +18,6 @@ use Lib\QueryConstructor\Sql\Comando\Comando\FetchComando;
 class GrupoComandos
 {
     /**
-     * Conexión con la base de datos.
-     */
-    private ?Conexion $conexion = null;
-
-    /**
      * Comandos.
      *
      * @var Coleccion<int, Item|GrupoComando>
@@ -43,9 +38,8 @@ class GrupoComandos
      *
      * @param Conexion $conexion conexión con la base de datos
      */
-    public function __construct(Conexion $conexion)
+    public function __construct(private ?Conexion $conexion)
     {
-        $this->conexion = $conexion;
         $this->comandos = new Coleccion();
     }
 
@@ -248,27 +242,15 @@ class GrupoComandos
             return null;
         }
 
-        switch ($comando->fetch->fetch) {
-            case FETCH_TIPOS::OBJ:
-                return $comando->comando->fetchAllObject();
-
-            case FETCH_TIPOS::ASSOC:
-                return $comando->comando->fetchAllAssoc();
-
-            case FETCH_TIPOS::BOTH:
-                return $comando->comando->fetchAllBoth();
-
-            case FETCH_TIPOS::CLASS_:
-                return $comando->comando->fetchAllClass($comando->fetch->param,
-                    $comando->fetch->clase_args);
-
-            case FETCH_TIPOS::COLUMN:
-                return $comando->comando->fetchAllColumn($comando->fetch->param);
-
-            case FETCH_TIPOS::EXECUTE:
-                return $comando->comando->ejecutar();
-            default:
-                return null;
-        }
+        return match ($comando->fetch->fetch) {
+            FETCH_TIPOS::OBJ => $comando->comando->fetchAllObject(),
+            FETCH_TIPOS::ASSOC => $comando->comando->fetchAllAssoc(),
+            FETCH_TIPOS::BOTH => $comando->comando->fetchAllBoth(),
+            FETCH_TIPOS::CLASS_ => $comando->comando->fetchAllClass($comando->fetch->param,
+                $comando->fetch->clase_args),
+            FETCH_TIPOS::COLUMN => $comando->comando->fetchAllColumn($comando->fetch->param),
+            FETCH_TIPOS::EXECUTE => $comando->comando->ejecutar(),
+            default => null,
+        };
     }
 }

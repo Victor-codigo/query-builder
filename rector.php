@@ -16,6 +16,6 @@ return RectorConfig::configure()
         // ReadOnlyPropertyRector::class,
     ])
 
-    ->withPhpSets(php56: true)
+    ->withPhpSets(php80: true)
     ->withTypeCoverageLevel(100)
 ;

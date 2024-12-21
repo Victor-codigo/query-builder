@@ -109,9 +109,8 @@ class ArrayBaseTest extends TestCase
     public function rewind(): void
     {
         $this->object->rewind();
-        reset($this->array);
 
-        $this->assertEquals(key($this->array), $this->object->key(),
+        $this->assertEquals(array_key_first($this->array), $this->object->key(),
             'ERROR: el indice devuelto no es el esperado'
         );
     }

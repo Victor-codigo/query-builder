@@ -12,11 +12,6 @@ use Serializable;
 class Item implements \JsonSerializable, \Serializable
 {
     /**
-     * Identificador del elemento.
-     */
-    private int|string $id;
-
-    /**
      * Obtiene el identificador del elemento.
      *
      * @version 1.0
@@ -39,11 +34,6 @@ class Item implements \JsonSerializable, \Serializable
     }
 
     /**
-     * Elemento.
-     */
-    private mixed $item;
-
-    /**
      * Obtiene el elemento.
      *
      * @version 1.0
@@ -61,10 +51,10 @@ class Item implements \JsonSerializable, \Serializable
      * @param mixed      $item elemento de el item
      * @param int|string $id   identificador del item
      */
-    public function __construct(mixed $item, int|string $id)
-    {
-        $this->id = $id;
-        $this->item = $item;
+    public function __construct(
+        private mixed $item,
+        private int|string $id,
+    ) {
     }
 
     /**

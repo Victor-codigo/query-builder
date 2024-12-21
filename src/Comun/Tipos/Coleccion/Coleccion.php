@@ -62,7 +62,7 @@ class Coleccion extends ArrayBase
     public function push(mixed $item, int|string|null $id = null): void
     {
         if (!$item instanceof Item) {
-            $id = null === $id ? $this->count() : $id;
+            $id ??= $this->count();
             $item = new Item($item, $id);
         }
 
@@ -80,7 +80,7 @@ class Coleccion extends ArrayBase
     public function prepend(mixed $item, int|string|null $id = null): void
     {
         if (!$item instanceof Item) {
-            $id = null === $id ? $this->count() : $id;
+            $id ??= $this->count();
             $item = new Item($item, $id);
         }
 

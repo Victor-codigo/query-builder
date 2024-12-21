@@ -88,9 +88,9 @@ abstract class CadenaDml extends Cadena
      *
      * @version 1.0
      *
-     * @param string $operador Establece el operador del grupo
+     * @param ?string $operador Establece el operador del grupo
      */
-    protected function cerrarGrupoOperadores($operador): void
+    protected function cerrarGrupoOperadores(?string $operador): void
     {
         $operadores = $this->comando->getConstruccionClausula()->getOperadores();
         $grupo = $operadores->getGrupoActual();

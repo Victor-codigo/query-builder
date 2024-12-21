@@ -15,22 +15,15 @@ namespace Lib\Comun\Tipos;
 abstract class ArrayBase implements \Iterator, \Countable, \JsonSerializable
 {
     /**
-     * Array.
-     *
-     * @var mixed[]
-     */
-    protected array $array = [];
-
-    /**
      * Constructor.
      *
      * @version 1.0
      *
-     * @param mixed[] $items elementos del array
+     * @param mixed[] $array elementos del array
      */
-    public function __construct(array $items = [])
-    {
-        $this->array = $items;
+    public function __construct(
+        protected array $array = [],
+    ) {
     }
 
     /**
