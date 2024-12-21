@@ -9,8 +9,8 @@ use Lib\Comun\Tipos\ArrayBase;
 /**
  * Colección de elementos.
  *
- * @template TKey of int
- * @template TValue
+ * @template TKey of array-key
+ * @template TValue of mixed
  *
  * @extends ArrayBase<TKey, TValue>
  */
@@ -74,10 +74,10 @@ class Coleccion extends ArrayBase
      *
      * @version 1.0
      *
-     * @param TValue     $item elemento que se añade
-     * @param int|string $id   identificador del elemento
+     * @param TValue          $item elemento que se añade
+     * @param int|string|null $id   identificador del elemento
      */
-    public function prepend(mixed $item, $id = null): void
+    public function prepend(mixed $item, int|string|null $id = null): void
     {
         if (!$item instanceof Item) {
             $id = null === $id ? $this->count() : $id;
@@ -110,7 +110,7 @@ class Coleccion extends ArrayBase
      *
      * @param int|string $id indice del elemento que se elimina
      *
-     * @return array<int, TValue> Elementos eliminados
+     * @return array<TKey, TValue> Elementos eliminados
      */
     public function removeId(int|string $id): array
     {
@@ -130,11 +130,11 @@ class Coleccion extends ArrayBase
      *
      * @version 1.0
      *
-     * @param int $id indice del elemento que se elimina
+     * @param int|string $id indice del elemento que se elimina
      *
      * @return TValue elemento eliminado
      */
-    public function removeFirstId(int $id): mixed
+    public function removeFirstId(int|string $id): mixed
     {
         $removed = null;
 
@@ -382,7 +382,7 @@ class Coleccion extends ArrayBase
      *
      * @version 1.0
      *
-     * @return array<int, TValue>
+     * @return array<TKey, TValue>
      */
     public function getAll(): array
     {
@@ -469,12 +469,12 @@ class Coleccion extends ArrayBase
      *
      * @version 1.0
      *
-     * @param int $id identificador
+     * @param int|string $id identificador
      *
-     * @return array<int, TValue>|null elemento
-     *                                 NULL si no se encuentra
+     * @return array<TKey, TValue>|null elemento
+     *                                  NULL si no se encuentra
      */
-    public function getId(int $id): ?array
+    public function getId(int|string $id): ?array
     {
         $retorno = [];
 
@@ -562,7 +562,7 @@ class Coleccion extends ArrayBase
      *
      * @version 1.0
      *
-     * @param Coleccion<TKey, TValue> $coleccion
+     * @param Coleccion<array-key, TValue> $coleccion
      */
     public function merge(self $coleccion): void
     {
@@ -691,7 +691,7 @@ class Coleccion extends ArrayBase
      * @param bool   $strict TRUE se compara con ===
      *                       FALSE se compara con ==
      */
-    public function search(mixed $item, $strict = false): int|string|null
+    public function search(mixed $item, bool $strict = false): int|string|null
     {
         $retorno = null;
 

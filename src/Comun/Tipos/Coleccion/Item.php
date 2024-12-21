@@ -145,7 +145,7 @@ class Item implements \JsonSerializable, \Serializable
     public function unserialize(string $serialized): bool
     {
         $data = unserialize($serialized);
-        $item = @unserialize($data['item']);
+        $item = @unserialize((string) $data['item']);
 
         if (false === $item && 'b:0;' !== $data['item']) {
             $item = $data['item'];

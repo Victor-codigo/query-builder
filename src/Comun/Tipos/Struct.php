@@ -17,7 +17,7 @@ class Struct implements \Serializable
      *                                    FALSE se omiten los elementos del array cuyo indice no coincida
      *                                    con el de una propiedad de la estructura
      */
-    public function fromArray(array $array, $crear = false): void
+    public function fromArray(array $array, bool $crear = false): void
     {
         $propiedades = get_object_vars($this);
 
@@ -31,7 +31,7 @@ class Struct implements \Serializable
     /**
      * Guarda las propiedades en un array.
      *
-     * @vesion 1.0
+     * @version 1.0
      *
      * @param int $niveles Número de niveles de anidación que alcanza la función
      *                     a la hora de convertir en array.
@@ -40,7 +40,7 @@ class Struct implements \Serializable
      * @return array<string, mixed> con las propiedades de la estructura, con el siguiente formato:
      *                              - arr[nombre de la propiedad] = mixed, valor de la propiedad
      */
-    public function toArray($niveles = 10): array
+    public function toArray(int $niveles = 10): array
     {
         $propiedades = [];
 
@@ -173,7 +173,7 @@ class Struct implements \Serializable
      * @return mixed|null valor de la propiedad
      *                    NULL si no existe
      */
-    public function getValor($propiedad)
+    public function getValor($propiedad): mixed
     {
         $retorno = null;
 
@@ -197,7 +197,7 @@ class Struct implements \Serializable
      *
      * @return mixed valor de la constante
      */
-    public function getConst($constante)
+    public function getConst($constante): mixed
     {
         if ('class' === $constante) {
             $retorno = static::class;

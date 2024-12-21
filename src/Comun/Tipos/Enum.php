@@ -30,7 +30,7 @@ abstract class Enum
      *                  con el  siguiente formato:
      *                  - arr[nombre de la constante] = mixed, valor de la constante
      */
-    public static function getConstants()
+    public static function getConstants(): array
     {
         return self::getReflexion()->getConstants();
     }
@@ -42,7 +42,7 @@ abstract class Enum
      *
      * @return string[] nombre de las constantes
      */
-    public static function getConstantsNames()
+    public static function getConstantsNames(): array
     {
         return array_keys(self::getConstants());
     }
@@ -56,7 +56,7 @@ abstract class Enum
      *
      * @return bool TRUE si la constante existe en al numeración, FALSE si no
      */
-    public static function hasConstantName($constant)
+    public static function hasConstantName(string $constant): bool
     {
         $retorno = self::getReflexion()->getConstant($constant);
 
@@ -72,13 +72,13 @@ abstract class Enum
      *
      * @version 1.0
      *
-     * @param string $value  valor de la constante
-     * @param bool   $strict TRUE si la comprobación se hace de forma estricta
-     *                       FALSE no
+     * @param int|string $value  valor de la constante
+     * @param bool       $strict TRUE si la comprobación se hace de forma estricta
+     *                           FALSE no
      *
      * @return bool TRUE si la constante existe en al numeración, FALSE si no
      */
-    public static function hasConstant($value, $strict = false)
+    public static function hasConstant(int|string $value, bool $strict = false): bool
     {
         foreach (static::getConstants() as $const_value) {
             if ($strict && $const_value === $value) {
