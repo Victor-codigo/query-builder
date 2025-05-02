@@ -9,7 +9,7 @@ Supported statements:
 
 
 # Prerequisites
-PHP 8.3
+PHP 8.0
 
 # Stack
 - [PHP 8.0](https://www.php.net/)
